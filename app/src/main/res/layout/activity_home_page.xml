@@ -7,38 +7,32 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.ryan.qwiktix.HomePageActivity">
 
-        android:id="@+id/app_bar"    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+
+
+
+    <android.support.design.widget.AppBarLayout
 
     android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
+
 </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_home_page"
         android:id="@+id/include" />
+
+    <include layout="@layout/display_user_test_page"
+        android:id="@+id/include1" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/text_schedules"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="schedules"
-            android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/text_music"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="music"
-            android:visibility="gone" />
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottom_navigation"
