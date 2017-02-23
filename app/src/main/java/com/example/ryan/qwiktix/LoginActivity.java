@@ -111,6 +111,25 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Please Register", Toast.LENGTH_SHORT).show();
 
                         }
+                        else{
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                            if (user.isEmailVerified())
+                            {
+                                // user is verified, so you can finish this activity or send user to activity which you want.
+                                finish();
+                                Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                // email is not verified, so just prompt the message to the user and restart this activity.
+                                // NOTE: don't forget to log out the user.
+                                FirebaseAuth.getInstance().signOut();
+
+                                //restart this activity
+
+                            }
+                        }
                     }
                 });
     }

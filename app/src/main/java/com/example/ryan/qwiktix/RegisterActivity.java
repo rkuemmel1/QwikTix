@@ -59,6 +59,32 @@ public class RegisterActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    user.sendEmailVerification()
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        // email sent
+
+
+                                        // after email is sent just logout the user and finish this activity
+                                        FirebaseAuth.getInstance().signOut();
+                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                        finish();
+                                    }
+                                    else
+                                    {
+                                        // email not sent, so display message and restart the activity or do whatever you wish to do
+
+                                        //restart this activity
+                                        overridePendingTransition(0, 0);
+                                        finish();
+                                        overridePendingTransition(0, 0);
+                                        startActivity(getIntent());
+
+                                    }
+                                }
+                            });
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -103,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(RegisterActivity.this, "email needs @uiowa.edu",
                         Toast.LENGTH_SHORT).show();
             } else {
-                mAuth.createUserWithEmailAndPassword(email, password)
+                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -121,12 +147,19 @@ public class RegisterActivity extends AppCompatActivity {
                                     startActivity(loginIntent);
 
 
+
                                 }
 
 
                             }
                         });
+
             }
+
+
+
         }
+
     }
+
 }
