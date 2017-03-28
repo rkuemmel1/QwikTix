@@ -1,6 +1,7 @@
 package com.example.ryan.qwiktix;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -13,7 +14,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.support.design.widget.BottomNavigationView;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,10 +32,9 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
 
-
 public class HomePageActivity extends AppCompatActivity {
 
-//    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    //    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 //
 //    private TextView uEmail;
 //    private TextView uFirstName;
@@ -39,6 +44,11 @@ public class HomePageActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private FirebaseAuth.AuthStateListener mAuthListener;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +63,7 @@ public class HomePageActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         bLogOut = (Button) findViewById(R.id.hLogOut);
 
-        bLogOut.setOnClickListener(new View.OnClickListener(){
+        bLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -63,25 +73,50 @@ public class HomePageActivity extends AppCompatActivity {
         });
 
 
-        if(FirebaseAuth.getInstance().getCurrentUser() == null)
-        {
-            Intent loginIntent = new Intent(HomePageActivity.this,LoginActivity.class);
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            Intent loginIntent = new Intent(HomePageActivity.this, LoginActivity.class);
             HomePageActivity.this.startActivity(loginIntent);
         }
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() == null)
-                {
-                    Intent loginIntent = new Intent(HomePageActivity.this,LoginActivity.class);
+                if (firebaseAuth.getCurrentUser() == null) {
+                    Intent loginIntent = new Intent(HomePageActivity.this, LoginActivity.class);
                     loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(loginIntent);
                 }
             }
         };
 
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+                findViewById(R.id.bottom_navigation);
 
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_trends:
+                               Intent trendsIntent = new Intent(HomePageActivity.this, TrendsActivity.class);
+                                startActivity(trendsIntent);
+
+                            case R.id.action_tickets:
+                                Intent TicketIntent = new Intent(HomePageActivity.this, TicketActivity.class);
+                                startActivity(TicketIntent);
+                            case R.id.action_profile:
+                                Intent ProfileIntent = new Intent(HomePageActivity.this, ProfileActivty.class);
+                                startActivity(ProfileIntent);
+
+                        }
+                        return true;
+                    }
+                });
+
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -92,8 +127,10 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStart(){
-        super.onStart();
+    public void onStart() {
+        super.onStart();// ATTENTION: This was auto-generated to implement the App Indexing API.
+// See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
 
         mAuth.addAuthStateListener(mAuthListener);
 
@@ -118,16 +155,39 @@ public class HomePageActivity extends AppCompatActivity {
 //            }
 //        };
 //        mDatabase.addValueEventListener(userListener);
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
     }
 
 
     @Override
     public void onStop() {
-        super.onStop();
+        super.onStop();// ATTENTION: This was auto-generated to implement the App Indexing API.
+// See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.disconnect();
     }
 
 
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("HomePage Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
 }
