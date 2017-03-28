@@ -2,21 +2,36 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_favorites"
+        android:id="@+id/action_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_white_24dp"
+        android:title="@string/text_home"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/action_search"
+        android:enabled="true"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:title="Search"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/action_add_ticket"
+        android:enabled="true"
+        android:icon="@drawable/ic_ticket_white_24dp"
+        android:title="@string/text_tickets"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_trends"
         android:enabled="true"
         android:icon="@drawable/ic_trending_up_white_24dp"
         android:title="@string/text_trends"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_schedules"
+        android:id="@+id/action_profile"
         android:enabled="true"
         android:icon="@drawable/ic_profile_white_24dp"
         android:title="@string/text_profile"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_music"
-        android:enabled="true"
-        android:icon="@drawable/ic_ticket_white_24dp"
-        android:title="@string/text_tickets"
-        app:showAsAction="ifRoom" />
+
 </menu>

@@ -3,6 +3,7 @@ package com.example.ryan.qwiktix;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +45,7 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        setupBottomNavigationView();
 
         Firebase.setAndroidContext(this);
 //
@@ -82,6 +84,30 @@ public class HomePageActivity extends AppCompatActivity {
         };
 
 
+    }
+
+    private void setupBottomNavigationView() {
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_home:
+                        break;
+                    case R.id.action_search:
+                        Intent searchIntent = new Intent(HomePageActivity.this,SearchActivity.class);
+                        startActivity(searchIntent);
+                        break;
+                    case R.id.action_add_ticket:
+                        break;
+                    case R.id.action_trends:
+                        break;
+                    case R.id.action_profile:
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     @Override
