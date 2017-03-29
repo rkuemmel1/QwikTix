@@ -69,7 +69,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                                         // after email is sent just logout the user and finish this activity
                                         FirebaseAuth.getInstance().signOut();
-                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                        Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                        startActivity(intent);
+                                        Toast.makeText(RegisterActivity.this, "verification email sent",
+                                                Toast.LENGTH_SHORT).show();
+                                        //startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                         finish();
                                     }
                                     else
