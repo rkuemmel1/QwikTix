@@ -28,7 +28,7 @@ import com.firebase.client.FirebaseError;
 
 
 
-public class HomePageActivity extends AppCompatActivity {
+public class HomePageActivity extends BaseActivity {
 
 //    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 //
@@ -44,8 +44,6 @@ public class HomePageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
-        setupBottomNavigationView();
 
         Firebase.setAndroidContext(this);
 //
@@ -86,36 +84,36 @@ public class HomePageActivity extends AppCompatActivity {
 
     }
 
-    private void setupBottomNavigationView() {
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_home:
-                        break;
-                    case R.id.action_search:
-                        Intent searchIntent = new Intent(HomePageActivity.this,SearchActivity.class);
-                        startActivity(searchIntent);
-                        break;
-                    case R.id.action_add_ticket:
-                        break;
-                    case R.id.action_trends:
-                        break;
-                    case R.id.action_profile:
-                        break;
-                }
-                return true;
-            }
-        });
-    }
+//    private void setupBottomNavigationView() {
+//        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                switch (item.getItemId()) {
+//                    case R.id.action_home:
+//                        break;
+//                    case R.id.action_search:
+//                        Intent searchIntent = new Intent(HomePageActivity.this,SearchActivity.class);
+//                        startActivity(searchIntent);
+//                        break;
+//                    case R.id.action_add_ticket:
+//                        break;
+//                    case R.id.action_trends:
+//                        break;
+//                    case R.id.action_profile:
+//                        break;
+//                }
+//                return true;
+//            }
+//        });
+//    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.bottom_navigation_main, menu); //
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        //getMenuInflater().inflate(R.menu.bottom_navigation_main, menu); //
+//        return true;
+//    }
 
     @Override
     public void onStart(){
@@ -155,5 +153,15 @@ public class HomePageActivity extends AppCompatActivity {
         }
     }
 
+
+    int getContentViewId()
+    {
+        return R.layout.activity_home_page;
+    }
+
+    int getNavigationMenuItemId()
+    {
+        return R.id.action_home;
+    }
 
 }
