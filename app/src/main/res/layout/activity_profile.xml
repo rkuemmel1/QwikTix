@@ -25,6 +25,15 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:id="@+id/search_title" />
 
+        <Button
+            android:text="Log Out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="68dp"
+            android:id="@+id/hLogOut" />
+
     </FrameLayout>
 
     <include

@@ -30,90 +30,51 @@ import com.firebase.client.FirebaseError;
 
 public class HomePageActivity extends BaseActivity {
 
-//    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+   // private Button bLogOut;
+    //private static final String TAG = "MainActivity";
+//    private FirebaseAuth mAuth;
 //
-//    private TextView uEmail;
-//    private TextView uFirstName;
-//    private TextView uLastName;
-    private Button bLogOut;
-    private static final String TAG = "MainActivity";
-    private FirebaseAuth mAuth;
-
-    private FirebaseAuth.AuthStateListener mAuthListener;
+//    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Firebase.setAndroidContext(this);
+//        Firebase.setAndroidContext(this);
 //
-//        uEmail = (TextView) findViewById(R.id.user_email);
-//        uFirstName = (TextView) findViewById(R.id.user_first_name);
-//        uLastName = (TextView) findViewById(R.id.user_last_name);
-        mAuth = FirebaseAuth.getInstance();
-        bLogOut = (Button) findViewById(R.id.hLogOut);
-
-        bLogOut.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-                mAuth.signOut();
-
-            }
-        });
-
-
-        if(FirebaseAuth.getInstance().getCurrentUser() == null)
-        {
-            Intent loginIntent = new Intent(HomePageActivity.this,LoginActivity.class);
-            HomePageActivity.this.startActivity(loginIntent);
-        }
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() == null)
-                {
-                    Intent loginIntent = new Intent(HomePageActivity.this,LoginActivity.class);
-                    loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(loginIntent);
-                }
-            }
-        };
+//        mAuth = FirebaseAuth.getInstance();
+//        bLogOut = (Button) findViewById(R.id.hLogOut);
+//
+//        bLogOut.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//
+//                mAuth.signOut();
+//
+//            }
+//        });
+//
+//
+//        if(FirebaseAuth.getInstance().getCurrentUser() == null)
+//        {
+//            Intent loginIntent = new Intent(HomePageActivity.this,LoginActivity.class);
+//            HomePageActivity.this.startActivity(loginIntent);
+//        }
+//
+//        mAuthListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                if(firebaseAuth.getCurrentUser() == null)
+//                {
+//                    Intent loginIntent = new Intent(HomePageActivity.this,LoginActivity.class);
+//                    loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                    startActivity(loginIntent);
+//                }
+//            }
+//        };
 
 
     }
-
-//    private void setupBottomNavigationView() {
-//        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()) {
-//                    case R.id.action_home:
-//                        break;
-//                    case R.id.action_search:
-//                        Intent searchIntent = new Intent(HomePageActivity.this,SearchActivity.class);
-//                        startActivity(searchIntent);
-//                        break;
-//                    case R.id.action_add_ticket:
-//                        break;
-//                    case R.id.action_trends:
-//                        break;
-//                    case R.id.action_profile:
-//                        break;
-//                }
-//                return true;
-//            }
-//        });
-//    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        //getMenuInflater().inflate(R.menu.bottom_navigation_main, menu); //
-//        return true;
-//    }
 
     @Override
     public void onStart(){
@@ -121,27 +82,6 @@ public class HomePageActivity extends BaseActivity {
 
         mAuth.addAuthStateListener(mAuthListener);
 
-
-//        ValueEventListener userListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for(DataSnapshot userSnapshot : dataSnapshot.child("users").getChildren())
-//                {
-//                    User user = userSnapshot.getValue(User.class);
-//
-//                    uEmail.setText(user.getEmail());
-//                    uFirstName.setText(user.getFirstName());
-//                    uLastName.setText(user.getLastName());
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        };
-//        mDatabase.addValueEventListener(userListener);
     }
 
 
