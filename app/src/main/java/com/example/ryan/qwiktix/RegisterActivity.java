@@ -147,6 +147,9 @@ public class RegisterActivity extends AppCompatActivity {
                                     Toast.makeText(RegisterActivity.this, "Unable to create user",
                                             Toast.LENGTH_SHORT).show();
                                 } else {
+
+                                    String userId = task.getResult().getUser().getUid();
+
                                     Intent loginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
                                     loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(loginIntent);

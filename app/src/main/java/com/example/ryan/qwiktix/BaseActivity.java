@@ -100,7 +100,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 startActivity(new Intent(this, ProfileActivity.class));
             }
             finish();
-        }, 100);
+        }, 20);
         return true;
     }
 
