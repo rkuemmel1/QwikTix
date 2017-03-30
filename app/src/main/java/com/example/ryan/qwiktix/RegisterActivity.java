@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -27,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText rPasswordConfirm;
     private EditText rEmail;
 
+    private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -36,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         rFirstName = (EditText) findViewById(R.id.rFirstName);
         rLastName = (EditText) findViewById(R.id.rLastName);
@@ -149,6 +153,10 @@ public class RegisterActivity extends AppCompatActivity {
                                 } else {
 
                                     String userId = task.getResult().getUser().getUid();
+
+                                    User user = new User(email,password,firstName,lastName);
+                                    mDatabase.child("users").child(userId).setValue(user);
+
 
                                     Intent loginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
                                     loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
