@@ -15,8 +15,14 @@ public class Ticket {
     public String timePosted;
     public String userEmail;
 
-    public Ticket(){
-
+    public Ticket(String event, int price,String timePosted, String endTime, String userEmail){
+        this.event = event;
+        this.price = price;
+        this.timePosted = timePosted;
+        this.endTime = endTime;
+        this.userEmail = userEmail;
+        status = "pending";
+        timePosted = "3/30/2017";
     }
 
     public String getEndTime() {
