@@ -111,12 +111,12 @@ public class ChatActivity extends AppCompatActivity  {
     }
     public void displayConversations(){
         spinner = (Spinner) findViewById(R.id.spinner);
-        conversationAdapter = new FirebaseListAdapter<String>(this, String.class,R.layout.conversation, mDatabase.child("listofconvos")){
+        conversationAdapter = new FirebaseListAdapter<ChatConversation>(this, ChatConversation.class,R.layout.conversation, mDatabase.child("listofconvos")){
             @Override
-            protected void populateView(View v, String model,int position){
+            protected void populateView(View v, ChatConversation model,int position){
                 TextView convotext= (TextView)v.findViewById(R.id.convo);
 
-                convotext.setText(model);
+                convotext.setText(model.getTitle());
             }
         };
         // attaching data adapter to spinner
