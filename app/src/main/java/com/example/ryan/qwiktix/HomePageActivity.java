@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.firebase.client.Firebase;
 import com.firebase.client.core.view.View;
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.firebase.database.FirebaseDatabase;
 
 /*
     Modified from https://firebaseui.com/docs/android/index.html in relation with the
@@ -17,36 +18,32 @@ import com.firebase.ui.database.FirebaseListAdapter;
 
 public class HomePageActivity extends BaseActivity {
 
-    Firebase mRef;
     FirebaseListAdapter<Ticket> myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        mRef = new Firebase("https://qwiktix.firebaseio.com");
 
-        myAdapter = new FirebaseListAdapter<Ticket>(this,Ticket.class,android.R.layout.simple_list_item_1,mRef) {
+        ListView ticketList = (ListView)findViewById(R.id.homeList);
+
+        myAdapter = new FirebaseListAdapter<Ticket>(this,Ticket.class,R.layout.ticket_display,
+                getTickets()) {
             @Override
-            protected void populateView(View view, Ticket t, int i) {
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setText(t.getEvent());
+            protected void populateView(android.view.View v, Ticket model, int position) {
+                TextView eventName = (TextView)v.findViewById(R.id.eventName);
+                TextView price = (TextView)v.findViewById(R.id.price);
+                TextView endDate = (TextView)v.findViewById(R.id.endDate);
+                //Set text
+                eventName.setText("EVENT: " + model.getEvent());
+                price.setText("PRICE: $" + Integer.toString(model.getPrice()));
+                endDate.setText("END DATE: " + model.getEndTime());
             }
+
         };
-        final ListView lv = (ListView) findViewById(R.id.listView);
-        lv.setAdapter(myAdapter);
-/*
-        Button addBtn = (Button) findViewById(R.id.add_button);
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mRef.push().setValue("test123");
-            }
-        });
-    }*/
+        ticketList.setAdapter(myAdapter);
 
-
-}
+    }
 
     int getContentViewId()
     {
