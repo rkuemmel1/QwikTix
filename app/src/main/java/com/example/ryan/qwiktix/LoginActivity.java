@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText lEmail = (EditText) findViewById(R.id.lEmail);
         final EditText lPassword =(EditText) findViewById(R.id.lPassword);
         final Button lLoginButton = (Button) findViewById(R.id.lLoginButton);
-        final TextView lRegisterLink = (TextView) findViewById(R.id.lRegisterLink);
+        final Button lRegisterLink = (Button) findViewById(R.id.lRegisterLink);
 
 
 
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
+                if (user != null && user.isEmailVerified()) {
                     // User is signed in
                     Intent homePageIntent = new Intent(LoginActivity.this,HomePageActivity.class);
                     startActivity(homePageIntent);
