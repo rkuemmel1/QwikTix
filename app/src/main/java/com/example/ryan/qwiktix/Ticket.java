@@ -4,6 +4,12 @@ import java.util.Date;
 
 /**
  * Created by brade_000 on 2/18/2017.
+ *
+ * will probably want to take in:
+ *  - seat location
+ *  - number of seats
+ *  - time of event
+ *  - any additional information field
  */
 
 public class Ticket {
