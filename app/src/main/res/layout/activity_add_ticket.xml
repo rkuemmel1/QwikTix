@@ -13,7 +13,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
         android:ems="10"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -21,7 +20,8 @@
         android:id="@+id/tEvent"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="Event" />
+        android:hint="Event"
+        android:inputType="text" />
 
 
     <EditText
@@ -35,14 +35,13 @@
         android:id="@+id/tPrice"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="Price"
-        android:singleLine="false" />
+        android:hint="Price" />
 
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|datetime"
         android:ems="10"
         android:layout_below="@+id/tPrice"
         android:layout_alignParentLeft="true"
