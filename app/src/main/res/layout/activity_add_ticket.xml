@@ -12,11 +12,12 @@
         layout="@layout/bottom_navigation_element"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
         />
 
-    <EditText
+
+    <AutoCompleteTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -26,6 +27,7 @@
         android:id="@+id/tEvent"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:completionThreshold="1"
         android:hint="Event"
         android:inputType="text" />
 
@@ -57,6 +59,19 @@
         android:layout_alignParentEnd="true"
         android:hint="Event Date" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName|datetime"
+        android:ems="10"
+        android:layout_below="@+id/tEventDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tEventTime"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="Event Time" />
+
     <Button
         android:text="Add Ticket"
         android:layout_width="wrap_content"
@@ -69,5 +84,3 @@
         android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
-
-
