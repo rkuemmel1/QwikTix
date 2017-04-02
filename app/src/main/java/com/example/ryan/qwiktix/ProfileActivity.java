@@ -18,6 +18,7 @@ public class ProfileActivity extends BaseActivity {
 
     private Button bLogOut;
     private Button bEditProfile;
+    private Button bChat;
     private TextView pEmail;
     private TextView pPayPalEmail;
     private TextView pFirstName;
@@ -28,6 +29,7 @@ public class ProfileActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        bChat = (Button) findViewById(R.id.BChat);
         bLogOut = (Button) findViewById(R.id.pLogOut);
         bEditProfile = (Button) findViewById(R.id.pEditProfile);
 
@@ -47,6 +49,15 @@ public class ProfileActivity extends BaseActivity {
                 startActivity(editProfileIntent);
             }
         });
+
+        bChat.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent ChatIntent = new Intent(ProfileActivity.this,ChatActivity.class);
+                startActivity(ChatIntent);
+            }
+        });
+
 
         pUid = getmAuth().getCurrentUser().getUid();
 
