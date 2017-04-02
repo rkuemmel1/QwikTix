@@ -17,6 +17,8 @@ import android.widget.Button;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -129,6 +131,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     public void signOut(){
             mAuth.signOut();
     }
+    protected DatabaseReference getMessages(){
+        return FirebaseDatabase.getInstance().getReference().child("conversations");
+    }
+    protected DatabaseReference getConversations(){
+
+        return FirebaseDatabase.getInstance().getReference().child("listofconvos");
+    }
+
 
 
     abstract int getContentViewId();
