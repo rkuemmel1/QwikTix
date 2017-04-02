@@ -28,7 +28,6 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
-
     }
 }
 
@@ -47,14 +46,11 @@ dependencies {
     compile 'com.firebase:firebase-client-android:2.5.2'
     compile 'com.google.firebase:firebase-auth:10.2.0'
     compile 'com.android.support.constraint:constraint-layout:+'
+
+    // FirebaseUI Database only
+    compile 'com.firebaseui:firebase-ui-database:1.2.0'
+
     testCompile 'junit:junit:4.12'
 }
-
-
-
-
-
-
-
 
 apply plugin: 'com.google.gms.google-services'
