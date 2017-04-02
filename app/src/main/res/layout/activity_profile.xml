@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
@@ -8,62 +8,99 @@
     tools:context="com.example.ryan.qwiktix.SearchActivity"
     >
 
-    <FrameLayout
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <TextView
-            android:id="@+id/search_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="Profile Page" />
-
-
-
-
-        <Button
-            android:id="@+id/hLogOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="68dp"
-            android:text="Log Out" />
-
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/pEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-    <TextView
-        android:id="@+id/pPayPalEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-    <TextView
-        android:id="@+id/pFirstName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-    <TextView
-        android:id="@+id/pLastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
 
     <include
         layout="@layout/bottom_navigation_element"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
         />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/pFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="23dp"
+        />
+
+    <TextView
+        android:id="@+id/pLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/pFirstName"
+        android:layout_centerHorizontal="true"
+         />
+
+    <Button
+        android:id="@+id/pLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:text="Log Out"
+        android:layout_below="@+id/lProfile"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:id="@+id/lProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:layout_alignBaseline="@+id/pLastName"
+        android:layout_alignBottom="@+id/pLastName"
+        android:layout_alignRight="@+id/pLogOut"
+        android:layout_alignEnd="@+id/pLogOut" />
+
+    <TextView
+        android:id="@+id/lEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pFirstName"
+        android:layout_alignStart="@+id/pFirstName"
+        android:layout_below="@+id/pLogOut"
+        android:layout_marginTop="26dp"
+        android:text="Email" />
+
+    <TextView
+        android:id="@+id/lPayPalEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lEmail"
+        android:layout_alignStart="@+id/lEmail"
+        android:layout_below="@+id/lEmail"
+        android:layout_marginTop="33dp"
+        android:text="PayPal Email" />
+
+    <TextView
+        android:id="@+id/pEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pLastName"
+        android:layout_alignTop="@+id/lEmail" />
+
+    <TextView
+        android:id="@+id/pPayPalEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pEmail"
+        android:layout_alignStart="@+id/pEmail"
+        android:layout_alignTop="@+id/lPayPalEmail" />
+
+    <Button
+        android:id="@+id/pEditProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Profile"
+        android:layout_below="@+id/pFirstName"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="30dp"/>
+
+</RelativeLayout>

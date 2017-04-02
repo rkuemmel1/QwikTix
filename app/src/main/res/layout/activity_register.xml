@@ -34,7 +34,7 @@
         android:id="@+id/rEmail"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="email" />
+        android:hint="Email" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
         android:id="@+id/rPassword"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="password" />
+        android:hint="Password" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
         android:id="@+id/rPasswordConfirm"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="retype password" />
+        android:hint="Retype Password" />
 
     <Button
         android:text="Register"

@@ -1,5 +1,6 @@
 package com.example.ryan.qwiktix;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfileActivity extends BaseActivity {
 
     private Button bLogOut;
+    private Button bEditProfile;
     private TextView pEmail;
     private TextView pPayPalEmail;
     private TextView pFirstName;
@@ -26,7 +28,8 @@ public class ProfileActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bLogOut = (Button) findViewById(R.id.hLogOut);
+        bLogOut = (Button) findViewById(R.id.pLogOut);
+        bEditProfile = (Button) findViewById(R.id.pEditProfile);
 
         bLogOut.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -34,6 +37,14 @@ public class ProfileActivity extends BaseActivity {
 
                 signOut();
 
+            }
+        });
+
+        bEditProfile.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent editProfileIntent = new Intent(ProfileActivity.this,EditProfileActivity.class);
+                startActivity(editProfileIntent);
             }
         });
 
