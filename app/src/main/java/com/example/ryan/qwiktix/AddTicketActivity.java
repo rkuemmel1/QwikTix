@@ -12,7 +12,10 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AddTicketActivity extends AppCompatActivity {
+import java.text.DateFormat;
+import java.util.Date;
+
+public class AddTicketActivity extends BaseActivity {
 
     private static final String TAG = "AddTicketActivity";
 
@@ -20,13 +23,19 @@ public class AddTicketActivity extends AppCompatActivity {
     private EditText tEventDate;
     private EditText tPrice;
 
+    private String pUid;
+    private String pUserEmail;
+
     private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_ticket);
+        //setContentView(R.layout.activity_add_ticket);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        pUid = getmAuth().getCurrentUser().getUid();
+        pUserEmail = getmAuth().getCurrentUser().getEmail();
 
         tEvent = (EditText) findViewById(R.id.tEvent);
         tEventDate = (EditText) findViewById(R.id.tEventDate);
@@ -48,13 +57,14 @@ public class AddTicketActivity extends AppCompatActivity {
         String event = tEvent.getText().toString().trim();
         String eventDate = tEventDate.getText().toString().trim();
         String price = tPrice.getText().toString().trim();
-        String user = "sydney-garcia@uiowa.edu";
-        String date = "06/03/2017";
-        String ticketIDString = event.concat(user).concat(date).replace(" ", "").replace("/", "").replace(":", "").replace("-", "").replace("@", "").replace(".","").toLowerCase();
+        String userEmail = pUserEmail;
+        String user = pUid;
+
+        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
 
         if (!TextUtils.isEmpty(price) && !TextUtils.isEmpty(eventDate) && !TextUtils.isEmpty(event)) {
-            Ticket ticket = new Ticket(event, Integer.parseInt(price), date, eventDate, user);
-            mDatabase.child("tickets").child(ticketIDString).setValue(ticket);
+            Ticket ticket = new Ticket(event, Integer.parseInt(price), currentDateTimeString, eventDate, userEmail, user);
+            mDatabase.child("tickets").push().setValue(ticket);
         }
 
         Toast.makeText(AddTicketActivity.this, "ticket added",
@@ -64,6 +74,16 @@ public class AddTicketActivity extends AppCompatActivity {
         addTicketIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(addTicketIntent);
 
+    }
+
+    int getContentViewId()
+    {
+        return R.layout.activity_add_ticket;
+    }
+
+    int getNavigationMenuItemId()
+    {
+        return R.id.action_add_ticket;
     }
 
 }

@@ -20,15 +20,17 @@ public class Ticket {
     public String status;
     public String timePosted;
     public String userEmail;
+    public String uID;
 
-    public Ticket(String event, int price,String timePosted, String endTime, String userEmail){
+    public Ticket(String event, int price,String timePosted, String endTime, String userEmail, String uID){
         this.event = event;
         this.price = price;
         this.timePosted = timePosted;
         this.endTime = endTime;
         this.userEmail = userEmail;
+        this.uID = uID;
         status = "pending";
-        timePosted = "3/30/2017";
+        //timePosted = "3/30/2017";
     }
 
     public String getEndTime() {
@@ -77,5 +79,13 @@ public class Ticket {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public String getuID() {
+        return uID;
+    }
+
+    public void setuID(String uID) {
+        this.uID = uID;
     }
 }
