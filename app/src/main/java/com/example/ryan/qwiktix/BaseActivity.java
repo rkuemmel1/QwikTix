@@ -136,6 +136,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     public void signOut(){
             mAuth.signOut();
     }
+    protected DatabaseReference getMessages(){
+        return FirebaseDatabase.getInstance().getReference().child("conversations");
+    }
+    protected DatabaseReference getConversations(){
+
+        return FirebaseDatabase.getInstance().getReference().child("listofconvos");
+    }
+
 
 
     abstract int getContentViewId();
