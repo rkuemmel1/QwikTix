@@ -32,6 +32,7 @@ public class Ticket {
         status = "pending";
         //timePosted = "3/30/2017";
     }
+    public Ticket(){}
 
     public String getEndTime() {
         return endTime;
