@@ -12,7 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
-import com.firebase.client.ValueEventListener;
+import com.firebase.client.FirebaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -59,14 +60,29 @@ public class AddTicketActivity extends BaseActivity {
             }
         });
 
-        actv = (AutoCompleteTextView) findViewById(R.id.tEvent);
-        String[] events = {"BTS Wings Tour", "Iowa State Basketball Game", "Purdue Track Meet"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (this,android.R.layout.simple_list_item_1,events);
-        actv.setAdapter(adapter);
+        final ArrayAdapter<String> autoComplete = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
 
+        //Child the root before all the push() keys are found and add a ValueEventListener()
+        mDatabase.child("events").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+                //Basically, this says "For each DataSnapshot *Data* in dataSnapshot, do what's inside the method.
+                for (com.google.firebase.database.DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()) {
+                    //Get the suggestion by childing the key of the string you want to get.
+                    String suggestion = suggestionSnapshot.child("name").getValue(String.class);
+                    //Add the retrieved string to the list
+                    autoComplete.add(suggestion);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError){
+            }
+        });
+
+        AutoCompleteTextView ACTV = (AutoCompleteTextView) findViewById(R.id.tEvent);
+        ACTV.setAdapter(autoComplete);
     }
-
 
     private void addTicket() {
 
