@@ -3,7 +3,9 @@ package com.example.ryan.qwiktix;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.FirebaseError;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +33,7 @@ public class AddTicketActivity extends BaseActivity {
     private EditText tEventDate;
     private EditText tPrice;
     private EditText tEventTime;
+    private EditText tEventType;
 
     private String pUid;
     private String pUserEmail;
@@ -51,6 +55,7 @@ public class AddTicketActivity extends BaseActivity {
         tEventDate = (EditText) findViewById(R.id.tEventDate);
         tPrice = (EditText) findViewById(R.id.tPrice);
         tEventTime = (EditText) findViewById(R.id.tEventTime);
+        tEventType = (EditText) findViewById(R.id.tEventType);
         final Button tSubmitButton = (Button) findViewById(R.id.tSubmitButton);
 
         tSubmitButton.setOnClickListener(new View.OnClickListener() {
@@ -76,12 +81,13 @@ public class AddTicketActivity extends BaseActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError){
+            public void onCancelled(DatabaseError databaseError) {
             }
         });
 
         AutoCompleteTextView ACTV = (AutoCompleteTextView) findViewById(R.id.tEvent);
         ACTV.setAdapter(autoComplete);
+
     }
 
     private void addTicket() {
