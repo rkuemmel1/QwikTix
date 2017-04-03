@@ -33,7 +33,6 @@ public class AddTicketActivity extends BaseActivity {
     private EditText tEventDate;
     private EditText tPrice;
     private EditText tEventTime;
-    private EditText tEventType;
 
     private String pUid;
     private String pUserEmail;
@@ -55,7 +54,6 @@ public class AddTicketActivity extends BaseActivity {
         tEventDate = (EditText) findViewById(R.id.tEventDate);
         tPrice = (EditText) findViewById(R.id.tPrice);
         tEventTime = (EditText) findViewById(R.id.tEventTime);
-        tEventType = (EditText) findViewById(R.id.tEventType);
         final Button tSubmitButton = (Button) findViewById(R.id.tSubmitButton);
 
         tSubmitButton.setOnClickListener(new View.OnClickListener() {
@@ -103,14 +101,19 @@ public class AddTicketActivity extends BaseActivity {
         if (!TextUtils.isEmpty(price) && !TextUtils.isEmpty(eventDate) && !TextUtils.isEmpty(event)) {
             Ticket ticket = new Ticket(event, Integer.parseInt(price), currentDateTimeString, eventDate, userEmail, user);
             mDatabase.child("tickets").push().setValue(ticket);
+
+            Toast.makeText(AddTicketActivity.this, "ticket added",
+                    Toast.LENGTH_SHORT).show();
+
+            Intent addTicketIntent = new Intent(AddTicketActivity.this,HomePageActivity.class);
+            addTicketIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(addTicketIntent);
         }
 
-        Toast.makeText(AddTicketActivity.this, "ticket added",
-                Toast.LENGTH_SHORT).show();
-
-        Intent addTicketIntent = new Intent(AddTicketActivity.this,HomePageActivity.class);
-        addTicketIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(addTicketIntent);
+        else
+        {
+            Toast.makeText(AddTicketActivity.this, "please fill all fields", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
