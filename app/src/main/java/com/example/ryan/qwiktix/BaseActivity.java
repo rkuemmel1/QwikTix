@@ -135,6 +135,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     protected FirebaseAuth getmAuth(){
         return mAuth;
     }
+    protected String getUid(){
+        return mAuth.getCurrentUser().getUid();
+    }
 
 
     public void signOut(){

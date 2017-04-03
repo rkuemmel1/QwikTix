@@ -24,7 +24,9 @@
         <activity android:name=".AddTicketActivity" />
         <activity android:name=".TrendsActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".EditProfileActivity">
+            android:windowSoftInputMode="stateVisible|adjustResize"
+        </activity>
         <activity android:name=".ChatActivity"></activity>
     </application>
 
