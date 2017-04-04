@@ -35,8 +35,6 @@ public class ChatActivity extends BaseActivity {
         displayConversations();
 
 
-
-
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +66,7 @@ public class ChatActivity extends BaseActivity {
 
     public void displayChatMessages(){
         ListView listOfMessages = (ListView)findViewById(R.id.list_of_messages);
-
+        listOfMessages.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
         messageAdapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class,
                 R.layout.message, getMessages().child(conversation)) {
             @Override
@@ -84,6 +82,7 @@ public class ChatActivity extends BaseActivity {
                 // Format the date before showing it
                 messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
                         model.getMessageTime()));
+
             }
         };
 
