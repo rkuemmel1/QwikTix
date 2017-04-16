@@ -7,39 +7,48 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.example.ryan.qwiktix.HomePageActivity">
+
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/spinner_title"/>
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@color/black"
-        android:id="@+id/fab"
-        android:tint="@android:color/white"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        app:fabSize="mini"
-        android:layout_alignParentRight="true" />
+
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/fab"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/textInputLayout">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Input"
-            android:id="@+id/input"
-            />
+
     </android.support.design.widget.TextInputLayout>
 
+
+    <EditText
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation"
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="Input" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:clickable="true"
+        android:src="@color/black"
+        android:tint="@android:color/white"
+        app:fabSize="mini"
+        android:layout_alignTop="@+id/input"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -51,4 +60,15 @@
         android:layout_marginBottom="16dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/spinner" />
+    <include
+        layout="@layout/bottom_navigation_element"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        android:layout_above="@+id/textInputLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+         />
+
 </RelativeLayout>

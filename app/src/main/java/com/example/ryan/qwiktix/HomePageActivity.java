@@ -1,134 +1,58 @@
 package com.example.ryan.qwiktix;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
+import com.firebase.client.core.view.View;
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.firebase.database.FirebaseDatabase;
+
+/*
+    Modified from https://firebaseui.com/docs/android/index.html in relation with the
+    FirebaseListAdapter
 
 
+ */
 
-public class HomePageActivity extends AppCompatActivity {
+public class HomePageActivity extends BaseActivity {
 
-//    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-//
-//    private TextView uEmail;
-//    private TextView uFirstName;
-//    private TextView uLastName;
-    private Button bLogOut;
-    private static final String TAG = "MainActivity";
-    private FirebaseAuth mAuth;
-
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    FirebaseListAdapter<Ticket> myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
 
-        Firebase.setAndroidContext(this);
-//
-//        uEmail = (TextView) findViewById(R.id.user_email);
-//        uFirstName = (TextView) findViewById(R.id.user_first_name);
-//        uLastName = (TextView) findViewById(R.id.user_last_name);
-        mAuth = FirebaseAuth.getInstance();
-        bLogOut = (Button) findViewById(R.id.hLogOut);
+        ListView ticketList = (ListView)findViewById(R.id.homeList);
 
-        bLogOut.setOnClickListener(new View.OnClickListener(){
+        myAdapter = new FirebaseListAdapter<Ticket>(this,Ticket.class,R.layout.ticket_display,
+                getTickets()) {
             @Override
-            public void onClick(View v) {
-
-                mAuth.signOut();
-
+            protected void populateView(android.view.View v, Ticket model, int position) {
+                TextView eventName = (TextView)v.findViewById(R.id.eventName);
+                TextView price = (TextView)v.findViewById(R.id.price);
+                TextView endDate = (TextView)v.findViewById(R.id.endDate);
+                //Set text
+                eventName.setText("EVENT: " + model.getEvent());
+                price.setText("PRICE: $" + Integer.toString(model.getPrice()));
+                endDate.setText("END DATE: " + model.getEndTime());
             }
-        });
 
-
-        if(FirebaseAuth.getInstance().getCurrentUser() == null)
-        {
-            Intent loginIntent = new Intent(HomePageActivity.this,LoginActivity.class);
-            HomePageActivity.this.startActivity(loginIntent);
-        }
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() == null)
-                {
-                    Intent loginIntent = new Intent(HomePageActivity.this,LoginActivity.class);
-                    loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(loginIntent);
-                }
-            }
         };
-
+        ticketList.setAdapter(myAdapter);
 
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.bottom_navigation_main, menu); //
-        return true;
+    int getContentViewId()
+    {
+        return R.layout.activity_home_page;
     }
 
-    @Override
-    public void onStart(){
-        super.onStart();
-
-        mAuth.addAuthStateListener(mAuthListener);
-
-
-//        ValueEventListener userListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for(DataSnapshot userSnapshot : dataSnapshot.child("users").getChildren())
-//                {
-//                    User user = userSnapshot.getValue(User.class);
-//
-//                    uEmail.setText(user.getEmail());
-//                    uFirstName.setText(user.getFirstName());
-//                    uLastName.setText(user.getLastName());
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        };
-//        mDatabase.addValueEventListener(userListener);
+    int getNavigationMenuItemId()
+    {
+        return R.id.action_home;
     }
-
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
-
 
 }

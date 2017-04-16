@@ -46,4 +46,3 @@ public class ChatConversation {
         this.requester = requester;
     }
 }
-

@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/action_favorites"
-        android:enabled="true"
+        android:id="@+id/action_home"
+        android:icon="@drawable/ic_home_white_24dp"
+        android:title="@string/text_home"
+        />
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:title="Search"
+        />
+    <item
+        android:id="@+id/action_add_ticket"
+        android:icon="@drawable/ic_ticket_white_24dp"
+        android:title="@string/text_tickets" />
+    <item
+        android:id="@+id/action_trends"
         android:icon="@drawable/ic_trending_up_white_24dp"
         android:title="@string/text_trends"
-        app:showAsAction="ifRoom" />
+         />
     <item
-        android:id="@+id/action_schedules"
-        android:enabled="true"
+        android:id="@+id/action_profile"
         android:icon="@drawable/ic_profile_white_24dp"
         android:title="@string/text_profile"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_music"
-        android:enabled="true"
-        android:icon="@drawable/ic_ticket_white_24dp"
-        android:title="@string/text_tickets"
-        app:showAsAction="ifRoom" />
+         />
+
 </menu>

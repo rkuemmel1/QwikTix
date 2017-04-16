@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 25
@@ -18,11 +19,15 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     packagingOptions {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
-
     }
 }
 
@@ -33,6 +38,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
     compile "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.android.support:support-v4:25.1.1'
@@ -40,12 +46,14 @@ dependencies {
     compile 'com.google.firebase:firebase-core:10.2.0'
     compile 'com.firebase:firebase-client-android:2.5.2'
     compile 'com.google.firebase:firebase-auth:10.2.0'
-    compile 'com.firebase:firebase-client-android:2.5.0'
-    compile 'com.firebaseui:firebase-ui-database:0.4.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    //compile 'com.android.support.constraint:constraint-layout:+'
+    //compile 'com.firebaseui:firebase-ui-database:0.4.0'
+    compile 'com.firebaseui:firebase-ui-database:1.1.0'
     testCompile 'junit:junit:4.12'
 
+
+
 }
-
-
 
 apply plugin: 'com.google.gms.google-services'

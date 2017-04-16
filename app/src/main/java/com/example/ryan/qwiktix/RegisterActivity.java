@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -27,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText rPasswordConfirm;
     private EditText rEmail;
 
+    private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -36,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         rFirstName = (EditText) findViewById(R.id.rFirstName);
         rLastName = (EditText) findViewById(R.id.rLastName);
@@ -69,7 +73,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                                         // after email is sent just logout the user and finish this activity
                                         FirebaseAuth.getInstance().signOut();
-                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                        Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                        startActivity(intent);
+                                        Toast.makeText(RegisterActivity.this, "verification email sent",
+                                                Toast.LENGTH_SHORT).show();
+                                        //startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                         finish();
                                     }
                                     else
@@ -142,6 +151,13 @@ public class RegisterActivity extends AppCompatActivity {
                                     Toast.makeText(RegisterActivity.this, "Unable to create user",
                                             Toast.LENGTH_SHORT).show();
                                 } else {
+
+                                    String userId = task.getResult().getUser().getUid();
+
+                                    User user = new User(email,password,firstName,lastName);
+                                    mDatabase.child("users").child(userId).setValue(user);
+
+
                                     Intent loginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
                                     loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(loginIntent);

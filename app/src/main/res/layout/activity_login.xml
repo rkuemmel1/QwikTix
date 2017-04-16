@@ -47,13 +47,15 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <TextView
+    <Button
         android:text="Register Here"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lRegisterLink"
-        android:textAppearance="@android:style/TextAppearance.Holo.Medium"
         android:layout_below="@+id/lLoginButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
