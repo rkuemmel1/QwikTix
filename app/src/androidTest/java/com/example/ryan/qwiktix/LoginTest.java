@@ -69,6 +69,26 @@ public class LoginTest {
 
     }
     @Test
+    public void testIncorrectPassword() throws Exception{
+
+
+
+        //Context appContext = InstrumentationRegistry.getTargetContext();
+
+        Espresso.onView(ViewMatchers.withId(R.id.lEmail))
+                .perform(ViewActions.typeText("lucas-bombal@uiowa.edu"));
+        Espresso.onView(ViewMatchers.withId(R.id.lPassword))
+                .perform(ViewActions.typeText("asdf"));
+        Espresso.onView(ViewMatchers.withId(R.id.lLoginButton))
+                .perform(ViewActions.click());
+        //intended(hasComponent(HomePageActivity.class.getName()));
+        Thread.sleep(1000);
+        // make sure it doesn't go to home page after failed login
+        Espresso.onView(ViewMatchers.withId(R.id.lEmail))
+                .check(ViewAssertions.matches(isDisplayed()));
+
+    }
+    @Test
     public void testRightLogin() throws Exception{
 
 
