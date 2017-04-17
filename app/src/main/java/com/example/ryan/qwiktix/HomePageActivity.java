@@ -1,6 +1,7 @@
 package com.example.ryan.qwiktix;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,6 +24,9 @@ public class HomePageActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //final Button messageButton = (Button)findViewById(R.id.messageSellerBtn);
+        //final TextView seller = (TextView) findViewById(R.id.seller); //assuming seller field is added
+        final TextView event= (TextView) findViewById(R.id.eventName);
 
         ListView ticketList = (ListView)findViewById(R.id.homeList);
 
@@ -41,7 +45,21 @@ public class HomePageActivity extends BaseActivity {
 
         };
         ticketList.setAdapter(myAdapter);
+        /*messageButton.setOnClickListener(new android.view.View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View view) {
 
+                //ChatConversation newConvo = new ChatConversation(event,seller,);
+
+
+                //ChatMessage messageToSend = new ChatMessage(input.getText().toString(),mAuth.getCurrentUser().getEmail());
+                //Read the input field and push a new instance
+                //of ChatMessage to the Firebase database
+              //  getMessages().child(conversation).push().setValue(messageToSend);
+                // Clear the input
+              //  input.setText("");
+            }
+        });*/
 
     }
 

@@ -26,11 +26,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     protected BottomNavigationView navigationView;
     protected FirebaseAuth mAuth;
     protected FirebaseAuth.AuthStateListener mAuthListener;
-
+    private String pUid;
+    private DatabaseReference mUserReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentViewId());
+
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         BottomNavigationViewHelper.disableShiftMode(navigationView);
@@ -46,7 +48,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             Intent loginIntent = new Intent(this,LoginActivity.class);
             this.startActivity(loginIntent);
         }
-
+        else {
+            pUid = getmAuth().getCurrentUser().getUid();
+        }
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -145,7 +149,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     }
     protected DatabaseReference getConversations(){
 
-        return FirebaseDatabase.getInstance().getReference().child("listofconvos");
+        mUserReference = FirebaseDatabase.getInstance().getReference().child("users").child(pUid);
+        return mUserReference.getRef().child("convos");
     }
 
 

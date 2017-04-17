@@ -3,6 +3,7 @@ package com.example.ryan.qwiktix;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -18,11 +19,11 @@ import com.firebase.ui.database.FirebaseListAdapter;
  */
 
 public class ChatActivity extends BaseActivity {
-    FirebaseListAdapter messageAdapter;
+
     FirebaseListAdapter conversationAdapter;
     Spinner spinner;
-    final String conversation ="testconvo";
-
+    String conversation ="testconvo";
+    ListView listOfMessages;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_chat);
@@ -54,6 +55,13 @@ public class ChatActivity extends BaseActivity {
 
                 // Showing selected spinner item
                 Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+                listOfMessages.setAdapter(null);
+                ChatConversation chat = (ChatConversation) spinner.getSelectedItem();
+                String text = chat.getChatName();
+                Log.e("Verbose","SPINNER INFO"+text);
+                conversation = text;
+                //displayConversations();
+                displayChatMessages();
             }
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
@@ -65,10 +73,12 @@ public class ChatActivity extends BaseActivity {
 
 
     public void displayChatMessages(){
-        ListView listOfMessages = (ListView)findViewById(R.id.list_of_messages);
+        listOfMessages = (ListView)findViewById(R.id.list_of_messages);
         listOfMessages.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
-        messageAdapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class,
+
+        FirebaseListAdapter messageAdapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class,
                 R.layout.message, getMessages().child(conversation)) {
+
             @Override
             protected void populateView(View v, ChatMessage model, int position) {
                 // Get references to the views of message.xml
@@ -87,6 +97,7 @@ public class ChatActivity extends BaseActivity {
         };
 
         listOfMessages.setAdapter(messageAdapter);
+
     }
     public void displayConversations(){
         spinner = (Spinner) findViewById(R.id.spinner);
@@ -94,8 +105,7 @@ public class ChatActivity extends BaseActivity {
             @Override
             protected void populateView(View v, ChatConversation model,int position){
                 TextView convotext= (TextView)v.findViewById(R.id.convo);
-
-                convotext.setText(model.getTitle());
+                convotext.setText(model.getOtherUserfName());
             }
         };
         // attaching data adapter to spinner
