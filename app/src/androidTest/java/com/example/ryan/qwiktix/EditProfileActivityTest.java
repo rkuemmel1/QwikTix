@@ -16,6 +16,10 @@ import android.test.ApplicationTestCase;
 import android.test.InstrumentationTestCase;
 import android.util.Log;
 import android.widget.Toast;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 import com.fasterxml.jackson.databind.deser.Deserializers;
 import com.firebase.client.Firebase;
@@ -46,6 +50,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 
 /**
  * Created by brade_000 on 4/14/2017.
@@ -60,6 +66,10 @@ public class EditProfileActivityTest {
 
 
     private IdlingResource mIdlingResource;
+    private String password = "abc123";
+    private static boolean setUpIsDone = false;
+
+
 
     @Before
     public void registerIdlingResource(){
@@ -70,52 +80,60 @@ public class EditProfileActivityTest {
     @Before
     public void navigateToEditProfile()throws Exception{
 
-        String username = "bradley-a-evans@uiowa.edu";
-        String password = "abc123";
+        if(setUpIsDone)
+        {
+            navigateToEditPass();
+            return;
+        }
+        else {
+            String username = "bradley-a-evans@uiowa.edu";
 
-        logOutIfPossible();
+            logOutIfPossible();
 
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.lEmail),
-                        withParent(allOf(withId(R.id.activity_login),
-                                withParent(withId(android.R.id.content)))),
-                        isDisplayed()));
-        appCompatEditText.perform(click());
+            ViewInteraction appCompatEditText = onView(
+                    allOf(withId(R.id.lEmail),
+                            withParent(allOf(withId(R.id.activity_login),
+                                    withParent(withId(android.R.id.content)))),
+                            isDisplayed()));
+            appCompatEditText.perform(click());
 
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.lEmail),
-                        withParent(allOf(withId(R.id.activity_login),
-                                withParent(withId(android.R.id.content)))),
-                        isDisplayed()));
-        appCompatEditText2.perform(replaceText(username), closeSoftKeyboard());
+            ViewInteraction appCompatEditText2 = onView(
+                    allOf(withId(R.id.lEmail),
+                            withParent(allOf(withId(R.id.activity_login),
+                                    withParent(withId(android.R.id.content)))),
+                            isDisplayed()));
+            appCompatEditText2.perform(replaceText(username), closeSoftKeyboard());
 
-        ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.lPassword),
-                        withParent(allOf(withId(R.id.activity_login),
-                                withParent(withId(android.R.id.content)))),
-                        isDisplayed()));
-        appCompatEditText3.perform(replaceText(password), closeSoftKeyboard());
+            ViewInteraction appCompatEditText3 = onView(
+                    allOf(withId(R.id.lPassword),
+                            withParent(allOf(withId(R.id.activity_login),
+                                    withParent(withId(android.R.id.content)))),
+                            isDisplayed()));
+            appCompatEditText3.perform(replaceText(password), closeSoftKeyboard());
 
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.lLoginButton), withText("Login"),
-                        withParent(allOf(withId(R.id.activity_login),
-                                withParent(withId(android.R.id.content)))),
-                        isDisplayed()));
-        appCompatButton.perform(click());
+            ViewInteraction appCompatButton = onView(
+                    allOf(withId(R.id.lLoginButton), withText("Login"),
+                            withParent(allOf(withId(R.id.activity_login),
+                                    withParent(withId(android.R.id.content)))),
+                            isDisplayed()));
+            appCompatButton.perform(click());
 
-        Thread.sleep(1000);
+            Thread.sleep(1000);
 
-        ViewInteraction bottomNavigationItemView = onView(
-                allOf(withId(R.id.action_profile), isDisplayed()));
+            ViewInteraction bottomNavigationItemView = onView(
+                    allOf(withId(R.id.action_profile), isDisplayed()));
 
-        bottomNavigationItemView.perform(click());
+            bottomNavigationItemView.perform(click());
 
-        ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.pEditProfile), withText("Edit Profile"),
-                        withParent(allOf(withId(R.id.activity_profile),
-                                withParent(withId(android.R.id.content)))),
-                        isDisplayed()));
-        appCompatButton2.perform(click());
+            ViewInteraction appCompatButton2 = onView(
+                    allOf(withId(R.id.pEditProfile), withText("Edit Profile"),
+                            withParent(allOf(withId(R.id.activity_profile),
+                                    withParent(withId(android.R.id.content)))),
+                            isDisplayed()));
+            appCompatButton2.perform(click());
+
+            setUpIsDone = true;
+        }
     }
     @Test
     public void checkCorrectUserInfo() throws Exception{
@@ -147,6 +165,138 @@ public class EditProfileActivityTest {
         appCompatEdiText6.check(matches(withText("no@paypal.com")));
 
     }
+
+
+    @Test
+    public void attemptToChangeInfo(){
+        ViewInteraction appCompatEdiText4 = onView(
+                allOf(withId(R.id.editFirstName),
+                        withParent(allOf(withId(R.id.activity_edit_profile),
+                                withParent(allOf(withId(R.id.my_scrollview),
+                                        withParent(allOf(withId(android.R.id.content))))))),
+                        isDisplayed()));
+        appCompatEdiText4.perform(replaceText("Bradley"));
+
+        ViewInteraction appCompatEdiText5 = onView(
+                allOf(withId(R.id.editLastName),
+                        withParent(allOf(withId(R.id.activity_edit_profile),
+                                withParent(allOf(withId(R.id.my_scrollview),
+                                        withParent(allOf(withId(android.R.id.content))))))),
+                        isDisplayed()));
+        appCompatEdiText5.perform(replaceText("Evanson"));
+
+        ViewInteraction appCompatEdiText6 = onView(
+                allOf(withId(R.id.editPayPalEmail),
+                        withParent(allOf(withId(R.id.activity_edit_profile),
+                                withParent(allOf(withId(R.id.my_scrollview),
+                                        withParent(allOf(withId(android.R.id.content))))))),
+                        isDisplayed()));
+        appCompatEdiText6.perform(replaceText("Bradley-Evanson@paypal.com"),closeSoftKeyboard());
+
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.bchangeInfo), withText("Submit"),
+                        withParent(allOf(withId(R.id.activity_edit_profile),
+                                withParent(allOf(withId(R.id.my_scrollview),
+                                        withParent(allOf(withId(android.R.id.content))))))),
+                        isDisplayed()));
+        appCompatButton.perform(click());
+
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(R.id.bGoBack), withText("Go Back"),
+                        withParent(allOf(withId(R.id.activity_edit_profile),
+                                withParent(allOf(withId(R.id.my_scrollview),
+                                        withParent(allOf(withId(android.R.id.content))))))),
+                        isDisplayed()));
+        appCompatButton2.perform(click());
+
+        navigateToEditPass();
+
+        appCompatEdiText4.check(matches(withText("Bradley")));
+        appCompatEdiText5.check(matches(withText("Evanson")));
+        appCompatEdiText6.check(matches(withText("Bradley-Evanson@paypal.com")));
+
+    }
+
+
+    @Test
+    public void badAttemptToChangePass() throws Exception{
+        String oldPass = password;
+        password = "abc12345";
+
+        Espresso.closeSoftKeyboard();
+
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.bChangePass), withText("Submit"),
+                        withParent(allOf(withId(R.id.activity_edit_profile),
+                                withParent(allOf(withId(R.id.my_scrollview),
+                                        withParent(allOf(withId(android.R.id.content))))))),
+                        isDisplayed()));
+        appCompatButton.perform(click());
+
+        onView(withText("can't have blank fields")).inRoot(withDecorView(not(is(mEditProfileRule.getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()));
+
+        Thread.sleep(1500);
+
+        Espresso.closeSoftKeyboard();
+
+        ViewInteraction appCompatEditText = onView(
+                allOf(withId(R.id.editOldPass),
+                        withParent(allOf(withId(R.id.activity_edit_profile),
+                                withParent(allOf(withId(R.id.my_scrollview),
+                                        withParent(allOf(withId(android.R.id.content))))))),
+                        isDisplayed()));
+        appCompatEditText.perform(replaceText(oldPass));
+
+        ViewInteraction appCompatEditText2 = onView(
+                allOf(withId(R.id.editNewPass),
+                        withParent(allOf(withId(R.id.activity_edit_profile),
+                                withParent(allOf(withId(R.id.my_scrollview),
+                                        withParent(allOf(withId(android.R.id.content))))))),
+                        isDisplayed()));
+        appCompatEditText2.perform(replaceText(password));
+
+
+        ViewInteraction appCompatEditText3 = onView(
+                allOf(withId(R.id.editNewPass2),
+                        withParent(allOf(withId(R.id.activity_edit_profile),
+                                withParent(allOf(withId(R.id.my_scrollview),
+                                        withParent(allOf(withId(android.R.id.content))))))),
+                        isDisplayed()));
+        appCompatEditText3.perform(replaceText(password + "6"));
+
+
+        Thread.sleep(1000);
+
+        appCompatButton.perform(click());
+
+        onView(withText("Passwords must match")).inRoot(withDecorView(not(is(mEditProfileRule.getActivity().getWindow().getDecorView())))).check(matches(isDisplayed()));
+
+
+
+    }
+
+    @Test
+    public void goodAttemptToChangePass(){
+
+
+    }
+
+
+    public void navigateToEditPass(){
+
+        ViewInteraction bottomNavigationItemView = onView(
+                allOf(withId(R.id.action_profile), isDisplayed()));
+
+        bottomNavigationItemView.perform(click());
+
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(R.id.pEditProfile), withText("Edit Profile"),
+                        withParent(allOf(withId(R.id.activity_profile),
+                                withParent(withId(android.R.id.content)))),
+                        isDisplayed()));
+        appCompatButton2.perform(click());
+    }
+
 
     public void logOutIfPossible() throws Exception{
 
