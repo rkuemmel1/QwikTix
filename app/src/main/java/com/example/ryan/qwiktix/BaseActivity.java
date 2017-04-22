@@ -17,8 +17,12 @@ import android.widget.Button;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -50,6 +54,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         }
         else {
             pUid = getmAuth().getCurrentUser().getUid();
+
         }
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -153,7 +158,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         return mUserReference.getRef().child("convos");
     }
 
-
+    protected DatabaseReference getUsers(){
+        mUserReference = FirebaseDatabase.getInstance().getReference().child("users");
+        return mUserReference;
+    }
 
     abstract int getContentViewId();
 

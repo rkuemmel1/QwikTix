@@ -6,13 +6,13 @@ import java.util.StringTokenizer;
 public class ChatConversation {
 
     private String otherUser;
-    private String otherUserfName;
+    private String otherUserName;
     private String chatName;
 
 
-    public ChatConversation(String chatName,String otherUser, String otherUserfName) {
+    public ChatConversation(String chatName,String otherUser, String otherUserName) {
         this.otherUser = otherUser;
-        this.otherUserfName = otherUserfName;
+        this.otherUserName = otherUserName;
         this.chatName = chatName;
 
     }
@@ -27,12 +27,12 @@ public class ChatConversation {
     public void setOtherUser(String otherUser) {
         this.otherUser = otherUser;
     }
-    public String getOtherUserfName() {
-        return otherUserfName;
+    public String getOtherUserName() {
+        return otherUserName;
     }
 
-    public void setOtherUserfName(String otherUserfName) {
-        this.otherUserfName = otherUserfName;
+    public void setOtherUserName(String otherUserName) {
+        this.otherUserName = otherUserName;
     }
     public String getChatName() {
         return chatName;

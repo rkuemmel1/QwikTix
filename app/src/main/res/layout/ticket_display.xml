@@ -27,5 +27,7 @@
         android:id="@+id/messageSellerBtn"
         android:layout_width="111dp"
         android:layout_height="wrap_content"
-        android:text="Message Seller" />
+        android:text="Message Seller"
+        android:onClick="messageSellerButton"
+        />
 </LinearLayout>

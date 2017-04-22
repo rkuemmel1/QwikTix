@@ -1,7 +1,10 @@
 package com.example.ryan.qwiktix;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,32 +40,39 @@ public class HomePageActivity extends BaseActivity {
                 TextView eventName = (TextView)v.findViewById(R.id.eventName);
                 TextView price = (TextView)v.findViewById(R.id.price);
                 TextView endDate = (TextView)v.findViewById(R.id.endDate);
+                Button messageSeller = (Button)v.findViewById(R.id.messageSellerBtn);
                 //Set text
                 eventName.setText("EVENT: " + model.getEvent());
                 price.setText("PRICE: $" + Integer.toString(model.getPrice()));
                 endDate.setText("END DATE: " + model.getEndTime());
+                messageSeller.setTag(model);
             }
+
 
         };
         ticketList.setAdapter(myAdapter);
-        /*messageButton.setOnClickListener(new android.view.View.OnClickListener() {
-            @Override
-            public void onClick(android.view.View view) {
 
-                //ChatConversation newConvo = new ChatConversation(event,seller,);
-
-
-                //ChatMessage messageToSend = new ChatMessage(input.getText().toString(),mAuth.getCurrentUser().getEmail());
-                //Read the input field and push a new instance
-                //of ChatMessage to the Firebase database
-              //  getMessages().child(conversation).push().setValue(messageToSend);
-                // Clear the input
-              //  input.setText("");
-            }
-        });*/
 
     }
+    public void messageSellerButton(android.view.View v){
 
+        LinearLayout vwParentRow = (LinearLayout)v.getParent();
+        int c = Color.CYAN;
+        vwParentRow.setBackgroundColor(c);
+
+        Ticket selectedTicket= (Ticket)v.getTag();
+        String sellerUid = selectedTicket.getuID();
+        String sellerEmail = selectedTicket.getUserEmail();
+
+        Intent ChatIntent = new Intent(HomePageActivity.this,ChatActivity.class);
+
+        ChatIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
+        //ChatIntent.putExtra("com.example.ryan.qwiktix.SELLEREMAIL",sellerEmail);
+
+        startActivity(ChatIntent);
+
+
+    }
     int getContentViewId()
     {
         return R.layout.activity_home_page;
