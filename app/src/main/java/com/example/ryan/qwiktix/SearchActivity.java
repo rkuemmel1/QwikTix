@@ -25,17 +25,11 @@ public class SearchActivity extends BaseActivity {
 
     private static final String TAG = "SearchActivity";
 
-    FirebaseListAdapter<Ticket> myAdapter;
-
-    private EditText Search;
-    private ListView listviewforresults;
-
-    private String pUid;
-    private String pUserEmail;
+    EditText Search;
+    private ListView searchList;
 
     private DatabaseReference mDatabase;
 
-    private AutoCompleteTextView actv;
     ArrayAdapter<String> adapter;
 
     @Override
@@ -45,33 +39,7 @@ public class SearchActivity extends BaseActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         Search = (EditText) findViewById(R.id.Search);
-
-        final ArrayAdapter<String> autoComplete = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-
-        ListView ticketList = (ListView)findViewById(R.id.searchList);
-        listviewforresults=(ListView)findViewById(R.id.searchList);
-
-
-        //Child the root before all the push() keys are found and add a ValueEventListener()
-        mDatabase.child("events").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
-                //Basically, this says "For each DataSnapshot *Data* in dataSnapshot, do what's inside the method.
-                for (com.google.firebase.database.DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()) {
-                    //Get the suggestion by childing the key of the string you want to get.
-                    String suggestion = suggestionSnapshot.child("name").getValue(String.class);
-                    //Add the retrieved string to the list
-                    autoComplete.add(suggestion);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
-        AutoCompleteTextView ACTV = (AutoCompleteTextView) Search;
-        ACTV.setAdapter(autoComplete);
+        searchList = (ListView) findViewById(R.id.searchList);
 
 
         ListView listView = (ListView) findViewById(R.id.searchList);
@@ -82,7 +50,8 @@ public class SearchActivity extends BaseActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    strings.add(snapshot.child("event").getValue(String.class));
+                    String ticket = snapshot.child("event").getValue(String.class) + " " + snapshot.child("endTime").getValue(String.class);
+                    strings.add(ticket);
                 }
                 ArrayAdapter arrayAdapter = new ArrayAdapter(SearchActivity.this, android.R.layout.simple_list_item_1,
                         strings);
@@ -95,8 +64,8 @@ public class SearchActivity extends BaseActivity {
             }
         });
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(SearchActivity.this,R.layout.search_results,R.id.results,strings);
-        listviewforresults.setAdapter(adapter);
+        adapter = new ArrayAdapter<String>(SearchActivity.this,R.layout.search_results,R.id.results,strings);
+        searchList.setAdapter(adapter);
 
         Search.addTextChangedListener(new TextWatcher() {
             @Override

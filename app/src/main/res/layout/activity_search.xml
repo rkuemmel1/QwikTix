@@ -29,8 +29,7 @@
         android:layout_alignParentEnd="true"
         android:completionThreshold="1"
         android:hint="Search"
-        android:inputType="text"
-        android:text="Iowa"/>
+        android:inputType="text"/>
 
     <ListView
         android:layout_width="match_parent"
