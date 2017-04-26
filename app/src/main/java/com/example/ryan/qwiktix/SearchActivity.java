@@ -75,12 +75,14 @@ public class SearchActivity extends BaseActivity {
 
 
         ListView listView = (ListView) findViewById(R.id.searchList);
-        final ArrayList<String> strings = new ArrayList<String>();
-        mDatabase.child("events").addValueEventListener(new ValueEventListener() {
+        ArrayList<String> strings = new ArrayList<String>();
+        ArrayList<String> tickets = new ArrayList<String>();
+
+        mDatabase.child("tickets").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    strings.add(snapshot.child("name").getValue(String.class));
+                    strings.add(snapshot.child("event").getValue(String.class));
                 }
                 ArrayAdapter arrayAdapter = new ArrayAdapter(SearchActivity.this, android.R.layout.simple_list_item_1,
                         strings);
