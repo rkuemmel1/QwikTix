@@ -19,6 +19,7 @@ import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -129,6 +130,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
     protected DatabaseReference getTickets(){
         return FirebaseDatabase.getInstance().getReference().child("tickets");
+    }
+
+    protected Query getTickets(String string){
+        return FirebaseDatabase.getInstance().getReference().child("tickets").orderByChild("event").equalTo(string);
     }
 
 

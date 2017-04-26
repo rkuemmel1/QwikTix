@@ -18,8 +18,7 @@
         android:id="@+id/Search"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="enter to search"
-        android:text="Iowa State Basketball Game"/>
+        android:hint="enter to search"/>
 
     <ListView
         android:id="@+id/searchList"

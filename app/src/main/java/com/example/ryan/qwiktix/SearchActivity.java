@@ -55,23 +55,7 @@ public class SearchActivity extends BaseActivity {
                 ArrayAdapter arrayAdapter = new ArrayAdapter(SearchActivity.this, android.R.layout.simple_list_item_1,
                         strings);
 
-                Query query = mDatabase.child("ticket").child("event").equalTo(Search.getText().toString());
 
-                myAdapter = new FirebaseListAdapter<Ticket>(SearchActivity.this, Ticket.class ,R.layout.ticket_display, query) {
-                    @Override
-                    protected void populateView(android.view.View v, Ticket model, int position) {
-                        TextView eventName = (TextView)v.findViewById(R.id.eventName);
-                        TextView price = (TextView)v.findViewById(R.id.price);
-                        TextView endDate = (TextView)v.findViewById(R.id.endDate);
-                        //Set text
-                        eventName.setText("EVENT: " + model.getEvent());
-                        price.setText("PRICE: $" + Integer.toString(model.getPrice()));
-                        endDate.setText("END DATE: " + model.getEndTime());
-                    }
-
-                };
-                searchList.setAdapter(myAdapter);
-                //searchList.setAdapter(arrayAdapter);
             }
 
             @Override
@@ -115,3 +99,21 @@ public class SearchActivity extends BaseActivity {
 
 
 }
+
+   /* Query query = mDatabase.child("tickets");//.equalTo(Search.getText().toString());
+
+myAdapter = new FirebaseListAdapter<Ticket>(SearchActivity.this, Ticket.class ,R.layout.ticket_display, query) {
+@Override
+protected void populateView(android.view.View v, Ticket model, int position) {
+        TextView eventName = (TextView)v.findViewById(R.id.eventName);
+        TextView price = (TextView)v.findViewById(R.id.price);
+        TextView endDate = (TextView)v.findViewById(R.id.endDate);
+        //Set text
+        eventName.setText("EVENT: " + model.getEvent());
+        price.setText("PRICE: $" + Integer.toString(model.getPrice()));
+        endDate.setText("END DATE: " + model.getEndTime());
+        }
+
+        };
+        searchList.setAdapter(myAdapter);
+//searchList.setAdapter(arrayAdapter);*/
