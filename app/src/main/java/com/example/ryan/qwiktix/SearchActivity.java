@@ -3,11 +3,15 @@ package com.example.ryan.qwiktix;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +30,8 @@ public class SearchActivity extends BaseActivity {
     private DatabaseReference mDatabase;
 
     ArrayList<String> strings = new ArrayList<String>();
+
+    FirebaseListAdapter<Ticket> myAdapter;
 
     ArrayAdapter<String> adapter;
 
@@ -48,7 +54,24 @@ public class SearchActivity extends BaseActivity {
                 }
                 ArrayAdapter arrayAdapter = new ArrayAdapter(SearchActivity.this, android.R.layout.simple_list_item_1,
                         strings);
-                searchList.setAdapter(arrayAdapter);
+
+                Query query = mDatabase.child("ticket").child("event").equalTo(Search.getText().toString());
+
+                myAdapter = new FirebaseListAdapter<Ticket>(SearchActivity.this, Ticket.class ,R.layout.ticket_display, query) {
+                    @Override
+                    protected void populateView(android.view.View v, Ticket model, int position) {
+                        TextView eventName = (TextView)v.findViewById(R.id.eventName);
+                        TextView price = (TextView)v.findViewById(R.id.price);
+                        TextView endDate = (TextView)v.findViewById(R.id.endDate);
+                        //Set text
+                        eventName.setText("EVENT: " + model.getEvent());
+                        price.setText("PRICE: $" + Integer.toString(model.getPrice()));
+                        endDate.setText("END DATE: " + model.getEndTime());
+                    }
+
+                };
+                searchList.setAdapter(myAdapter);
+                //searchList.setAdapter(arrayAdapter);
             }
 
             @Override
@@ -57,7 +80,7 @@ public class SearchActivity extends BaseActivity {
             }
         });
 
-        adapter = new ArrayAdapter<String>(SearchActivity.this,R.layout.search_results,R.id.results,strings);
+        adapter = new ArrayAdapter<String>(SearchActivity.this, R.layout.search_results, R.id.results, strings);
         searchList.setAdapter(adapter);
 
         Search.addTextChangedListener(new TextWatcher() {
@@ -65,26 +88,30 @@ public class SearchActivity extends BaseActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 SearchActivity.this.adapter.getFilter().filter(s);
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
+
             @Override
             public void afterTextChanged(Editable s) {
             }
         });
 
 
+
+
     }
 
-    int getContentViewId()
-    {
+    int getContentViewId() {
         return R.layout.activity_search;
     }
 
-    int getNavigationMenuItemId()
-    {
+    int getNavigationMenuItemId() {
         return R.id.action_search;
     }
+
+
 
 }
