@@ -30,6 +30,8 @@ public class SearchActivity extends BaseActivity {
 
     private DatabaseReference mDatabase;
 
+    private ArrayList<String> strings;
+
     ArrayAdapter<String> adapter;
 
     @Override
@@ -43,7 +45,7 @@ public class SearchActivity extends BaseActivity {
 
 
         ListView listView = (ListView) findViewById(R.id.searchList);
-        ArrayList<String> strings = new ArrayList<String>();
+        strings = new ArrayList<String>();
         ArrayList<String> tickets = new ArrayList<String>();
 
         mDatabase.child("tickets").addValueEventListener(new ValueEventListener() {
@@ -70,10 +72,11 @@ public class SearchActivity extends BaseActivity {
         Search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                SearchActivity.this.adapter.getFilter().filter(s);
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                SearchActivity.this.adapter.getFilter().filter(s);
+
             }
             @Override
             public void afterTextChanged(Editable s) {
