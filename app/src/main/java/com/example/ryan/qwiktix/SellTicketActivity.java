@@ -16,6 +16,9 @@ import com.firebase.client.ValueEventListener;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.firebase.client.Firebase;
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.firebase.database.FirebaseDatabase;
 
 import android.widget.ArrayAdapter;
 import java.text.DateFormat;
@@ -27,15 +30,21 @@ import java.util.Date;
 
 public class SellTicketActivity extends BaseActivity {
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+
+    }
+
 
     int getContentViewId()
     {
-        return R.layout.activity_add_ticket;
+        return R.layout.activity_sell_ticket;
     }
 
     int getNavigationMenuItemId()
     {
-        return R.id.action_add_ticket;
+        return 0;
     }
 
 }

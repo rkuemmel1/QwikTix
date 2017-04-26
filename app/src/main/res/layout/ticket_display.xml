@@ -1,24 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/eventName"
-        android:layout_width="match_parent"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_toLeftOf="@+id/chatButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/endDate"
-        android:layout_width="match_parent"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:text="TextView" />
-</LinearLayout>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/eventName"
+        android:text="TextView"
+        android:layout_toLeftOf="@+id/chatButton"
+        android:layout_toStartOf="@+id/chatButton" />
+
+    <Button
+        android:id="@+id/sellButton"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/price"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/eventName"
+        android:layout_gravity="right"
+        android:text="Buy" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/endDate"
+        android:text="TextView"
+        android:layout_toLeftOf="@+id/chatButton"
+        android:layout_toStartOf="@+id/chatButton" />
+
+    <Button
+        android:id="@+id/chatButton"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/sellButton"
+        android:layout_alignTop="@+id/sellButton"
+        android:layout_toLeftOf="@+id/sellButton"
+        android:text="Chat" />
+</RelativeLayout>

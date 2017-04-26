@@ -1,6 +1,9 @@
 package com.example.ryan.qwiktix;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,6 +28,8 @@ public class HomePageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         ListView ticketList = (ListView)findViewById(R.id.homeList);
+        Button sellingButton = (Button)findViewById(R.id.sellButton);
+        Button chattingButton = (Button)findViewById(R.id.chatButton);
 
         myAdapter = new FirebaseListAdapter<Ticket>(this,Ticket.class,R.layout.ticket_display,
                 getTickets()) {
@@ -38,9 +43,25 @@ public class HomePageActivity extends BaseActivity {
                 price.setText("PRICE: $" + Integer.toString(model.getPrice()));
                 endDate.setText("END DATE: " + model.getEndTime());
             }
-
         };
         ticketList.setAdapter(myAdapter);
+
+        //sell button: goes to seller's profile
+        sellingButton.setOnClickListener(new android.view.View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                Intent intent = new Intent(HomePageActivity.this,ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+        //chat button: chats with seller
+        chattingButton.setOnClickListener(new android.view.View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                Intent intent = new Intent(HomePageActivity.this,ChatActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
