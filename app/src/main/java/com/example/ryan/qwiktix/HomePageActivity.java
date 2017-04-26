@@ -47,7 +47,7 @@ public class HomePageActivity extends BaseActivity {
         ticketList.setAdapter(myAdapter);
 
         //sell button: goes to seller's profile
-        sellingButton.setOnClickListener(new android.view.View.OnClickListener() {
+         sellingButton.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
                 Intent intent = new Intent(HomePageActivity.this,ProfileActivity.class);
