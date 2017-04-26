@@ -1,37 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/activity_add_ticket"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.ryan.qwiktix.SearchActivity"
-    >
-
-    <FrameLayout
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        >
-
-        <TextView
-            android:text="Search Page"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:id="@+id/search_title" />
-
-    </FrameLayout>
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.ryan.qwiktix.SearchActivity">
 
     <include
         layout="@layout/bottom_navigation_element"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
         />
 
-</LinearLayout>
+
+
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/Search"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:completionThreshold="1"
+        android:hint="Search"
+        android:inputType="text"
+        android:text="Iowa"/>
+
+    <ListView
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        android:id="@+id/searchList"
+        android:layout_below="@+id/Search"/>
+
+
+</RelativeLayout>
