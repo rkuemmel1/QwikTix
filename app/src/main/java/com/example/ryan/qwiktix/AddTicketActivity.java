@@ -1,45 +1,46 @@
 package com.example.ryan.qwiktix;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.FirebaseError;
-import com.google.firebase.database.Query;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import android.widget.ArrayAdapter;
 import java.text.DateFormat;
 import java.util.Date;
+
+import static com.example.ryan.qwiktix.R.id.spinner;
 
 public class AddTicketActivity extends BaseActivity {
 
     private static final String TAG = "AddTicketActivity";
 
-    private EditText tEvent;
+   // private EditText tEvent;
     private EditText tEventDate;
     private EditText tPrice;
-    private EditText tEventTime;
+   // private EditText tEventTime;
 
     private String pUid;
     private String pUserEmail;
 
     private DatabaseReference mDatabase;
+    private Spinner tSpinner;
 
-    private AutoCompleteTextView actv;
+    //private AutoCompleteTextView actv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +48,12 @@ public class AddTicketActivity extends BaseActivity {
         //setContentView(R.layout.activity_add_ticket);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        pUid = getmAuth().getCurrentUser().getUid();
-        pUserEmail = getmAuth().getCurrentUser().getEmail();
+        pUid = getUid();
+        pUserEmail = getEmail();
 
-        tEvent = (EditText) findViewById(R.id.tEvent);
-        tEventDate = (EditText) findViewById(R.id.tEventDate);
+        tSpinner = (Spinner) findViewById(R.id.tSpinner);
+        tEventDate = (EditText) findViewById(R.id.tEventDateTime);
         tPrice = (EditText) findViewById(R.id.tPrice);
-        tEventTime = (EditText) findViewById(R.id.tEventTime);
         final Button tSubmitButton = (Button) findViewById(R.id.tSubmitButton);
 
         tSubmitButton.setOnClickListener(new View.OnClickListener() {
@@ -63,18 +63,39 @@ public class AddTicketActivity extends BaseActivity {
             }
         });
 
-        final ArrayAdapter<String> autoComplete = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item);
+//        {
+//
+//            @Override
+//            public View getView(int position, View convertView, ViewGroup parent) {
+//
+//                View v = super.getView(position, convertView, parent);
+//                if (position == getCount()) {
+//                    ((TextView)v.findViewById(android.R.id.text1)).setText("");
+//                    ((TextView)v.findViewById(android.R.id.text1)).setHint(getItem(getCount())); //"Hint to be displayed"
+//                }
+//
+//                return v;
+//            }
+//
+//            @Override
+//            public int getCount() {
+//                return super.getCount()-1; // you dont display last item. It is used as hint.
+//            }
+//
+//        };
 
-        //Child the root before all the push() keys are found and add a ValueEventListener()
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         mDatabase.child("events").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 //Basically, this says "For each DataSnapshot *Data* in dataSnapshot, do what's inside the method.
-                for (com.google.firebase.database.DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()) {
+                for (DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()) {
                     //Get the suggestion by childing the key of the string you want to get.
-                    String suggestion = suggestionSnapshot.child("name").getValue(String.class);
+                    String suggestion = suggestionSnapshot.getKey();
                     //Add the retrieved string to the list
-                    autoComplete.add(suggestion);
+                    adapter.add(suggestion);
                 }
             }
 
@@ -83,15 +104,44 @@ public class AddTicketActivity extends BaseActivity {
             }
         });
 
-        AutoCompleteTextView ACTV = (AutoCompleteTextView) findViewById(R.id.tEvent);
-        ACTV.setAdapter(autoComplete);
+        //adapter.add("Event Name");
+
+        tSpinner.setAdapter(adapter);
+        tSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                String event = tSpinner.getSelectedItem().toString();
+                mDatabase.child("events").child(event).child("date_time").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        tEventDate.setText(dataSnapshot.getValue(String.class));
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
+
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing, just another required interface callback
+            }
+
+        });
+        //tSpinner.setSelection(adapter.getCount()); //display hint
 
     }
 
+
+
     private void addTicket() {
 
-        String event = tEvent.getText().toString().trim();
-        String eventDate = tEventDate.getText().toString().trim().concat(" ").concat(tEventTime.getText().toString().trim());
+        String event = "test";//tEvent.getText().toString().trim();
+        String eventDate = tEventDate.getText().toString().trim();//.concat(" ").concat(tEventTime.getText().toString().trim());
         String price = tPrice.getText().toString().trim();
         String userEmail = pUserEmail;
         String user = pUid;

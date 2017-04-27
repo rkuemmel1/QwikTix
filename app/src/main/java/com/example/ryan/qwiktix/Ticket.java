@@ -29,7 +29,7 @@ public class Ticket {
         this.endTime = endTime;
         this.userEmail = userEmail;
         this.uID = uID;
-        status = "pending";
+        status = "available";
         //timePosted = "3/30/2017";
     }
     public Ticket(){}

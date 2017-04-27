@@ -148,6 +148,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     protected String getUid(){
         return mAuth.getCurrentUser().getUid();
     }
+    protected String getEmail(){
+        return mAuth.getCurrentUser().getEmail();
+    }
 
     public void signOut(){
             mAuth.signOut();

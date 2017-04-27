@@ -8,28 +8,32 @@
     tools:context="com.example.ryan.qwiktix.AddTicketActivity">
 
 
-    <include
-        layout="@layout/bottom_navigation_element"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_alignParentBottom="true"
-        />
-
-
-    <AutoCompleteTextView
+    <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_alignParentTop="true"
+        android:id="@+id/tSpinner"
+        android:prompt="@string/event_spinner"
+        android:spinnerMode="dropdown"
+        android:background="@android:drawable/btn_dropdown"
+        android:layout_below="@+id/tEventLabel"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/tEvent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName|datetime"
+        android:ems="10"
+        android:layout_below="@+id/tSpinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tEventDateTime"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:completionThreshold="1"
-        android:hint="Event"
-        android:inputType="text" />
+        android:hint="Event Date And Time" />
 
 
     <EditText
@@ -37,7 +41,7 @@
         android:layout_height="wrap_content"
         android:inputType="text|number"
         android:ems="10"
-        android:layout_below="@+id/tEvent"
+        android:layout_below="@+id/tEventDateTime"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/tPrice"
@@ -54,23 +58,11 @@
         android:layout_below="@+id/tPrice"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/tEventDate"
+        android:id="@+id/tExtra"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="Event Date" />
+        android:hint="Extra Information" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName|datetime"
-        android:ems="10"
-        android:layout_below="@+id/tEventDate"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/tEventTime"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:hint="Event Time" />
 
     <Button
         android:text="Add Ticket"
@@ -82,5 +74,24 @@
         android:id="@+id/tSubmitButton"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <include
+        layout="@layout/bottom_navigation_element"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        />
+
+    <TextView
+        android:id="@+id/tEventLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Choose Which Event" />
 
 </RelativeLayout>
