@@ -145,6 +145,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         return mAuth;
     }
 
+    protected String getUid(){
+        return mAuth.getCurrentUser().getUid();
+    }
 
     public void signOut(){
             mAuth.signOut();

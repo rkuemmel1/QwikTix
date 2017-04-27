@@ -58,7 +58,7 @@ public class ProfileActivity extends BaseActivity {
             }
         });
 
-        if(pUid != null) {
+
             pUid = getmAuth().getCurrentUser().getUid();
 
             mUserReference = FirebaseDatabase.getInstance().getReference().child("users").child(pUid);
@@ -83,7 +83,7 @@ public class ProfileActivity extends BaseActivity {
 
                 }
             });
-        }
+
 
 
     }

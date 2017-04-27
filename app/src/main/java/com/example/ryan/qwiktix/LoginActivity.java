@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,8 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private EditText lPassword;
+    private EditText lEmail;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +34,11 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        final EditText lEmail = (EditText) findViewById(R.id.lEmail);
-        final EditText lPassword =(EditText) findViewById(R.id.lPassword);
+        lEmail = (EditText) findViewById(R.id.lEmail);
+        lPassword =(EditText) findViewById(R.id.lPassword);
         final Button lLoginButton = (Button) findViewById(R.id.lLoginButton);
         final Button lRegisterLink = (Button) findViewById(R.id.lRegisterLink);
+        final Button lResetPassword = (Button) findViewById(R.id.lResetPassword);
 
 
 
@@ -52,10 +56,28 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email = lEmail.getText().toString();
-                String password = lPassword.getText().toString();
+                String email = lEmail.getText().toString().trim();
+                String password = lPassword.getText().toString().trim();
 
                 logIn(email,password);
+
+            }
+        });
+
+        lResetPassword.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                String email = lEmail.getText().toString().trim();
+
+                if(!TextUtils.isEmpty(email)){
+                    resetPassword(email);
+                }
+                else{
+                    Toast.makeText(LoginActivity.this, "Fill in email", Toast.LENGTH_SHORT).show();
+                }
+
+
 
             }
         });
@@ -112,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, R.string.auth_failed,
                                     Toast.LENGTH_SHORT).show();
                             Toast.makeText(LoginActivity.this, "Please Register", Toast.LENGTH_SHORT).show();
+                            lPassword.setText("");
 
                         }
                         else{
@@ -133,6 +156,22 @@ public class LoginActivity extends AppCompatActivity {
                                 //restart this activity
 
                             }
+                        }
+                    }
+                });
+    }
+
+
+    private void resetPassword(String email){
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "Password Reset Email Sent", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(LoginActivity.this, "Account hasn't been made for that email", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

@@ -172,8 +172,10 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
 
-
-
+        }
+        else{
+            Toast.makeText(RegisterActivity.this, "Must fill in all fields",
+                    Toast.LENGTH_SHORT).show();
         }
 
     }
