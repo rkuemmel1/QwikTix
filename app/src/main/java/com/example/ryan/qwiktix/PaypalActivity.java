@@ -20,4 +20,6 @@ public class PaypalActivity extends AppCompatActivity {
         WebView browser = (WebView) findViewById(R.id.webview);
         browser.loadUrl("https://www.paypal.com/myaccount/transfer/send");
 
+    }
 }
+
