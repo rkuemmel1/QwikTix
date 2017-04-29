@@ -109,14 +109,6 @@
         android:layout_alignStart="@+id/pEditProfile" />
 
 
-
-
-
-
-
-
-
-
     <include
         layout="@layout/bottom_navigation_element"
         android:layout_width="match_parent"
@@ -124,14 +116,7 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/include" />
 
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/pLogOut"
-        android:layout_alignRight="@+id/pLogOut"
-        android:layout_centerVertical="true"
-        app:srcCompat="@drawable/paypal" />
+
 
 
 </RelativeLayout>

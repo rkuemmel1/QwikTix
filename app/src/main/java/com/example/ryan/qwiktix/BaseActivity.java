@@ -97,7 +97,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             } else if (itemId == R.id.action_add_ticket) {
                 startActivity(new Intent(this, AddTicketActivity.class));
             } else if (itemId == R.id.action_trends) {
-                startActivity(new Intent(this, TrendsActivity.class));
+                startActivity(new Intent(this, PaypalActivity.class));
             } else if (itemId == R.id.action_profile) {
                 startActivity(new Intent(this, ProfileActivity.class));
             }
