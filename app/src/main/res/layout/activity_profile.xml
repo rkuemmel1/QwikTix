@@ -125,13 +125,13 @@
         android:id="@+id/include" />
 
     <ImageButton
-        android:id="@+id/PayPalButton"
+        android:id="@+id/imageButton4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/include"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        app:srcCompat="@drawable/cio_ic_paypal_monogram" />
+        android:layout_alignEnd="@+id/pLogOut"
+        android:layout_alignRight="@+id/pLogOut"
+        android:layout_centerVertical="true"
+        app:srcCompat="@drawable/paypal" />
 
 
 </RelativeLayout>

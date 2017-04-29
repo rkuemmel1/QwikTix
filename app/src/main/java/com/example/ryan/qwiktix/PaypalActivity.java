@@ -14,7 +14,7 @@ public class PaypalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paypal);
-       
+
 
         WebView browser = (WebView) findViewById(R.id.webview);
         browser.loadUrl("https://www.paypal.com/myaccount/transfer/send");

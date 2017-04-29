@@ -48,12 +48,6 @@ dependencies {
     compile 'com.firebase:firebase-client-android:2.5.2'
     compile 'com.google.firebase:firebase-auth:10.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.paypal.sdk:paypal-android-sdk:2.15.3'
-    compile 'javax.servlet:javax.servlet-api:3.1.0'
-    compile 'log4j:log4j:1.2.14'
-    compile 'org.apache.logging.log4j:log4j-api:2.1'
-    compile 'org.apache.logging.log4j:log4j-core:2.1'
-    compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.1'
     compile 'com.firebaseui:firebase-ui-database:1.1.0'
     testCompile 'junit:junit:4.12'
 }
