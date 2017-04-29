@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ryan.qwiktix">
+
+    <uses-sdk tools:overrideLibrary="com.paypal.android.sdk.payments, io.card.payment" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -24,8 +27,12 @@
         <activity android:name=".AddTicketActivity" />
         <activity android:name=".TrendsActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".EditProfileActivity"></activity>
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".ChatActivity" />
+        <activity
+            android:name=".PaypalActivity"
+            android:label="@string/title_activity_paypal"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

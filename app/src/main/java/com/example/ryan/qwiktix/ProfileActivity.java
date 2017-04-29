@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +20,7 @@ public class ProfileActivity extends BaseActivity {
     private Button bLogOut;
     private Button bEditProfile;
     private Button bChat;
+    private ImageButton PayPalButton;
     private TextView pEmail;
     private TextView pPayPalEmail;
     private TextView pFirstName;
@@ -57,6 +59,16 @@ public class ProfileActivity extends BaseActivity {
                 startActivity(ChatIntent);
             }
         });
+
+        PayPalButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent PaypalIntent = new Intent(ProfileActivity.this,PaypalActivity.class);
+                startActivity(PaypalIntent);
+            }
+        });
+
+
 
 
         pUid = getmAuth().getCurrentUser().getUid();
