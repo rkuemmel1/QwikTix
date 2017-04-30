@@ -42,9 +42,9 @@ public class EditProfileActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile);
+        //setContentView(R.layout.activity_edit_profile);
 
-        bGoBack = (Button) findViewById(R.id.bGoBack);
+        //bGoBack = (Button) findViewById(R.id.bGoBack);
         bChangeInfo = (Button) findViewById(R.id.bchangeInfo);
         bChangePass = (Button) findViewById(R.id.bChangePass);
         editFirstName = (EditText) findViewById(R.id.editFirstName);
@@ -74,16 +74,16 @@ public class EditProfileActivity extends BaseActivity {
             }
         });
 
-        bGoBack.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-                Intent profileIntent = new Intent(EditProfileActivity.this,ProfileActivity.class);
-                startActivity(profileIntent);
-                finish();
-
-            }
-        });
+//        bGoBack.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent profileIntent = new Intent(EditProfileActivity.this,ProfileActivity.class);
+//                startActivity(profileIntent);
+//                finish();
+//
+//            }
+//        });
 
         bChangeInfo.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -206,12 +206,12 @@ public class EditProfileActivity extends BaseActivity {
 
     int getContentViewId()
     {
-        return R.layout.activity_profile;
+        return R.layout.activity_edit_profile;
     }
 
     int getNavigationMenuItemId()
     {
-        return R.id.action_profile;
+        return 0;
     }
 
 }

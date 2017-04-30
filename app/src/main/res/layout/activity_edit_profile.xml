@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/my_scrollview"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
     >
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.example.ryan.qwiktix.SearchActivity"
+        tools:context="com.example.ryan.qwiktix.EditProfileActivity"
         >
 
         <EditText
@@ -135,16 +136,23 @@
             android:layout_below="@+id/editNewPass2"
             android:text="Submit" />
 
-        <Button
-            android:id="@+id/bGoBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/bChangePass"
-            android:layout_marginLeft="39dp"
-            android:layout_marginStart="39dp"
-            android:text="Go Back" />
+        <!--<Button-->
+            <!--android:id="@+id/bGoBack"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_below="@+id/bChangePass"-->
+            <!--android:layout_marginLeft="39dp"-->
+            <!--android:layout_marginStart="39dp"-->
+            <!--android:text="Go Back" />-->
+
+    <include
+        layout="@layout/bottom_navigation_element"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+         />
 
     </RelativeLayout>
 </ScrollView>
