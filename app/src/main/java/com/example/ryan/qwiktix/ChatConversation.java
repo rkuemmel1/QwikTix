@@ -5,44 +5,43 @@ import java.util.StringTokenizer;
 
 public class ChatConversation {
 
-    private String title;
-    private String seller;
-    private String requester;
+    private String otherUser;
+    private String otherUserName;
+    private String chatName;
 
 
-    public ChatConversation(String title, String seller, String requester) {
-        this.title= title;
-        this.seller = seller;
-
+    public ChatConversation(String chatName,String otherUser, String otherUserName) {
+        this.otherUser = otherUser;
+        this.otherUserName = otherUserName;
+        this.chatName = chatName;
 
     }
 
     public ChatConversation(){
 
     }
-
-
-    public String getTitle() {
-        return title;
+    public String getOtherUser() {
+        return otherUser;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setOtherUser(String otherUser) {
+        this.otherUser = otherUser;
+    }
+    public String getOtherUserName() {
+        return otherUserName;
     }
 
-    public String getSeller() {
-        return seller;
+    public void setOtherUserName(String otherUserName) {
+        this.otherUserName = otherUserName;
+    }
+    public String getChatName() {
+        return chatName;
     }
 
-    public void setSeller(String seller) {
-        this.seller = seller;
+    public void setChatName(String chatName) {
+        this.chatName = chatName;
     }
 
-    public String getRequester() {
-        return requester;
-    }
 
-    public void setRequester(String requester) {
-        this.requester = requester;
-    }
+
 }

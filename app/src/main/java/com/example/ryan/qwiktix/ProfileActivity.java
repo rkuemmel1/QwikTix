@@ -58,33 +58,32 @@ public class ProfileActivity extends BaseActivity {
             }
         });
 
+        if(pUid != null) {
+            pUid = getmAuth().getCurrentUser().getUid();
 
-        pUid = getmAuth().getCurrentUser().getUid();
+            mUserReference = FirebaseDatabase.getInstance().getReference().child("users").child(pUid);
+            pEmail = (TextView) findViewById(R.id.pEmail);
+            pPayPalEmail = (TextView) findViewById(R.id.pPayPalEmail);
+            pFirstName = (TextView) findViewById(R.id.pFirstName);
+            pLastName = (TextView) findViewById(R.id.pLastName);
+            mUserReference.getRef().addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    User user = dataSnapshot.getValue(User.class);
 
-        mUserReference = FirebaseDatabase.getInstance().getReference().child("users").child(pUid);
-        pEmail = (TextView) findViewById(R.id.pEmail);
-        pPayPalEmail = (TextView) findViewById(R.id.pPayPalEmail);
-        pFirstName = (TextView) findViewById(R.id.pFirstName);
-        pLastName = (TextView) findViewById(R.id.pLastName);
+                    pEmail.setText(user.getEmail());
+                    pPayPalEmail.setText(user.getPayPalEmail());
+                    pFirstName.setText(user.getFirstName());
+                    pLastName.setText(user.getLastName());
 
-        mUserReference.getRef().addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
+                }
 
-                pEmail.setText(user.getEmail());
-                pPayPalEmail.setText(user.getPayPalEmail());
-                pFirstName.setText(user.getFirstName());
-                pLastName.setText(user.getLastName());
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
+                }
+            });
+        }
 
 
     }

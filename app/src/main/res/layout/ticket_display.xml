@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <TextView
         android:id="@+id/eventName"
@@ -33,7 +34,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/eventName"
         android:layout_gravity="right"
-        android:text="Buy" />
+        android:text="Buy"
+        android:onClick="sellingProfileButton"/>
 
     <TextView
         android:id="@+id/price"
