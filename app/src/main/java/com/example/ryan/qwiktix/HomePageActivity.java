@@ -85,9 +85,9 @@ public class HomePageActivity extends BaseActivity {
         String sellerUid = selectedTicket.getuID();
         String sellerEmail = selectedTicket.getUserEmail();
 
-        Intent BuyIntent = new Intent(HomePageActivity.this,ProfileActivity.class);
+        Intent BuyIntent = new Intent(HomePageActivity.this,SellTicketActivity.class);
 
-        BuyIntent.putExtra("com.example.ryan.qwiktix.PROFILE",new String[]{sellerUid,sellerEmail} );
+        BuyIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
 
         startActivity(BuyIntent);
     }

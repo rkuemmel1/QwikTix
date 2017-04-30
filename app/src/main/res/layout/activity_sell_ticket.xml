@@ -1,112 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.ryan.qwiktix.SearchActivity"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/container"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context="com.example.ryan.qwiktix.SellTicketActivity"
     >
 
+<TextView
+    android:id="@+id/otherFirstName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginLeft="28dp"
+    android:layout_marginStart="28dp"
+    android:layout_marginTop="23dp"
+    />
 
+<TextView
+    android:id="@+id/otherLastName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignTop="@+id/otherFirstName"
+    android:layout_centerHorizontal="true"
+    />
 
-
-    <TextView
-        android:id="@+id/pFirstName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="23dp"
-        />
-
-    <TextView
-        android:id="@+id/pLastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/pFirstName"
-        android:layout_centerHorizontal="true"
-        />
-
-    <Button
-        android:id="@+id/pLogOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="27dp"
-        android:layout_marginRight="27dp"
-        android:text="Log Out"
-        android:layout_below="@+id/lProfile"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="30dp" />
+<Button
+    android:id="@+id/otherLogOut"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="27dp"
+    android:layout_marginRight="27dp"
+    android:text="Log Out"
+    android:layout_below="@+id/otherProfile"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentEnd="true"
+    android:layout_marginTop="30dp" />
 
     <TextView
-        android:id="@+id/lProfile"
+        android:id="@+id/otherProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile"
-        android:layout_alignBaseline="@+id/pLastName"
-        android:layout_alignBottom="@+id/pLastName"
-        android:layout_alignRight="@+id/pLogOut"
-        android:layout_alignEnd="@+id/pLogOut" />
+        android:layout_alignBaseline="@+id/otherLastName"
+        android:layout_alignBottom="@+id/otherLastName"
+        android:layout_alignEnd="@+id/otherLogOut"
+        android:layout_alignRight="@+id/otherLogOut"
+        android:text="Profile" />
 
     <TextView
-        android:id="@+id/lEmail"
+        android:id="@+id/otherLabelEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/pFirstName"
-        android:layout_alignStart="@+id/pFirstName"
-        android:layout_below="@+id/pLogOut"
+        android:layout_alignLeft="@+id/otherFirstName"
+        android:layout_alignStart="@+id/otherFirstName"
+        android:layout_below="@+id/otherLogOut"
         android:layout_marginTop="26dp"
         android:text="Email" />
 
     <TextView
-        android:id="@+id/lPayPalEmail"
+        android:id="@+id/otherLabelPayPalEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/lEmail"
-        android:layout_alignStart="@+id/lEmail"
-        android:layout_below="@+id/lEmail"
+        android:layout_alignLeft="@+id/otherLabelEmail"
+        android:layout_alignStart="@+id/otherLabelEmail"
+        android:layout_below="@+id/otherLabelEmail"
         android:layout_marginTop="33dp"
         android:text="PayPal Email" />
 
+<TextView
+    android:id="@+id/otherEmail"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/otherLastName"
+    android:layout_alignTop="@+id/otherLabelEmail" />
+
+<TextView
+    android:id="@+id/otherPayPalEmail"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/otherEmail"
+    android:layout_alignStart="@+id/otherEmail"
+    android:layout_alignTop="@+id/otherLabelPayPalEmail" />
+
+<Button
+    android:id="@+id/otherChat"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Chat"
+    android:layout_above="@+id/bottom_navigation"
+    android:layout_centerVertical="true" />
+
+
     <TextView
-        android:id="@+id/pEmail"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/pLastName"
-        android:layout_alignTop="@+id/lEmail" />
-
-    <TextView
-        android:id="@+id/pPayPalEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/pEmail"
-        android:layout_alignStart="@+id/pEmail"
-        android:layout_alignTop="@+id/lPayPalEmail" />
-
-    <Button
-        android:id="@+id/BChat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chat"
-        android:layout_above="@+id/bottom_navigation"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/pEditProfile"
-        android:layout_alignStart="@+id/pEditProfile" />
+        android:text="Seller Page"
+        android:textColor="@color/black"
+        android:textStyle="bold|italic" />
 
 
+<include
+    layout="@layout/bottom_navigation_element"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true" />
 
 
-
-    <include
-        layout="@layout/bottom_navigation_element"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
 
 
 </RelativeLayout>

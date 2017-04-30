@@ -29,6 +29,8 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".EditProfileActivity"></activity>
         <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".SellTicketActivity"></activity>
+
     </application>
 
 </manifest>

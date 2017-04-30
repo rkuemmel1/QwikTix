@@ -1,11 +1,9 @@
 package com.example.ryan.qwiktix;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,31 +14,24 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SellTicketActivity extends BaseActivity {
 
-    private Button bLogOut;
-    private Button bEditProfile;
+    //private Button bLogOut;
+    //private Button bEditProfile;
     private Button bChat;
-    private TextView pEmail;
-    private TextView pPayPalEmail;
-    private TextView pFirstName;
-    private TextView pLastName;
-    private String pUid;
+    private TextView sEmail;
+    private TextView sPayPalEmail;
+    private TextView sFirstName;
+    private TextView sLastName;
+    private String sUid;
     private DatabaseReference mUserReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bChat = (Button) findViewById(R.id.BChat);
-        bLogOut = (Button) findViewById(R.id.pLogOut);
-        bEditProfile = (Button) findViewById(R.id.pEditProfile);
 
-        bLogOut.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
+        bChat = (Button) findViewById(R.id.otherChat);
+        //bLogOut = (Button) findViewById(R.id.pLogOut);
+        //bEditProfile = (Button) findViewById(R.id.pEditProfile);
 
-                signOut();
-
-            }
-        });
 
         bChat.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -50,48 +41,45 @@ public class SellTicketActivity extends BaseActivity {
             }
         });
 
-        if(pUid != null) {
-            pUid = getmAuth().getCurrentUser().getUid();
+        Intent intent = getIntent();
+        if(intent.getStringArrayExtra("com.example.ryan.qwiktix.MESSAGE") != null){
+                sUid = intent.getStringArrayExtra("com.example.ryan.qwiktix.MESSAGE")[0];
 
-            mUserReference = FirebaseDatabase.getInstance().getReference().child("users").child(pUid);
-            pEmail = (TextView) findViewById(R.id.pEmail);
-            pPayPalEmail = (TextView) findViewById(R.id.pPayPalEmail);
-            pFirstName = (TextView) findViewById(R.id.pFirstName);
-            pLastName = (TextView) findViewById(R.id.pLastName);
-            mUserReference.getRef().addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    User user = dataSnapshot.getValue(User.class);
+                mUserReference = FirebaseDatabase.getInstance().getReference().child("users").child(sUid);
+                sEmail = (TextView) findViewById(R.id.otherEmail);
+                sPayPalEmail = (TextView) findViewById(R.id.otherPayPalEmail);
+                sFirstName = (TextView) findViewById(R.id.otherFirstName);
+                sLastName = (TextView) findViewById(R.id.otherLastName);
+                mUserReference.getRef().addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        User user = dataSnapshot.getValue(User.class);
 
-                    pEmail.setText(user.getEmail());
-                    pPayPalEmail.setText(user.getPayPalEmail());
-                    pFirstName.setText(user.getFirstName());
-                    pLastName.setText(user.getLastName());
+                        sEmail.setText(user.getEmail());
+                        sPayPalEmail.setText(user.getPayPalEmail());
+                        sFirstName.setText(user.getFirstName());
+                        sLastName.setText(user.getLastName());
 
-                }
+                    }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-                }
-            });
+                    }
+                });
         }
 
-
-    }
-
-
-
+        }
 
 
 
     int getContentViewId()
     {
-        return R.layout.activity_sell_ticket;
+        return 0;
     }
 
     int getNavigationMenuItemId()
     {
-        return 0;
+        return R.layout.activity_sell_ticket;
     }
 }

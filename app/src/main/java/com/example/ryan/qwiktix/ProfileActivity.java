@@ -1,11 +1,9 @@
 package com.example.ryan.qwiktix;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +28,7 @@ public class ProfileActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bChat = (Button) findViewById(R.id.BChat);
-        bLogOut = (Button) findViewById(R.id.pLogOut);
+        bLogOut = (Button) findViewById(R.id.otherLogOut);
         bEditProfile = (Button) findViewById(R.id.pEditProfile);
 
         bLogOut.setOnClickListener(new View.OnClickListener(){

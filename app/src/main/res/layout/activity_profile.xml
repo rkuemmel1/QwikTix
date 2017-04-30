@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.ryan.qwiktix.SearchActivity"
+    tools:context="com.example.ryan.qwiktix.ProfileActivity"
     >
 
 
@@ -32,34 +32,35 @@
          />
 
     <Button
-        android:id="@+id/pLogOut"
+        android:id="@+id/otherLogOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="27dp"
         android:layout_marginRight="27dp"
         android:text="Log Out"
-        android:layout_below="@+id/lProfile"
+        android:layout_below="@+id/otherProfile"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="30dp"
+        android:onClick="bLogOut"/>
 
     <TextView
-        android:id="@+id/lProfile"
+        android:id="@+id/otherProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Profile"
         android:layout_alignBaseline="@+id/pLastName"
         android:layout_alignBottom="@+id/pLastName"
-        android:layout_alignRight="@+id/pLogOut"
-        android:layout_alignEnd="@+id/pLogOut" />
+        android:layout_alignRight="@+id/otherLogOut"
+        android:layout_alignEnd="@+id/otherLogOut" />
 
     <TextView
-        android:id="@+id/lEmail"
+        android:id="@+id/otherLabelEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/pFirstName"
         android:layout_alignStart="@+id/pFirstName"
-        android:layout_below="@+id/pLogOut"
+        android:layout_below="@+id/otherLogOut"
         android:layout_marginTop="26dp"
         android:text="Email" />
 
@@ -67,9 +68,9 @@
         android:id="@+id/lPayPalEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/lEmail"
-        android:layout_alignStart="@+id/lEmail"
-        android:layout_below="@+id/lEmail"
+        android:layout_alignLeft="@+id/otherLabelEmail"
+        android:layout_alignStart="@+id/otherLabelEmail"
+        android:layout_below="@+id/otherLabelEmail"
         android:layout_marginTop="33dp"
         android:text="PayPal Email" />
 
@@ -78,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/pLastName"
-        android:layout_alignTop="@+id/lEmail" />
+        android:layout_alignTop="@+id/otherLabelEmail" />
 
     <TextView
         android:id="@+id/pPayPalEmail"

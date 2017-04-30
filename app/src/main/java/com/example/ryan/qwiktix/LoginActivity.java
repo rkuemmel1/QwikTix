@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        final EditText lEmail = (EditText) findViewById(R.id.lEmail);
+        final EditText lEmail = (EditText) findViewById(R.id.otherLabelEmail);
         final EditText lPassword =(EditText) findViewById(R.id.lPassword);
         final Button lLoginButton = (Button) findViewById(R.id.lLoginButton);
         final Button lRegisterLink = (Button) findViewById(R.id.lRegisterLink);
