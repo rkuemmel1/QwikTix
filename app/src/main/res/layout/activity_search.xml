@@ -14,16 +14,17 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         >
-
-        <TextView
-            android:text="Search Page"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/Search"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:id="@+id/search_title" />
+            android:hint="enter to search"/>
+
+        <ListView
+            android:id="@+id/searchList"
+            android:layout_below="@+id/Search"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"></ListView>
 
     </FrameLayout>
 
