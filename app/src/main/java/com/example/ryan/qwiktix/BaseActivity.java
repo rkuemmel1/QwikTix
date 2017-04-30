@@ -140,7 +140,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         return FirebaseDatabase.getInstance().getReference().child("tickets");
     }
 
-
     protected FirebaseAuth getmAuth(){
         return mAuth;
     }
