@@ -117,6 +117,12 @@ public class SearchActivity extends BaseActivity {
                 TextView price = (TextView) v.findViewById(R.id.price);
                 TextView endDate = (TextView) v.findViewById(R.id.endDate);
                 Button messageSeller = (Button) v.findViewById(R.id.messageSellerBtn);
+
+                eventName.setVisibility(View.VISIBLE);
+                price.setVisibility(View.VISIBLE);
+                endDate.setVisibility(View.VISIBLE);
+                messageSeller.setVisibility(View.VISIBLE);
+
                 if(model.getEvent().toLowerCase().contains(Search.getText().toString().toLowerCase())) {
                     //Set text
                     eventName.setText("EVENT: " + model.getEvent());
@@ -126,12 +132,14 @@ public class SearchActivity extends BaseActivity {
                 }
 
                 else
-                {/*
+                {
+
                     eventName.setVisibility(View.GONE);
                     price.setVisibility(View.GONE);
                     endDate.setVisibility(View.GONE);
-                    messageSeller.setVisibility(View.GONE);*/
+                    messageSeller.setVisibility(View.GONE);
                 }
+
             }
 
         };
