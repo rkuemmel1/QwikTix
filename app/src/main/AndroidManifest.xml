@@ -31,6 +31,10 @@
             android:windowSoftInputMode="stateHidden|adjustResize"
         </activity>
         <activity android:name=".ChatActivity"></activity>
+        <activity
+            android:name=".PaypalActivity"
+            android:label="@string/title_activity_paypal"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
