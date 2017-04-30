@@ -21,15 +21,17 @@ public class Ticket {
     public String timePosted;
     public String userEmail;
     public String uID;
+    public String extraInfo;
 
-    public Ticket(String event, int price,String timePosted, String endTime, String userEmail, String uID){
+    public Ticket(String event, int price,String timePosted, String endTime, String userEmail, String uID, String extraInfo){
         this.event = event;
         this.price = price;
         this.timePosted = timePosted;
         this.endTime = endTime;
         this.userEmail = userEmail;
         this.uID = uID;
-        status = "available";
+        this.status = "available";
+        this.extraInfo = extraInfo;
         //timePosted = "3/30/2017";
     }
     public Ticket(){}

@@ -32,7 +32,7 @@ public class AddTicketActivity extends BaseActivity {
    // private EditText tEvent;
     private EditText tEventDate;
     private EditText tPrice;
-   // private EditText tEventTime;
+    private EditText tExtra;
 
     private String pUid;
     private String pUserEmail;
@@ -54,6 +54,7 @@ public class AddTicketActivity extends BaseActivity {
         tSpinner = (Spinner) findViewById(R.id.tSpinner);
         tEventDate = (EditText) findViewById(R.id.tEventDateTime);
         tPrice = (EditText) findViewById(R.id.tPrice);
+        tExtra = (EditText) findViewById(R.id.tExtra);
         final Button tSubmitButton = (Button) findViewById(R.id.tSubmitButton);
 
         tSubmitButton.setOnClickListener(new View.OnClickListener() {
@@ -64,26 +65,6 @@ public class AddTicketActivity extends BaseActivity {
         });
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item);
-//        {
-//
-//            @Override
-//            public View getView(int position, View convertView, ViewGroup parent) {
-//
-//                View v = super.getView(position, convertView, parent);
-//                if (position == getCount()) {
-//                    ((TextView)v.findViewById(android.R.id.text1)).setText("");
-//                    ((TextView)v.findViewById(android.R.id.text1)).setHint(getItem(getCount())); //"Hint to be displayed"
-//                }
-//
-//                return v;
-//            }
-//
-//            @Override
-//            public int getCount() {
-//                return super.getCount()-1; // you dont display last item. It is used as hint.
-//            }
-//
-//        };
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -115,6 +96,7 @@ public class AddTicketActivity extends BaseActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         tEventDate.setText(dataSnapshot.getValue(String.class));
+                        tEventDate.setEnabled(false);
                     }
 
                     @Override
@@ -140,16 +122,17 @@ public class AddTicketActivity extends BaseActivity {
 
     private void addTicket() {
 
-        String event = "test";//tEvent.getText().toString().trim();
+        String event = tSpinner.getSelectedItem().toString();//tEvent.getText().toString().trim();
         String eventDate = tEventDate.getText().toString().trim();//.concat(" ").concat(tEventTime.getText().toString().trim());
         String price = tPrice.getText().toString().trim();
         String userEmail = pUserEmail;
         String user = pUid;
+        String extrainfo = tExtra.getText().toString().trim();
 
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
 
-        if (!TextUtils.isEmpty(price) && !TextUtils.isEmpty(eventDate) && !TextUtils.isEmpty(event)) {
-            Ticket ticket = new Ticket(event, Integer.parseInt(price), currentDateTimeString, eventDate, userEmail, user);
+        if (!TextUtils.isEmpty(price) && !TextUtils.isEmpty(eventDate) && !TextUtils.isEmpty(event) && !TextUtils.isEmpty(extrainfo)) {
+            Ticket ticket = new Ticket(event, Integer.parseInt(price), currentDateTimeString, eventDate, userEmail, user,extrainfo);
             mDatabase.child("tickets").push().setValue(ticket);
 
             Toast.makeText(AddTicketActivity.this, "ticket added",

@@ -29,7 +29,7 @@ public class HomePageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         //final Button messageButton = (Button)findViewById(R.id.messageSellerBtn);
         //final TextView seller = (TextView) findViewById(R.id.seller); //assuming seller field is added
-        final TextView event= (TextView) findViewById(R.id.eventName);
+        //final TextView event= (TextView) findViewById(R.id.eventName);
 
         ListView ticketList = (ListView)findViewById(R.id.homeList);
 
