@@ -91,4 +91,8 @@ public class Ticket {
     public void setuID(String uID) {
         this.uID = uID;
     }
+
+    public String getExtraInfo() {
+        return extraInfo;
+    }
 }

@@ -41,11 +41,13 @@ public class HomePageActivity extends BaseActivity {
                 TextView price = (TextView)v.findViewById(R.id.price);
                 TextView endDate = (TextView)v.findViewById(R.id.endDate);
                 Button messageSeller = (Button)v.findViewById(R.id.messageSellerBtn);
+                Button otherProfileButton = (Button)v.findViewById(R.id.otherProfileButton);
                 //Set text
                 eventName.setText("EVENT: " + model.getEvent());
                 price.setText("PRICE: $" + Integer.toString(model.getPrice()));
                 endDate.setText("END DATE: " + model.getEndTime());
                 messageSeller.setTag(model);
+                otherProfileButton.setTag(model);
             }
 
 
@@ -73,6 +75,27 @@ public class HomePageActivity extends BaseActivity {
 
 
     }
+
+    public void goToOtherProfile(android.view.View v){
+
+        LinearLayout vwParentRow = (LinearLayout)v.getParent();
+        int c = Color.GREEN;
+        vwParentRow.setBackgroundColor(c);
+
+        Ticket selectedTicket= (Ticket)v.getTag();
+        String sellerUid = selectedTicket.getuID();
+        String sellerEmail = selectedTicket.getUserEmail();
+
+        Intent otherProfileIntent = new Intent(HomePageActivity.this,OtherProfileActivity.class);
+
+        otherProfileIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
+
+        startActivity(otherProfileIntent);
+
+
+    }
+
+
     int getContentViewId()
     {
         return R.layout.activity_home_page;

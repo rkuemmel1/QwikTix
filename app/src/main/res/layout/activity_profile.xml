@@ -107,15 +107,15 @@
         android:layout_alignLeft="@+id/pEditProfile"
         android:layout_alignStart="@+id/pEditProfile" />
 
-    <ImageButton
-        android:id="@+id/pPayPalImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_search"
-        android:layout_marginBottom="22dp"
-        android:layout_above="@+id/BChat"
-        android:layout_alignLeft="@+id/pLogOut"
-        android:layout_alignStart="@+id/pLogOut" />
+    <!--<ImageButton-->
+        <!--android:id="@+id/pPayPalImageButton"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@android:drawable/ic_menu_search"-->
+        <!--android:layout_marginBottom="22dp"-->
+        <!--android:layout_above="@+id/BChat"-->
+        <!--android:layout_alignLeft="@+id/pLogOut"-->
+        <!--android:layout_alignStart="@+id/pLogOut" />-->
 
 
 

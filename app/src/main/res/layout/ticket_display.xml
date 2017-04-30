@@ -30,4 +30,12 @@
         android:text="Message Seller"
         android:onClick="messageSellerButton"
         />
+
+    <Button
+        android:id="@+id/otherProfileButton"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:text="Buy Ticket"
+        android:onClick="goToOtherProfile"
+        />
 </LinearLayout>

@@ -1,12 +1,9 @@
 package com.example.ryan.qwiktix;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +17,7 @@ public class ProfileActivity extends BaseActivity {
     private Button bLogOut;
     private Button bEditProfile;
     private Button bChat;
-    private ImageButton PayPalButton;
+    //private ImageButton PayPalButton;
     private TextView pEmail;
     private TextView pPayPalEmail;
     private TextView pFirstName;
@@ -35,7 +32,7 @@ public class ProfileActivity extends BaseActivity {
         bChat = (Button) findViewById(R.id.BChat);
         bLogOut = (Button) findViewById(R.id.pLogOut);
         bEditProfile = (Button) findViewById(R.id.pEditProfile);
-        PayPalButton = (ImageButton) findViewById(R.id.pPayPalImageButton);
+        //PayPalButton = (ImageButton) findViewById(R.id.pPayPalImageButton);
 
         bLogOut.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -62,13 +59,13 @@ public class ProfileActivity extends BaseActivity {
             }
         });
 
-        PayPalButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent PaypalIntent = new Intent(ProfileActivity.this,PaypalActivity.class);
-                startActivity(PaypalIntent);
-            }
-        });
+//        PayPalButton.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//                Intent PaypalIntent = new Intent(ProfileActivity.this,PaypalActivity.class);
+//                startActivity(PaypalIntent);
+//            }
+//        });
 
 
             pUid = getmAuth().getCurrentUser().getUid();
