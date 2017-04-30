@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -107,6 +108,8 @@ public class ChatActivity extends BaseActivity {
                 // TODO Auto-generated method stub
             }
         });
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
     }
 
