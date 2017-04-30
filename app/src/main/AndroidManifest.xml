@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme"
 
         >
+
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +30,8 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".EditProfileActivity"></activity>
         <activity android:name=".ChatActivity"></activity>
+
     </application>
+
 
 </manifest>
