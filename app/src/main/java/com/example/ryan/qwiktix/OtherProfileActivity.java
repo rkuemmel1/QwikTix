@@ -76,7 +76,7 @@ public class OtherProfileActivity extends BaseActivity {
 
         }
 
-        myAdapter = new FirebaseListAdapter<Ticket>(this,Ticket.class,R.layout.profile_ticket_display,
+        myAdapter = new FirebaseListAdapter<Ticket>(this,Ticket.class,R.layout.other_profile_ticket_display,
                 getTickets()) {
             @Override
             protected void populateView(android.view.View v, Ticket model, int position) {

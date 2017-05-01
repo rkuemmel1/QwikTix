@@ -183,7 +183,7 @@ public class SearchActivity extends BaseActivity {
                 messageSeller.setVisibility(View.VISIBLE);
                 otherProfileButton.setVisibility(View.VISIBLE);
 
-                if(model.getEvent().toLowerCase().contains(Search.getText().toString().toLowerCase())) {
+                if(model.getEvent().toLowerCase().contains(Search.getText().toString().toLowerCase()) && !model.getStatus().contains("Sold")) {
                     //Set text
                     eventName.setText(model.getEvent());
                     eventName.setTypeface(typeface);
