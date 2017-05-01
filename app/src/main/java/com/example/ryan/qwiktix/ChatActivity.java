@@ -185,7 +185,7 @@ public class ChatActivity extends BaseActivity {
 
     @Override
     public int getNavigationMenuItemId(){
-        return 0;
+        return R.id.action_chat;
     }
 
     @Override

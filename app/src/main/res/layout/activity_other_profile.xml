@@ -65,11 +65,26 @@
         android:layout_marginTop="33dp" />
 
 
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/pPayPalImageButton"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="60dp"
+        android:id="@+id/otherTicketList"
+        >
+    </ListView>
+
     <include
         layout="@layout/bottom_navigation_element"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         />
 
 
