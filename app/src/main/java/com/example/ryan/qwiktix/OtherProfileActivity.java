@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +28,9 @@ public class OtherProfileActivity extends BaseActivity {
     private String oUid;
     private DatabaseReference mUserReference;
 
+    private ListView ticketList;
+    private FirebaseListAdapter<Ticket> myAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,7 @@ public class OtherProfileActivity extends BaseActivity {
         oFirstName = (TextView) findViewById(R.id.oFirstName);
         oLastName = (TextView) findViewById(R.id.oLastName);
         PayPalButton = (ImageButton) findViewById(R.id.pPayPalImageButton);
+        ticketList = (ListView) findViewById(R.id.otherTicketList);
 
         PayPalButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -69,6 +75,41 @@ public class OtherProfileActivity extends BaseActivity {
             });
 
         }
+
+        myAdapter = new FirebaseListAdapter<Ticket>(this,Ticket.class,R.layout.profile_ticket_display,
+                getTickets()) {
+            @Override
+            protected void populateView(android.view.View v, Ticket model, int position) {
+                TextView eventName = (TextView)v.findViewById(R.id.eventName);
+                TextView price = (TextView)v.findViewById(R.id.price);
+                TextView endDate = (TextView)v.findViewById(R.id.endDate);
+
+
+//                Button messageSeller = (Button)v.findViewById(R.id.messageSellerBtn);
+//                Button otherProfileButton = (Button)v.findViewById(R.id.otherProfileButton);
+                //Set text
+                if(model.getuID().equals(getUid())){
+                    eventName.setText("EVENT: " + model.getEvent());
+                    price.setText("PRICE: $" + Integer.toString(model.getPrice()));
+                    endDate.setText("END DATE: " + model.getEndTime());
+
+//                messageSeller.setTag(model);
+//                otherProfileButton.setTag(model);
+                }
+                else{
+                    eventName.setVisibility(View.GONE);
+                    price.setVisibility(View.GONE);
+                    endDate.setVisibility(View.GONE);
+
+                }
+
+            }
+
+
+        };
+        ticketList.setAdapter(myAdapter);
+
+
 
 
 
