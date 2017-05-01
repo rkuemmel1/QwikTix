@@ -13,6 +13,6 @@ public class TrendsActivity extends BaseActivity {
 
     int getNavigationMenuItemId()
     {
-        return R.id.action_trends;
+        return 0;
     }
 }
