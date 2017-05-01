@@ -290,10 +290,12 @@ public class SearchActivity extends BaseActivity {
 
         //RelativeLayout vwParentRow = (RelativeLayout) v.getParent();
 
-        int position = (int)v.getTag();
+        String info[] = (String[])v.getTag();
+        int position = Integer.parseInt(info[0]);
+        String userEmail = info[1];
 
         String userID = myUserAdapter.getRef(position).getKey().toString();
-        String userEmail = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("email").toString();
+
 
         Intent otherProfileIntent = new Intent(SearchActivity.this,OtherProfileActivity.class);
 
@@ -327,6 +329,7 @@ public class SearchActivity extends BaseActivity {
         String info[] = (String[])v.getTag();
         int position = Integer.parseInt(info[0]);
         String userEmail = info[1];
+
 
         String userID = myUserAdapter.getRef(position).getKey().toString();
         //DatabaseReference userEmail = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("email");
