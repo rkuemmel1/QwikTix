@@ -88,7 +88,7 @@ public class OtherProfileActivity extends BaseActivity {
 //                Button messageSeller = (Button)v.findViewById(R.id.messageSellerBtn);
 //                Button otherProfileButton = (Button)v.findViewById(R.id.otherProfileButton);
                 //Set text
-                if(model.getuID().equals(getUid())){
+                if(model.getuID().equals(oUid)){
                     eventName.setText("EVENT: " + model.getEvent());
                     price.setText("PRICE: $" + Integer.toString(model.getPrice()));
                     endDate.setText("END DATE: " + model.getEndTime());
