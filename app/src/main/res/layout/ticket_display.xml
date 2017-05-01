@@ -1,41 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:orientation="vertical"
+    android:baselineAligned="false">
 
     <TextView
         android:id="@+id/eventName"
         android:layout_width="match_parent"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/price"
+        android:textSize="20dp"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/endDate"
+        android:textSize="20dp"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
 
-    <Button
-        android:id="@+id/messageSellerBtn"
-        android:layout_width="111dp"
-        android:layout_height="wrap_content"
-        android:text="Message Seller"
-        android:onClick="messageSellerButton"
-        />
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/otherProfileButton"
-        android:layout_width="111dp"
+    <ImageButton
+        android:id="@+id/messageSellerBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Buy Ticket"
+        android:onClick="messageSellerButton"
+        android:src="@drawable/webbutton" />
+
+    <ImageButton
+        android:id="@+id/otherProfileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="false"
         android:onClick="goToOtherProfile"
-        />
+        android:src="@drawable/webbutton2" />
+    </LinearLayout>
 </LinearLayout>
