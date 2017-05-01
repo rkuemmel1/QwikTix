@@ -35,7 +35,7 @@ public class SearchActivity extends BaseActivity {
 
     private DatabaseReference mDatabase;
 
-    ArrayList<String> strings = new ArrayList<String>();
+    //ArrayList<String> strings = new ArrayList<String>();
 
     FirebaseListAdapter<Ticket> myAdapter;
 
@@ -56,21 +56,21 @@ public class SearchActivity extends BaseActivity {
         searchAdapter();
         searchList.setAdapter(myAdapter);
 
-        mDatabase.child("tickets").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String ticket = snapshot.child("event").getValue(String.class) + " " + snapshot.child("endTime").getValue(String.class);
-                    strings.add(ticket);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError firebaseError) {
-
-            }
-        });
+//        mDatabase.child("tickets").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    String ticket = snapshot.child("event").getValue(String.class) + " " + snapshot.child("endTime").getValue(String.class);
+//                    strings.add(ticket);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError firebaseError) {
+//
+//            }
+//        });
 
         //adapter = new ArrayAdapter<String>(SearchActivity.this, R.layout.search_results, R.id.results, strings);
 
