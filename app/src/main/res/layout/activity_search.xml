@@ -11,7 +11,7 @@
         android:id="@+id/Search"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="search"/>
+        android:hint="search event or user email"/>
 
     <FrameLayout
         android:id="@+id/content"
@@ -20,13 +20,15 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         >
-        
+
 
         <ListView
             android:id="@+id/searchList"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_below="@+id/Search"></ListView>
+            android:layout_below="@+id/Search"
+            android:paddingTop="10dp">
+        </ListView>
 
 
     </FrameLayout>

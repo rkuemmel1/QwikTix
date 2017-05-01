@@ -2,6 +2,8 @@ package com.example.ryan.qwiktix;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -53,6 +55,8 @@ public class SearchActivity extends BaseActivity {
 
         Search = (EditText) findViewById(R.id.Search);
         searchList = (ListView) findViewById(R.id.searchList);
+
+        Search.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
 
         searchAdapter();
         searchList.setAdapter(myAdapter);
@@ -111,17 +115,21 @@ public class SearchActivity extends BaseActivity {
     }
 
     public void searchAdapter(){
-        myAdapter = new FirebaseListAdapter<Ticket>(this,Ticket.class,R.layout.ticket_display,
+        myAdapter = new FirebaseListAdapter<Ticket>(this,Ticket.class,R.layout.ticket_display_search,
                 getTickets()) {
             @Override
             protected void populateView(android.view.View v, Ticket model, int position) {
+                Typeface typeface=Typeface.createFromAsset(getAssets(), "Fonts/Sports.ttf");
+
                 TextView eventName = (TextView) v.findViewById(R.id.eventName);
                 TextView price = (TextView) v.findViewById(R.id.price);
                 TextView endDate = (TextView) v.findViewById(R.id.endDate);
                 TextView user = (TextView) v.findViewById(R.id.user);
 
                 ImageButton messageSeller = (ImageButton) v.findViewById(R.id.messageSellerBtn);
+                messageSeller.setBackgroundDrawable(null);
                 ImageButton otherProfileButton = (ImageButton) v.findViewById(R.id.otherProfileButton);
+                otherProfileButton.setBackgroundDrawable(null);
 
                 eventName.setVisibility(View.VISIBLE);
                 price.setVisibility(View.VISIBLE);
@@ -132,10 +140,14 @@ public class SearchActivity extends BaseActivity {
 
                 if(model.getEvent().toLowerCase().contains(Search.getText().toString().toLowerCase()) || model.getUserEmail().toLowerCase().contains(Search.getText().toString().toLowerCase())) {
                     //Set text
-                    eventName.setText("EVENT: " + model.getEvent());
+                    eventName.setText(model.getEvent());
+                    eventName.setTypeface(typeface);
                     price.setText("PRICE: $" + Integer.toString(model.getPrice()));
+                    price.setTypeface(typeface);
                     endDate.setText("END DATE: " + model.getEndTime());
+                    endDate.setTypeface(typeface);
                     user.setText("USER: " + model.getUserEmail());
+                    user.setTypeface(typeface);
                     messageSeller.setTag(model);
                     otherProfileButton.setTag(model);
 
