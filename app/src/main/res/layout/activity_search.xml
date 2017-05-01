@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
@@ -7,13 +7,20 @@
     android:orientation="vertical"
     tools:context="com.example.ryan.qwiktix.SearchActivity"
     >
+    <EditText
+        android:id="@+id/Search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="search"/>
 
-
-        <EditText
-            android:id="@+id/Search"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="enter to search"/>
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:background="@drawable/steel"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+        
 
         <ListView
             android:id="@+id/searchList"
@@ -22,7 +29,7 @@
             android:layout_below="@+id/Search"></ListView>
 
 
-
+    </FrameLayout>
 
     <include
         layout="@layout/bottom_navigation_element"
@@ -33,4 +40,4 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-</RelativeLayout>
+</LinearLayout>

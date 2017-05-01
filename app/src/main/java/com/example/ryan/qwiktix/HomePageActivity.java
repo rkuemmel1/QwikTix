@@ -44,6 +44,7 @@ public class HomePageActivity extends BaseActivity {
                 TextView eventName = (TextView)v.findViewById(R.id.eventName);
                 TextView price = (TextView)v.findViewById(R.id.price);
                 TextView endDate = (TextView)v.findViewById(R.id.endDate);
+                TextView user = (TextView)v.findViewById(R.id.user);
                 ImageButton messageSeller = (ImageButton)v.findViewById(R.id.messageSellerBtn);
                 messageSeller.setBackgroundDrawable(null);
                 ImageButton otherProfileButton = (ImageButton)v.findViewById(R.id.otherProfileButton);
@@ -59,6 +60,9 @@ public class HomePageActivity extends BaseActivity {
 
                 endDate.setText("END DATE: " + model.getEndTime());
                 endDate.setTypeface(typeface);
+
+                user.setText("USER: " + model.getUserEmail());
+                user.setTypeface(typeface);
 
                 messageSeller.setTag(model);
                 otherProfileButton.setTag(model);

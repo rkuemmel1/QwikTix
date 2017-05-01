@@ -118,18 +118,24 @@ public class SearchActivity extends BaseActivity {
                 TextView eventName = (TextView) v.findViewById(R.id.eventName);
                 TextView price = (TextView) v.findViewById(R.id.price);
                 TextView endDate = (TextView) v.findViewById(R.id.endDate);
+                TextView user = (TextView) v.findViewById(R.id.user);
+
                 ImageButton messageSeller = (ImageButton) v.findViewById(R.id.messageSellerBtn);
                 ImageButton otherProfileButton = (ImageButton) v.findViewById(R.id.otherProfileButton);
+
                 eventName.setVisibility(View.VISIBLE);
                 price.setVisibility(View.VISIBLE);
                 endDate.setVisibility(View.VISIBLE);
+                user.setVisibility(View.VISIBLE);
                 messageSeller.setVisibility(View.VISIBLE);
                 otherProfileButton.setVisibility(View.VISIBLE);
-                if(model.getEvent().toLowerCase().contains(Search.getText().toString().toLowerCase())) {
+
+                if(model.getEvent().toLowerCase().contains(Search.getText().toString().toLowerCase()) || model.getUserEmail().toLowerCase().contains(Search.getText().toString().toLowerCase())) {
                     //Set text
                     eventName.setText("EVENT: " + model.getEvent());
                     price.setText("PRICE: $" + Integer.toString(model.getPrice()));
                     endDate.setText("END DATE: " + model.getEndTime());
+                    user.setText("USER: " + model.getUserEmail());
                     messageSeller.setTag(model);
                     otherProfileButton.setTag(model);
 
@@ -141,6 +147,7 @@ public class SearchActivity extends BaseActivity {
                     eventName.setVisibility(View.GONE);
                     price.setVisibility(View.GONE);
                     endDate.setVisibility(View.GONE);
+                    user.setVisibility(View.GONE);
                     messageSeller.setVisibility(View.GONE);
                     otherProfileButton.setVisibility(View.GONE);
 
