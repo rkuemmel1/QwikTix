@@ -42,10 +42,12 @@ public class HomePageActivity extends BaseActivity {
                 TextView price = (TextView)v.findViewById(R.id.price);
                 TextView endDate = (TextView)v.findViewById(R.id.endDate);
                 ImageButton messageSeller = (ImageButton)v.findViewById(R.id.messageSellerBtn);
+                messageSeller.setBackgroundDrawable(null);
                 ImageButton otherProfileButton = (ImageButton)v.findViewById(R.id.otherProfileButton);
+                otherProfileButton.setBackgroundDrawable(null);
                 //Set text
                 if(!model.getStatus().contains("Sold")){
-                    eventName.setText("EVENT: " + model.getEvent());
+                    eventName.setText(model.getEvent());
                     price.setText("PRICE: $" + Integer.toString(model.getPrice()));
                     endDate.setText("END DATE: " + model.getEndTime());
                     messageSeller.setTag(model);
