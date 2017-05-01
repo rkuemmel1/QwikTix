@@ -7,7 +7,7 @@
     android:baselineAligned="false">
 
     <TextView
-        android:id="@+id/eventName"
+        android:id="@+id/userName"
         android:layout_width="match_parent"
         android:textSize="30dp"
         android:textColor="@color/white"
@@ -16,28 +16,12 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/price"
+        android:id="@+id/userEmail"
         android:textSize="20dp"
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
-
-    <TextView
-        android:id="@+id/endDate"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/user"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:text="TextView"/>
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -49,7 +33,7 @@
             android:id="@+id/messageSellerBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="messageSellerButton"
+            android:onClick="messageSellerButtonUser"
             android:src="@drawable/messagebutton" />
 
         <ImageButton
@@ -57,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="false"
-            android:onClick="goToOtherProfile"
-            android:src="@drawable/buybutton" />
+            android:onClick="goToOtherProfileUser"
+            android:src="@drawable/profilebutton" />
     </LinearLayout>
 </LinearLayout>
