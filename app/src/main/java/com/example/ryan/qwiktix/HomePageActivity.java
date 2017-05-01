@@ -43,11 +43,21 @@ public class HomePageActivity extends BaseActivity {
                 Button messageSeller = (Button)v.findViewById(R.id.messageSellerBtn);
                 Button otherProfileButton = (Button)v.findViewById(R.id.otherProfileButton);
                 //Set text
-                eventName.setText("EVENT: " + model.getEvent());
-                price.setText("PRICE: $" + Integer.toString(model.getPrice()));
-                endDate.setText("END DATE: " + model.getEndTime());
-                messageSeller.setTag(model);
-                otherProfileButton.setTag(model);
+                if(!model.getStatus().contains("Sold")){
+                    eventName.setText("EVENT: " + model.getEvent());
+                    price.setText("PRICE: $" + Integer.toString(model.getPrice()));
+                    endDate.setText("END DATE: " + model.getEndTime());
+                    messageSeller.setTag(model);
+                    otherProfileButton.setTag(model);
+                }
+                else{
+                    eventName.setVisibility(android.view.View.GONE);
+                    price.setVisibility(android.view.View.GONE);
+                    endDate.setVisibility(android.view.View.GONE);
+                    messageSeller.setVisibility(android.view.View.GONE);
+                    otherProfileButton.setVisibility(android.view.View.GONE);
+                }
+
             }
 
 
@@ -58,9 +68,6 @@ public class HomePageActivity extends BaseActivity {
     }
     public void messageSellerButton(android.view.View v){
 
-        LinearLayout vwParentRow = (LinearLayout)v.getParent();
-        int c = Color.CYAN;
-        vwParentRow.setBackgroundColor(c);
 
         Ticket selectedTicket= (Ticket)v.getTag();
         String sellerUid = selectedTicket.getuID();
@@ -78,9 +85,6 @@ public class HomePageActivity extends BaseActivity {
 
     public void goToOtherProfile(android.view.View v){
 
-        LinearLayout vwParentRow = (LinearLayout)v.getParent();
-        int c = Color.GREEN;
-        vwParentRow.setBackgroundColor(c);
 
         Ticket selectedTicket= (Ticket)v.getTag();
         String sellerUid = selectedTicket.getuID();

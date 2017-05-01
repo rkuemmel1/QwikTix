@@ -113,9 +113,9 @@ public class ProfileActivity extends BaseActivity {
                     eventName.setText("EVENT: " + model.getEvent());
                     price.setText("PRICE: $" + Integer.toString(model.getPrice()));
                     endDate.setText("END DATE: " + model.getEndTime());
-                    ticketAvailable.setTag(model);
-                    ticketPending.setTag(model);
-                    ticketSold.setTag(model);
+                    ticketAvailable.setTag(position);
+                    ticketPending.setTag(position);
+                    ticketSold.setTag(position);
 //                messageSeller.setTag(model);
 //                otherProfileButton.setTag(model);
                 }
@@ -142,20 +142,34 @@ public class ProfileActivity extends BaseActivity {
 
     public void ticketAvailable(android.view.View v) {
 
-            Ticket selectedTicker = (Ticket)v.getTag();
-            
+            int selectedTicker = (int)v.getTag();
+            String ticketString = myAdapter.getRef(selectedTicker).getKey();
+
+            DatabaseReference ticketReference = FirebaseDatabase.getInstance().getReference().child("tickets").child(ticketString).child("status");
+            ticketReference.setValue("Available");
+
+
 
     }
 
     public void ticketPending(android.view.View v) {
 
+        int selectedTicker = (int)v.getTag();
+        String ticketString = myAdapter.getRef(selectedTicker).getKey();
+
+        DatabaseReference ticketReference = FirebaseDatabase.getInstance().getReference().child("tickets").child(ticketString).child("status");
+        ticketReference.setValue("Pending");
 
 
     }
 
     public void ticketSold(android.view.View v) {
 
+        int selectedTicker = (int)v.getTag();
+        String ticketString = myAdapter.getRef(selectedTicker).getKey();
 
+        DatabaseReference ticketReference = FirebaseDatabase.getInstance().getReference().child("tickets").child(ticketString).child("status");
+        ticketReference.setValue("Sold");
 
     }
 
