@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -149,6 +150,7 @@ public class ProfileActivity extends BaseActivity {
             ticketReference.setValue("Available");
 
 
+            Toast.makeText(ProfileActivity.this, "Changed ticket to available", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -160,7 +162,7 @@ public class ProfileActivity extends BaseActivity {
         DatabaseReference ticketReference = FirebaseDatabase.getInstance().getReference().child("tickets").child(ticketString).child("status");
         ticketReference.setValue("Pending");
 
-
+        Toast.makeText(ProfileActivity.this, "Changed ticket to pending", Toast.LENGTH_SHORT).show();
     }
 
     public void ticketSold(android.view.View v) {
@@ -171,6 +173,7 @@ public class ProfileActivity extends BaseActivity {
         DatabaseReference ticketReference = FirebaseDatabase.getInstance().getReference().child("tickets").child(ticketString).child("status");
         ticketReference.setValue("Sold");
 
+        Toast.makeText(ProfileActivity.this, "Changed ticket to sold", Toast.LENGTH_SHORT).show();
     }
 
 
