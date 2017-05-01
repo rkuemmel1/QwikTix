@@ -222,6 +222,7 @@ public class SearchActivity extends BaseActivity {
                 getUsers()) {
             @Override
             protected void populateView(android.view.View v, User model, int position) {
+                String info[] = new String[2];
                 Typeface typeface=Typeface.createFromAsset(getAssets(), "Fonts/Sports.ttf");
 
                 TextView userName = (TextView) v.findViewById(R.id.userName);
@@ -244,8 +245,10 @@ public class SearchActivity extends BaseActivity {
                     userName.setTypeface(typeface);
                     userEmail.setText(model.getEmail());
                     userEmail.setTypeface(typeface);
-                    messageSeller.setTag(position);
-                    otherProfileButton.setTag(position);
+                    info[0] = Integer.toString(position);
+                    info[1] = model.getEmail();
+                    messageSeller.setTag(info);
+                    otherProfileButton.setTag(info);
 
                 }
 
@@ -270,7 +273,7 @@ public class SearchActivity extends BaseActivity {
 
         //RelativeLayout vwParentRow = (RelativeLayout) v.getParent();
 
-        Ticket selectedTicket= (Ticket)v.getTag();
+        Ticket selectedTicket = (Ticket)v.getTag();
         String sellerUid = selectedTicket.getuID();
         String sellerEmail = selectedTicket.getUserEmail();
 
@@ -302,10 +305,12 @@ public class SearchActivity extends BaseActivity {
     }
 
     public void messageSellerButton(android.view.View v){
+        String sellerUid;
+        String sellerEmail;
 
-        Ticket selectedTicket= (Ticket)v.getTag();
-        String sellerUid = selectedTicket.getuID();
-        String sellerEmail = selectedTicket.getUserEmail();
+        Ticket selectedTicket = (Ticket) v.getTag();
+        sellerUid = selectedTicket.getuID();
+        sellerEmail = selectedTicket.getUserEmail();
 
         Intent ChatIntent = new Intent(SearchActivity.this,ChatActivity.class);
 
@@ -319,11 +324,12 @@ public class SearchActivity extends BaseActivity {
 
     public void messageSellerButtonUser(android.view.View v){
 
-
-        int position = (int)v.getTag();
+        String info[] = (String[])v.getTag();
+        int position = Integer.parseInt(info[0]);
+        String userEmail = info[1];
 
         String userID = myUserAdapter.getRef(position).getKey().toString();
-        String userEmail = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("email").toString();
+        //DatabaseReference userEmail = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("email");
 
         Intent ChatIntent = new Intent(SearchActivity.this,ChatActivity.class);
 
