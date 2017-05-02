@@ -31,14 +31,17 @@ import com.google.firebase.database.ValueEventListener;
 public class ChatActivity extends BaseActivity {
 
     FirebaseListAdapter conversationAdapter;
-    Spinner spinner;
+    //Spinner spinner;
     String conversation ="testconvo";
     ListView listOfMessages;
     String uid;
     String newConvoUid;
     String email;
+    int switchedConvos = 0;
+    int spinnerPosition = 0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       // spinner = (Spinner) findViewById(R.id.spinner);
         //final String[] otherUsername = new String[1];
         //setContentView(R.layout.activity_chat);
         uid =getmAuth().getCurrentUser().getUid();
@@ -62,7 +65,7 @@ public class ChatActivity extends BaseActivity {
             getMessages().addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
-                    if(!snapshot.child(newChatName).exists()){
+                    if(!snapshot.child(newChatName).exists() ){
                         getMessages().child(newChatName).push().setValue(welcomeMessage);
                         getUsers().child(otherUser).child("convos").push().setValue(theirConvoToStart);
 
@@ -75,15 +78,16 @@ public class ChatActivity extends BaseActivity {
                 }
             });
 
-
+            //displayConversations();
             conversation = newChatName;
+            Toast.makeText(ChatActivity.this,"switched chat OnCreate "+ conversation, Toast.LENGTH_LONG).show();
             displayChatMessages();
-            spinner = (Spinner) findViewById(R.id.spinner);
+
 
             getIntent().removeExtra("com.example.ryan.qwiktix.MESSAGE");
         }
         // Load chat room contents
-        displayConversations();
+
         displayChatMessages();
 
 
@@ -99,6 +103,7 @@ public class ChatActivity extends BaseActivity {
                 input.setText("");
             }
         });
+        /*
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -106,12 +111,20 @@ public class ChatActivity extends BaseActivity {
                 String item = parent.getItemAtPosition(position).toString();
 
                 // Showing selected spinner item
-                //Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+
                 listOfMessages.setAdapter(null);
                 ChatConversation chat = (ChatConversation) spinner.getSelectedItem();
                 String text = chat.getChatName();
-                Log.e("Verbose","SPINNER INFO"+text);
-                conversation = text;
+
+                if(switchedConvos != 0) {
+                    conversation = text;
+
+                }
+                else{
+
+                    switchedConvos = 1;
+                }
+                Toast.makeText(ChatActivity.this,"switched chat item selected"+ conversation, Toast.LENGTH_LONG).show();
                 //displayConversations();
                 displayChatMessages();
 
@@ -120,7 +133,7 @@ public class ChatActivity extends BaseActivity {
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
             }
-        });
+        });*/
 
         //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
@@ -163,11 +176,13 @@ public class ChatActivity extends BaseActivity {
 
 
     }
+    /*
     public void displayConversations(){
 
         conversationAdapter = new FirebaseListAdapter<ChatConversation>(this, ChatConversation.class,R.layout.conversation, getConversations()){
             @Override
             protected void populateView(View v, ChatConversation model,int position){
+
                 TextView convotext= (TextView)v.findViewById(R.id.convo);
                 convotext.setText(model.getOtherUserName());
             }
@@ -177,6 +192,7 @@ public class ChatActivity extends BaseActivity {
         spinner.setAdapter(conversationAdapter);
 
     }
+    */
 /*
     public void createConvo(String otherUser, String otherUserName, String chatName) {
         ChatConversation theirConvoToStart = new ChatConversation(chatName,getmAuth().getCurrentUser().getUid(),mAuth.getCurrentUser().getEmail());
