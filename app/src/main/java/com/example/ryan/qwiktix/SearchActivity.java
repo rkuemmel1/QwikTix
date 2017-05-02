@@ -171,17 +171,19 @@ public class SearchActivity extends BaseActivity {
                 TextView endDate = (TextView) v.findViewById(R.id.endDate);
                 TextView user = (TextView) v.findViewById(R.id.user);
 
-                ImageButton messageSeller = (ImageButton) v.findViewById(R.id.messageSellerBtn);
-                messageSeller.setBackgroundDrawable(null);
-                ImageButton otherProfileButton = (ImageButton) v.findViewById(R.id.otherProfileButton);
-                otherProfileButton.setBackgroundDrawable(null);
+//                ImageButton messageSeller = (ImageButton) v.findViewById(R.id.messageSellerBtn);
+//                messageSeller.setBackgroundDrawable(null);
+//                ImageButton otherProfileButton = (ImageButton) v.findViewById(R.id.otherProfileButton);
+//                otherProfileButton.setBackgroundDrawable(null);
+                ImageButton goToSingleTicketButton = (ImageButton)v.findViewById(R.id.singleTicketButton);
+                goToSingleTicketButton.setBackgroundDrawable(null);
 
                 eventName.setVisibility(View.VISIBLE);
                 price.setVisibility(View.VISIBLE);
                 endDate.setVisibility(View.VISIBLE);
                 user.setVisibility(View.VISIBLE);
-                messageSeller.setVisibility(View.VISIBLE);
-                otherProfileButton.setVisibility(View.VISIBLE);
+//                messageSeller.setVisibility(View.VISIBLE);
+//                otherProfileButton.setVisibility(View.VISIBLE);
 
                 if(model.getEvent().toLowerCase().contains(Search.getText().toString().toLowerCase()) && !model.getStatus().contains("Sold")) {
                     //Set text
@@ -193,8 +195,9 @@ public class SearchActivity extends BaseActivity {
                     endDate.setTypeface(typeface);
                     user.setText("USER: " + model.getUserEmail());
                     user.setTypeface(typeface);
-                    messageSeller.setTag(model);
-                    otherProfileButton.setTag(model);
+//                    messageSeller.setTag(model);
+//                    otherProfileButton.setTag(model);
+                    goToSingleTicketButton.setTag(position);
 
                 }
 
@@ -205,8 +208,9 @@ public class SearchActivity extends BaseActivity {
                     price.setVisibility(View.GONE);
                     endDate.setVisibility(View.GONE);
                     user.setVisibility(View.GONE);
-                    messageSeller.setVisibility(View.GONE);
-                    otherProfileButton.setVisibility(View.GONE);
+                    goToSingleTicketButton.setVisibility(View.GONE);
+//                    messageSeller.setVisibility(View.GONE);
+//                    otherProfileButton.setVisibility(View.GONE);
 
                 }
 
@@ -266,22 +270,22 @@ public class SearchActivity extends BaseActivity {
 
     }
 
-    public void goToOtherProfile(android.view.View v){
-
-        //RelativeLayout vwParentRow = (RelativeLayout) v.getParent();
-
-        Ticket selectedTicket= (Ticket)v.getTag();
-        String sellerUid = selectedTicket.getuID();
-        String sellerEmail = selectedTicket.getUserEmail();
-
-        Intent otherProfileIntent = new Intent(SearchActivity.this,OtherProfileActivity.class);
-
-        otherProfileIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
-
-        startActivity(otherProfileIntent);
-
-
-    }
+//    public void goToOtherProfile(android.view.View v){
+//
+//        //RelativeLayout vwParentRow = (RelativeLayout) v.getParent();
+//
+//        Ticket selectedTicket= (Ticket)v.getTag();
+//        String sellerUid = selectedTicket.getuID();
+//        String sellerEmail = selectedTicket.getUserEmail();
+//
+//        Intent otherProfileIntent = new Intent(SearchActivity.this,OtherProfileActivity.class);
+//
+//        otherProfileIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
+//
+//        startActivity(otherProfileIntent);
+//
+//
+//    }
 
     public void goToOtherProfileUser(android.view.View v){
 
@@ -289,7 +293,7 @@ public class SearchActivity extends BaseActivity {
 
         int position = (int)v.getTag();
 
-        String userID = myUserAdapter.getRef(position).getKey().toString();
+        String userID = myUserAdapter.getRef(position).getKey();
         String userEmail = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("email").toString();
 
         Intent otherProfileIntent = new Intent(SearchActivity.this,OtherProfileActivity.class);
@@ -301,21 +305,21 @@ public class SearchActivity extends BaseActivity {
 
     }
 
-    public void messageSellerButton(android.view.View v){
-
-        Ticket selectedTicket= (Ticket)v.getTag();
-        String sellerUid = selectedTicket.getuID();
-        String sellerEmail = selectedTicket.getUserEmail();
-
-        Intent ChatIntent = new Intent(SearchActivity.this,ChatActivity.class);
-
-        ChatIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
-        //ChatIntent.putExtra("com.example.ryan.qwiktix.SELLEREMAIL",sellerEmail);
-
-        startActivity(ChatIntent);
-
-
-    }
+//    public void messageSellerButton(android.view.View v){
+//
+//        Ticket selectedTicket= (Ticket)v.getTag();
+//        String sellerUid = selectedTicket.getuID();
+//        String sellerEmail = selectedTicket.getUserEmail();
+//
+//        Intent ChatIntent = new Intent(SearchActivity.this,ChatActivity.class);
+//
+//        ChatIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
+//        //ChatIntent.putExtra("com.example.ryan.qwiktix.SELLEREMAIL",sellerEmail);
+//
+//        startActivity(ChatIntent);
+//
+//
+//    }
 
     public void messageSellerButtonUser(android.view.View v){
 
@@ -331,6 +335,21 @@ public class SearchActivity extends BaseActivity {
         //ChatIntent.putExtra("com.example.ryan.qwiktix.SELLEREMAIL",sellerEmail);
 
         startActivity(ChatIntent);
+
+
+    }
+
+    public void goToSingleTicket(android.view.View v){
+
+        int selectedTicket = (int)v.getTag();
+
+        String ticketId = myEventAdapter.getRef(selectedTicket).getKey();
+
+        Intent singleTicketIntent = new Intent(SearchActivity.this,SingleTicketActivity.class);
+
+        singleTicketIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[] {ticketId});
+
+        startActivity(singleTicketIntent);
 
 
     }

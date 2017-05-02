@@ -131,7 +131,7 @@ public class AddTicketActivity extends BaseActivity {
 
         String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
 
-        if (!TextUtils.isEmpty(price) && !TextUtils.isEmpty(eventDate) && !TextUtils.isEmpty(event) && !TextUtils.isEmpty(extrainfo)) {
+        if (!TextUtils.isEmpty(price) && !TextUtils.isEmpty(eventDate) && !TextUtils.isEmpty(event)) {
             Ticket ticket = new Ticket(event, Integer.parseInt(price), currentDateTimeString, eventDate, userEmail, user,extrainfo);
             mDatabase.child("tickets").push().setValue(ticket);
 
@@ -145,7 +145,7 @@ public class AddTicketActivity extends BaseActivity {
 
         else
         {
-            Toast.makeText(AddTicketActivity.this, "please fill all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddTicketActivity.this, "must enter a price", Toast.LENGTH_SHORT).show();
         }
 
     }

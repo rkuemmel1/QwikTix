@@ -41,24 +41,28 @@ public class HomePageActivity extends BaseActivity {
                 TextView eventName = (TextView)v.findViewById(R.id.eventName);
                 TextView price = (TextView)v.findViewById(R.id.price);
                 TextView endDate = (TextView)v.findViewById(R.id.endDate);
-                ImageButton messageSeller = (ImageButton)v.findViewById(R.id.messageSellerBtn);
-                messageSeller.setBackgroundDrawable(null);
-                ImageButton otherProfileButton = (ImageButton)v.findViewById(R.id.otherProfileButton);
-                otherProfileButton.setBackgroundDrawable(null);
+//                ImageButton messageSeller = (ImageButton)v.findViewById(R.id.messageSellerBtn);
+//                messageSeller.setBackgroundDrawable(null);
+//                ImageButton otherProfileButton = (ImageButton)v.findViewById(R.id.otherProfileButton);
+//                otherProfileButton.setBackgroundDrawable(null);
+                ImageButton goToSingleTicketButton = (ImageButton)v.findViewById(R.id.singleTicketButton);
+                goToSingleTicketButton.setBackgroundDrawable(null);
                 //Set text
                 if(!model.getStatus().contains("Sold")){
                     eventName.setText(model.getEvent());
                     price.setText("PRICE: $" + Integer.toString(model.getPrice()));
                     endDate.setText("END DATE: " + model.getEndTime());
-                    messageSeller.setTag(model);
-                    otherProfileButton.setTag(model);
+//                    messageSeller.setTag(model);
+//                    otherProfileButton.setTag(model);
+                    goToSingleTicketButton.setTag(position);
                 }
                 else{
                     eventName.setVisibility(android.view.View.GONE);
                     price.setVisibility(android.view.View.GONE);
                     endDate.setVisibility(android.view.View.GONE);
-                    messageSeller.setVisibility(android.view.View.GONE);
-                    otherProfileButton.setVisibility(android.view.View.GONE);
+//                    messageSeller.setVisibility(android.view.View.GONE);
+//                    otherProfileButton.setVisibility(android.view.View.GONE);
+                    goToSingleTicketButton.setVisibility(android.view.View.GONE);
                 }
 
             }
@@ -69,35 +73,50 @@ public class HomePageActivity extends BaseActivity {
 
 
     }
-    public void messageSellerButton(android.view.View v){
+//    public void messageSellerButton(android.view.View v){
+//
+//
+//        Ticket selectedTicket= (Ticket)v.getTag();
+//        String sellerUid = selectedTicket.getuID();
+//        String sellerEmail = selectedTicket.getUserEmail();
+//
+//        Intent ChatIntent = new Intent(HomePageActivity.this,ChatActivity.class);
+//
+//        ChatIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
+//        //ChatIntent.putExtra("com.example.ryan.qwiktix.SELLEREMAIL",sellerEmail);
+//
+//        startActivity(ChatIntent);
+//
+//
+//    }
+//
+//    public void goToOtherProfile(android.view.View v){
+//
+//
+//        Ticket selectedTicket= (Ticket)v.getTag();
+//        String sellerUid = selectedTicket.getuID();
+//        String sellerEmail = selectedTicket.getUserEmail();
+//
+//        Intent otherProfileIntent = new Intent(HomePageActivity.this,OtherProfileActivity.class);
+//
+//        otherProfileIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
+//
+//        startActivity(otherProfileIntent);
+//
+//
+//    }
 
+    public void goToSingleTicket(android.view.View v){
 
-        Ticket selectedTicket= (Ticket)v.getTag();
-        String sellerUid = selectedTicket.getuID();
-        String sellerEmail = selectedTicket.getUserEmail();
+        int selectedTicket = (int)v.getTag();
 
-        Intent ChatIntent = new Intent(HomePageActivity.this,ChatActivity.class);
+        String ticketId = myAdapter.getRef(selectedTicket).getKey();
 
-        ChatIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
-        //ChatIntent.putExtra("com.example.ryan.qwiktix.SELLEREMAIL",sellerEmail);
+        Intent singleTicketIntent = new Intent(HomePageActivity.this,SingleTicketActivity.class);
 
-        startActivity(ChatIntent);
+        singleTicketIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[] {ticketId});
 
-
-    }
-
-    public void goToOtherProfile(android.view.View v){
-
-
-        Ticket selectedTicket= (Ticket)v.getTag();
-        String sellerUid = selectedTicket.getuID();
-        String sellerEmail = selectedTicket.getUserEmail();
-
-        Intent otherProfileIntent = new Intent(HomePageActivity.this,OtherProfileActivity.class);
-
-        otherProfileIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
-
-        startActivity(otherProfileIntent);
+        startActivity(singleTicketIntent);
 
 
     }

@@ -22,7 +22,6 @@
         <activity android:name=".SearchActivity" />
         <activity android:name=".BaseActivity" />
         <activity android:name=".AddTicketActivity" />
-        <activity android:name=".TrendsActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".EditProfileActivity">
             android:windowSoftInputMode="stateHidden|adjustResize"
@@ -32,7 +31,8 @@
             android:name=".PaypalActivity"
             android:label="@string/title_activity_paypal"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".OtherProfileActivity"></activity>
+        <activity android:name=".OtherProfileActivity" />
+        <activity android:name=".SingleTicketActivity"></activity>
     </application>
 
 </manifest>

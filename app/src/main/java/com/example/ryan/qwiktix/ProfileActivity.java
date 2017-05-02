@@ -103,6 +103,7 @@ public class ProfileActivity extends BaseActivity {
                 TextView eventName = (TextView)v.findViewById(R.id.eventName);
                 TextView price = (TextView)v.findViewById(R.id.price);
                 TextView endDate = (TextView)v.findViewById(R.id.endDate);
+                TextView status = (TextView)v.findViewById(R.id.status);
                 Button ticketAvailable = (Button)v.findViewById(R.id.ticketAvailableButton);
                 Button ticketPending = (Button)v.findViewById(R.id.ticketPendingButton);
                 Button ticketSold = (Button)v.findViewById(R.id.ticketSoldButton);
@@ -114,6 +115,7 @@ public class ProfileActivity extends BaseActivity {
                     eventName.setText("EVENT: " + model.getEvent());
                     price.setText("PRICE: $" + Integer.toString(model.getPrice()));
                     endDate.setText("END DATE: " + model.getEndTime());
+                    status.setText("Status: " + model.getStatus());
                     ticketAvailable.setTag(position);
                     ticketPending.setTag(position);
                     ticketSold.setTag(position);
@@ -124,6 +126,7 @@ public class ProfileActivity extends BaseActivity {
                     eventName.setVisibility(View.GONE);
                     price.setVisibility(View.GONE);
                     endDate.setVisibility(View.GONE);
+                    status.setVisibility(View.GONE);
                     ticketAvailable.setVisibility(View.GONE);
                     ticketPending.setVisibility(View.GONE);
                     ticketSold.setVisibility(View.GONE);
