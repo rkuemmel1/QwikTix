@@ -47,7 +47,7 @@ public class ChatActivity extends BaseActivity {
         final FloatingActionButton sendButton = (FloatingActionButton)findViewById(R.id.fab);
         Intent intent = getIntent();
         if(intent.getStringArrayExtra("com.example.ryan.qwiktix.MESSAGE") != null) {
-             //uid of user you just started a conversation with
+            //uid of user you just started a conversation with
             newConvoUid = intent.getStringArrayExtra("com.example.ryan.qwiktix.MESSAGE")[0];
             String otherUserName = intent.getStringArrayExtra("com.example.ryan.qwiktix.MESSAGE")[1];
 
@@ -59,20 +59,33 @@ public class ChatActivity extends BaseActivity {
             ChatConversation convoToStart = new ChatConversation(newChatName,otherUser,otherUserName);
 
             ChatMessage welcomeMessage = new ChatMessage("New Chat","admin");
+            getMessages().addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+                    if(!snapshot.child(newChatName).exists()){
+                        getMessages().child(newChatName).push().setValue(welcomeMessage);
+                        getUsers().child(otherUser).child("convos").push().setValue(theirConvoToStart);
 
-            getMessages().child(newChatName).push().setValue(welcomeMessage);
-            getUsers().child(otherUser).child("convos").push().setValue(theirConvoToStart);
+                        getConversations().push().setValue(convoToStart);
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError e){
 
-            getConversations().push().setValue(convoToStart);
+                }
+            });
+
 
             conversation = newChatName;
+            displayChatMessages();
             spinner = (Spinner) findViewById(R.id.spinner);
-            spinner.setSelection(0);
+
             getIntent().removeExtra("com.example.ryan.qwiktix.MESSAGE");
         }
         // Load chat room contents
-        displayChatMessages();
         displayConversations();
+        displayChatMessages();
+
 
 
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +106,7 @@ public class ChatActivity extends BaseActivity {
                 String item = parent.getItemAtPosition(position).toString();
 
                 // Showing selected spinner item
-                Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+                //Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
                 listOfMessages.setAdapter(null);
                 ChatConversation chat = (ChatConversation) spinner.getSelectedItem();
                 String text = chat.getChatName();
@@ -109,13 +122,14 @@ public class ChatActivity extends BaseActivity {
             }
         });
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
     }
 
 
 
     public void displayChatMessages(){
+
         listOfMessages = (ListView)findViewById(R.id.list_of_messages);
         listOfMessages.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 
@@ -150,7 +164,7 @@ public class ChatActivity extends BaseActivity {
 
     }
     public void displayConversations(){
-        spinner = (Spinner) findViewById(R.id.spinner);
+
         conversationAdapter = new FirebaseListAdapter<ChatConversation>(this, ChatConversation.class,R.layout.conversation, getConversations()){
             @Override
             protected void populateView(View v, ChatConversation model,int position){
