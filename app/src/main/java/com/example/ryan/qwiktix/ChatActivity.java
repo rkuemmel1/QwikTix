@@ -1,27 +1,18 @@
 package com.example.ryan.qwiktix;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 /**
@@ -35,7 +26,7 @@ public class ChatActivity extends BaseActivity {
     String conversation ="testconvo";
     ListView listOfMessages;
     String uid;
-    String newConvoUid;
+    String otherUserUid;
     String email;
     int switchedConvos = 0;
     int spinnerPosition = 0;
@@ -51,25 +42,25 @@ public class ChatActivity extends BaseActivity {
         Intent intent = getIntent();
         if(intent.getStringArrayExtra("com.example.ryan.qwiktix.MESSAGE") != null) {
             //uid of user you just started a conversation with
-            newConvoUid = intent.getStringArrayExtra("com.example.ryan.qwiktix.MESSAGE")[0];
+            otherUserUid = intent.getStringArrayExtra("com.example.ryan.qwiktix.MESSAGE")[0];
             String otherUserName = intent.getStringArrayExtra("com.example.ryan.qwiktix.MESSAGE")[1];
 
-            //getUsers().child(newConvoUid);
-            String newChatName = uid+newConvoUid;
+            //getUsers().child(otherUserUid);
+            String newChatName = uid+ otherUserUid;
             //otherUserName = otherUsername[0];
-            String otherUser = newConvoUid;
-            ChatConversation theirConvoToStart = new ChatConversation(newChatName,getmAuth().getCurrentUser().getUid(),email);
-            ChatConversation convoToStart = new ChatConversation(newChatName,otherUser,otherUserName);
-
+            String otherUser = otherUserUid;
+            ChatConversation theirConvoToStart = new ChatConversation(newChatName,getmAuth().getCurrentUser().getUid(),email,"New Chat");
+            ChatConversation convoToStart = new ChatConversation(newChatName,otherUser,otherUserName,"New Chat");
+            conversation = newChatName;
             ChatMessage welcomeMessage = new ChatMessage("New Chat","admin");
             getMessages().addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
                     if(!snapshot.child(newChatName).exists() ){
                         getMessages().child(newChatName).push().setValue(welcomeMessage);
-                        getUsers().child(otherUser).child("convos").push().setValue(theirConvoToStart);
+                        getUsers().child(otherUser).child("convos").child(newChatName).setValue(theirConvoToStart);
 
-                        getConversations().push().setValue(convoToStart);
+                        getConversations().child(newChatName).setValue(convoToStart);
                     }
                 }
                 @Override
@@ -79,8 +70,8 @@ public class ChatActivity extends BaseActivity {
             });
 
             //displayConversations();
-            conversation = newChatName;
-            Toast.makeText(ChatActivity.this,"switched chat OnCreate "+ conversation, Toast.LENGTH_LONG).show();
+
+
             displayChatMessages();
 
 
@@ -99,6 +90,8 @@ public class ChatActivity extends BaseActivity {
                 //Read the input field and push a new instance
                 //of ChatMessage to the Firebase database
                 getMessages().child(conversation).push().setValue(messageToSend);
+                getConversations().child(conversation).child("lastMessageText").setValue("You:   "+input.getText().toString());
+                getUsers().child(otherUserUid).child("convos").child(conversation).child("lastMessageTest").setValue("them:   "+input.getText().toString());
                 // Clear the input
                 input.setText("");
             }
@@ -215,7 +208,7 @@ public class ChatActivity extends BaseActivity {
 
     @Override
     public int getNavigationMenuItemId(){
-        return R.id.action_chat;
+        return -1;
     }
 
     @Override

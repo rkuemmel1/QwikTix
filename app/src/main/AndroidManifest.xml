@@ -33,6 +33,7 @@
             android:label="@string/title_activity_paypal"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".OtherProfileActivity"></activity>
+        <activity android:name=".ConversationsActivity"></activity>
     </application>
 
 </manifest>

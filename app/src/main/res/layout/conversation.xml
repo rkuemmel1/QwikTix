@@ -2,13 +2,27 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/lastMessage"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/convo"
+        android:onClick="messageThemButton"
+        android:textColor="@color/white"
+        android:textSize="15dp"
         android:textStyle="normal|bold"
-        android:layout_alignParentLeft="true" />
+        android:layout_below="@+id/otherUserName" />
+
+    <TextView
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/otherUserName"
+        android:textStyle="normal|bold"
+        android:onClick="messageThemButton"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 
 
 </RelativeLayout>
