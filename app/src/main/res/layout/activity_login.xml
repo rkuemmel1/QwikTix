@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/black"
     tools:context="com.example.ryan.qwiktix.LoginActivity">
 
     <EditText
@@ -19,25 +20,31 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/lEmail"
+        android:backgroundTint="@color/gold"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:textColorHint="@color/grey"
+        android:textCursorDrawable="@drawable/cursor_color"
         android:hint="email" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
+        android:backgroundTint="@color/gold"
         android:ems="10"
         android:layout_below="@+id/lEmail"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/lPassword"
+        android:textColorHint="@color/grey"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:textCursorDrawable="@drawable/cursor_color"
         android:hint="password" />
 
-    <Button
-        android:text="Login"
+    <ImageButton
+        android:src="@drawable/loginbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lLoginButton"
@@ -47,8 +54,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <Button
-        android:text="Register Here"
+    <ImageButton
+        android:src="@drawable/registerbuttton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lRegisterLink"
@@ -58,7 +65,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <Button
+    <ImageButton
+        android:src="@drawable/resetbutton"
         android:id="@+id/lResetPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

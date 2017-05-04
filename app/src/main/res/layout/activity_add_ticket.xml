@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_add_ticket"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/steel"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.ryan.qwiktix.AddTicketActivity">
 
 
     <Spinner
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:ems="10"
         android:id="@+id/tSpinner"
         android:prompt="@string/event_spinner"
         android:spinnerMode="dropdown"
-        android:background="@android:drawable/btn_dropdown"
+        android:background="#FFDF00"
+        android:popupBackground="#FFDF00"
         android:layout_below="@+id/tEventLabel"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -31,6 +34,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/tEventDateTime"
+        android:textColorHint="#D3D3D3"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:hint="Event Date And Time" />
@@ -45,9 +49,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/tPrice"
+        android:textColorHint="#D3D3D3"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="Price" />
+        android:hint="Price"
+        />
 
 
     <EditText
@@ -59,13 +65,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/tExtra"
+        android:textColorHint="#D3D3D3"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:hint="Extra Information" />
 
 
-    <Button
-        android:text="Add Ticket"
+    <ImageButton
+        android:src="@drawable/addticketbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -75,13 +82,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <include
-        layout="@layout/bottom_navigation_element"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_alignParentBottom="true"
-        />
 
     <TextView
         android:id="@+id/tEventLabel"
@@ -90,8 +90,31 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:textColor="@color/grey"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:text="Choose Which Event" />
+
+
+    <include
+        layout="@layout/bottom_navigation_element"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        app:srcCompat="@drawable/dropdown"
+        android:layout_above="@+id/tEventDateTime"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="12dp" />
+
 
 </RelativeLayout>

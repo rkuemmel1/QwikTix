@@ -5,28 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/steel"
     tools:context="com.example.ryan.qwiktix.SearchActivity"
     >
     <EditText
         android:id="@+id/Search"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="search event or user email"/>
+        android:layout_height="50dp"
+        android:hint="search event or user email"
+        android:textColorHint="#D3D3D3"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:background="@drawable/steel"
+
+        android:textColor="@color/white"/>
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
+        android:background="@drawable/steel"
         android:orientation="horizontal">
         <RadioButton android:id="@+id/radio_event"
             android:checked="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Event"
+            android:textColor="@color/white"
+            android:buttonTint="#FFDF00"
             android:onClick="onRadioButtonClicked"/>
         <RadioButton android:id="@+id/radio_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="User"
+            android:buttonTint="#FFDF00"
             android:onClick="onRadioButtonClicked"/>
     </RadioGroup>
 

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,11 +36,13 @@ public class LoginActivity extends AppCompatActivity {
 
         lEmail = (EditText) findViewById(R.id.lEmail);
         lPassword =(EditText) findViewById(R.id.lPassword);
-        final Button lLoginButton = (Button) findViewById(R.id.lLoginButton);
-        final Button lRegisterLink = (Button) findViewById(R.id.lRegisterLink);
-        final Button lResetPassword = (Button) findViewById(R.id.lResetPassword);
+        final ImageButton lLoginButton = (ImageButton) findViewById(R.id.lLoginButton);
+        final ImageButton lRegisterLink = (ImageButton) findViewById(R.id.lRegisterLink);
+        final ImageButton lResetPassword = (ImageButton) findViewById(R.id.lResetPassword);
 
-
+        lLoginButton.setBackgroundDrawable(null);
+        lRegisterLink.setBackgroundDrawable(null);
+        lResetPassword.setBackgroundDrawable(null);
 
 
         lRegisterLink.setOnClickListener(new View.OnClickListener(){

@@ -165,6 +165,7 @@ public class SearchActivity extends BaseActivity {
             @Override
             protected void populateView(android.view.View v, Ticket model, int position) {
                 Typeface typeface=Typeface.createFromAsset(getAssets(), "Fonts/Sports.ttf");
+                Typeface subtitle=Typeface.createFromAsset(getAssets(), "Fonts/sports2.ttf");
 
                 TextView eventName = (TextView) v.findViewById(R.id.eventName);
                 TextView price = (TextView) v.findViewById(R.id.price);
@@ -190,11 +191,11 @@ public class SearchActivity extends BaseActivity {
                     eventName.setText(model.getEvent());
                     eventName.setTypeface(typeface);
                     price.setText("PRICE: $" + Integer.toString(model.getPrice()));
-                    price.setTypeface(typeface);
+                    price.setTypeface(subtitle);
                     endDate.setText("END DATE: " + model.getEndTime());
-                    endDate.setTypeface(typeface);
+                    endDate.setTypeface(subtitle);
                     user.setText("USER: " + model.getUserEmail());
-                    user.setTypeface(typeface);
+                    user.setTypeface(subtitle);
 //                    messageSeller.setTag(model);
 //                    otherProfileButton.setTag(model);
                     goToSingleTicketButton.setTag(position);

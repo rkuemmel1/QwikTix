@@ -2,6 +2,7 @@ package com.example.ryan.qwiktix;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +57,9 @@ public class AddTicketActivity extends BaseActivity {
         tEventDate = (EditText) findViewById(R.id.tEventDateTime);
         tPrice = (EditText) findViewById(R.id.tPrice);
         tExtra = (EditText) findViewById(R.id.tExtra);
-        final Button tSubmitButton = (Button) findViewById(R.id.tSubmitButton);
+        final ImageButton tSubmitButton = (ImageButton) findViewById(R.id.tSubmitButton);
+        tEventDate.setTextColor(this.getResources().getColor(R.color.grey));
+        tSubmitButton.setBackgroundDrawable(null);
 
         tSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
