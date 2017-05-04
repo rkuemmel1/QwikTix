@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/black"
     tools:context="com.example.ryan.qwiktix.SearchActivity"
     >
 
@@ -13,9 +14,9 @@
 
     <ImageButton
         android:id="@+id/pPayPalImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_search"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:src="@drawable/paypal"
         android:layout_marginBottom="5dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -31,6 +32,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:textSize="35dp"
+        android:textColor="@color/white"
         android:paddingTop="10dp" />
 
     <TextView
@@ -40,6 +43,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/oFirstName"
+        android:textSize="35dp"
+        android:textColor="@color/white"
         android:paddingTop="10dp" />
 
     <TextView
@@ -51,6 +56,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/oLastName"
+        android:textSize="20dp"
+        android:textColor="@color/white"
         android:paddingTop="10dp" />
 
     <TextView
@@ -61,6 +68,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
+        android:textSize="20dp"
+        android:textColor="@color/white"
         android:layout_below="@+id/oEmail"
         android:paddingTop="10dp" />
 

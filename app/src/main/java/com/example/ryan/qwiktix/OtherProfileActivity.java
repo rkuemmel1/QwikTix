@@ -1,6 +1,8 @@
 package com.example.ryan.qwiktix;
 
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,19 +35,27 @@ public class OtherProfileActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Typeface title=Typeface.createFromAsset(getAssets(), "Fonts/Sports.ttf");
+        Typeface subtitle=Typeface.createFromAsset(getAssets(), "Fonts/sports2.ttf");
         super.onCreate(savedInstanceState);
 
         oEmail = (TextView) findViewById(R.id.oEmail);
+        oEmail.setTypeface(subtitle);
         oPayPalEmail = (TextView) findViewById(R.id.oPayPalEmail);
+        oPayPalEmail.setTypeface(subtitle);
         oFirstName = (TextView) findViewById(R.id.oFirstName);
+        oFirstName.setTypeface(title);
         oLastName = (TextView) findViewById(R.id.oLastName);
+        oLastName.setTypeface(title);
         PayPalButton = (ImageButton) findViewById(R.id.pPayPalImageButton);
+        PayPalButton.setBackgroundDrawable(null);
         ticketList = (ListView) findViewById(R.id.otherTicketList);
 
         PayPalButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent PaypalIntent = new Intent(OtherProfileActivity.this,PaypalActivity.class);
+                Uri uri = Uri.parse("https://www.paypal.com/myaccount/transfer/send");
+                Intent PaypalIntent = new Intent(Intent.ACTION_VIEW,uri);
                 startActivity(PaypalIntent);
             }
         });
@@ -84,6 +94,9 @@ public class OtherProfileActivity extends BaseActivity {
                 TextView price = (TextView)v.findViewById(R.id.price);
                 TextView endDate = (TextView)v.findViewById(R.id.endDate);
 
+                eventName.setTypeface(subtitle);
+                price.setTypeface(subtitle);
+                endDate.setTypeface(subtitle);
 
 //                Button messageSeller = (Button)v.findViewById(R.id.messageSellerBtn);
 //                Button otherProfileButton = (Button)v.findViewById(R.id.otherProfileButton);
