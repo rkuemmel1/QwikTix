@@ -145,25 +145,23 @@
             android:hint="Retype New Password"
             android:inputType="textPassword" />
 
-        <Button
+        <ImageButton
             android:id="@+id/bchangeInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
+            android:src="@drawable/submitbutton"
             android:layout_below="@+id/editPayPalEmail"
-            android:layout_marginEnd="33dp"
-            android:layout_marginRight="33dp"
-            android:text="Submit" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
-        <Button
+        <ImageButton
             android:id="@+id/bChangePass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/bchangeInfo"
             android:layout_alignStart="@+id/bchangeInfo"
             android:layout_below="@+id/editNewPass2"
-            android:text="Submit" />
+            android:src="@drawable/submitbutton" />
 
         <!--<Button-->
             <!--android:id="@+id/bGoBack"-->

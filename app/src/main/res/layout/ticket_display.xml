@@ -62,5 +62,5 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="false"
         android:onClick="goToSingleTicket"
-        android:src="@drawable/buybutton" />
+        android:src="@drawable/detailsbutton" />
 </LinearLayout>

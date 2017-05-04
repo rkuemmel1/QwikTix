@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,8 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 public class EditProfileActivity extends BaseActivity {
 
     private Button bGoBack;
-    private Button bChangeInfo;
-    private Button bChangePass;
+    private ImageButton bChangeInfo;
+    private ImageButton bChangePass;
     private EditText editFirstName;
     private EditText editLastName;
     private EditText editPayPalEmail;
@@ -45,14 +46,16 @@ public class EditProfileActivity extends BaseActivity {
         //setContentView(R.layout.activity_edit_profile);
 
         //bGoBack = (Button) findViewById(R.id.bGoBack);
-        bChangeInfo = (Button) findViewById(R.id.bchangeInfo);
-        bChangePass = (Button) findViewById(R.id.bChangePass);
+        bChangeInfo = (ImageButton) findViewById(R.id.bchangeInfo);
+        bChangePass = (ImageButton) findViewById(R.id.bChangePass);
         editFirstName = (EditText) findViewById(R.id.editFirstName);
         editLastName = (EditText) findViewById(R.id.editLastName);
         editPayPalEmail = (EditText) findViewById(R.id.editPayPalEmail);
         editOldPassword = (EditText) findViewById(R.id.editOldPass);
         editNewPassword = (EditText) findViewById(R.id.editNewPass);
         editNewPassword2 = (EditText) findViewById(R.id.editNewPass2);
+        bChangeInfo.setBackgroundDrawable(null);
+        bChangePass.setBackgroundDrawable(null);
 
         pUid = getUid();
 
