@@ -7,99 +7,104 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/container"
+    android:background="@drawable/steel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context="com.example.ryan.qwiktix.SearchActivity">
 
 
+            <TextView
+                android:id="@+id/pFirstName"
+                android:layout_width="wrap_content"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="18dp"
+                android:layout_alignParentTop="true"
+                 />
+
+            <TextView
+                android:id="@+id/pLastName"
+                android:layout_width="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/pFirstName"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="35dp"
+                />
 
 
-        <TextView
-            android:id="@+id/pFirstName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="28dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="23dp"
-            />
 
-        <TextView
-            android:id="@+id/pLastName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/pFirstName"
-            android:layout_centerHorizontal="true"
-             />
 
-        <Button
+
+        <ImageButton
             android:id="@+id/pLogOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="27dp"
-            android:layout_marginRight="27dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:src="@drawable/logoutbutton"
             android:text="Log Out"
-            android:layout_below="@+id/lProfile"
+            android:layout_alignTop="@+id/pEditProfile"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="30dp" />
+            android:layout_alignParentEnd="true" />
 
-        <TextView
-            android:id="@+id/lProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Profile"
-            android:layout_alignBaseline="@+id/pLastName"
-            android:layout_alignBottom="@+id/pLastName"
-            android:layout_alignRight="@+id/pLogOut"
-            android:layout_alignEnd="@+id/pLogOut" />
-
-        <TextView
-            android:id="@+id/lEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/pFirstName"
-            android:layout_alignStart="@+id/pFirstName"
-            android:layout_below="@+id/pLogOut"
-            android:layout_marginTop="26dp"
-            android:text="Email" />
+    <TextView
+        android:id="@+id/lEmail"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:text="Email"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/pEditProfile"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/lPayPalEmail"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/lEmail"
-            android:layout_alignStart="@+id/lEmail"
+            android:layout_marginTop="30dp"
+            android:text="PayPal Email"
             android:layout_below="@+id/lEmail"
-            android:layout_marginTop="33dp"
-            android:text="PayPal Email" />
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/pEmail"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/pLastName"
+            android:layout_marginLeft="150dp"
             android:layout_alignTop="@+id/lEmail" />
 
         <TextView
             android:id="@+id/pPayPalEmail"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/pEmail"
-            android:layout_alignStart="@+id/pEmail"
+            android:layout_marginLeft="150dp"
+
             android:layout_alignTop="@+id/lPayPalEmail" />
 
-        <Button
+        <ImageButton
             android:id="@+id/pEditProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit Profile"
-            android:layout_below="@+id/pFirstName"
-            android:layout_marginLeft="27dp"
-            android:layout_marginTop="30dp"/>
+            android:src="@drawable/editprofilebutton"
+            android:layout_below="@+id/pLastName"
+            android:layout_toLeftOf="@+id/pLogOut"
+            android:layout_toStartOf="@+id/pLogOut" />
 
         <!--<Button-->
             <!--android:id="@+id/BChat"-->
@@ -127,10 +132,11 @@
             <ListView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:textColor="@color/white"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@id/pPayPalEmail"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="60dp"
                 android:id="@+id/ticketList"
                 >

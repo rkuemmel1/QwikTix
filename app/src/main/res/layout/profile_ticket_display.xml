@@ -7,47 +7,55 @@
 
     <TextView
         android:id="@+id/eventName"
+        android:textColor="@color/white"
+        android:textSize="18dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/price"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/endDate"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/status"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
 
 
-    <Button
+    <ImageButton
         android:id="@+id/ticketAvailableButton"
-        android:layout_width="111dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/available"
         android:text="Mark Available"
         android:onClick="ticketAvailable"
         />
 
-    <Button
+    <ImageButton
         android:id="@+id/ticketPendingButton"
-        android:layout_width="111dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/pending"
         android:text="Mark Pending"
         android:onClick="ticketPending"
         />
-    <Button
+    <ImageButton
         android:id="@+id/ticketSoldButton"
-        android:layout_width="111dp"
+        android:layout_width="wrap_content"
+        android:src="@drawable/sold"
         android:layout_height="wrap_content"
         android:text="Mark Sold"
         android:onClick="ticketSold"

@@ -1,9 +1,11 @@
 package com.example.ryan.qwiktix;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,21 +17,24 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class ProfileActivity extends BaseActivity {
 
-    private Button bLogOut;
-    private Button bEditProfile;
+    private ImageButton bLogOut;
+    private ImageButton bEditProfile;
     private Button bChat;
     //private ImageButton PayPalButton;
     private TextView pEmail;
     private TextView pPayPalEmail;
     private TextView pFirstName;
     private TextView pLastName;
+    private TextView lEmail;
+    private TextView lPayPayEmail;
     private String pUid;
     private DatabaseReference mUserReference;
-
     private ListView ticketList;
     private FirebaseListAdapter<Ticket> myAdapter;
 
@@ -39,11 +44,14 @@ public class ProfileActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //bChat = (Button) findViewById(R.id.BChat);
-        bLogOut = (Button) findViewById(R.id.pLogOut);
-        bEditProfile = (Button) findViewById(R.id.pEditProfile);
+        bLogOut = (ImageButton) findViewById(R.id.pLogOut);
+        bEditProfile = (ImageButton) findViewById(R.id.pEditProfile);
         ticketList = (ListView) findViewById(R.id.ticketList);
+        Typeface title=Typeface.createFromAsset(getAssets(), "Fonts/Sports.ttf");
+        Typeface subtitle=Typeface.createFromAsset(getAssets(), "Fonts/sports2.ttf");
         //PayPalButton = (ImageButton) findViewById(R.id.pPayPalImageButton);
-
+        bLogOut.setBackgroundDrawable(null);
+        bEditProfile.setBackgroundDrawable(null);
         bLogOut.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -78,15 +86,24 @@ public class ProfileActivity extends BaseActivity {
         pPayPalEmail = (TextView) findViewById(R.id.pPayPalEmail);
         pFirstName = (TextView) findViewById(R.id.pFirstName);
         pLastName = (TextView) findViewById(R.id.pLastName);
+        lEmail = (TextView) findViewById(R.id.lEmail);
+        lPayPayEmail = (TextView) findViewById(R.id.lPayPalEmail);
         mUserReference.getRef().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
 
                 pEmail.setText(user.getEmail());
+                pEmail.setTypeface(subtitle);
                 pPayPalEmail.setText(user.getPayPalEmail());
+                pPayPalEmail.setTypeface(subtitle);
                 pFirstName.setText(user.getFirstName());
+                pFirstName.setTypeface(title);
                 pLastName.setText(user.getLastName());
+                pLastName.setTypeface(title);
+                lEmail.setTypeface(subtitle);
+                lPayPayEmail.setTypeface(subtitle);
+
 
             }
 
@@ -104,9 +121,20 @@ public class ProfileActivity extends BaseActivity {
                 TextView price = (TextView)v.findViewById(R.id.price);
                 TextView endDate = (TextView)v.findViewById(R.id.endDate);
                 TextView status = (TextView)v.findViewById(R.id.status);
-                Button ticketAvailable = (Button)v.findViewById(R.id.ticketAvailableButton);
-                Button ticketPending = (Button)v.findViewById(R.id.ticketPendingButton);
-                Button ticketSold = (Button)v.findViewById(R.id.ticketSoldButton);
+                ImageButton ticketAvailable = (ImageButton)v.findViewById(R.id.ticketAvailableButton);
+                ImageButton ticketPending = (ImageButton)v.findViewById(R.id.ticketPendingButton);
+                ImageButton ticketSold = (ImageButton)v.findViewById(R.id.ticketSoldButton);
+
+                ticketAvailable.setBackgroundDrawable(null);
+                ticketPending.setBackgroundDrawable(null);
+                ticketSold.setBackgroundDrawable(null);
+
+                eventName.setTypeface(subtitle);
+                price.setTypeface(subtitle);
+                endDate.setTypeface(subtitle);
+                status.setTypeface(subtitle);
+
+
 
 //                Button messageSeller = (Button)v.findViewById(R.id.messageSellerBtn);
 //                Button otherProfileButton = (Button)v.findViewById(R.id.otherProfileButton);

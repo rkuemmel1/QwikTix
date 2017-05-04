@@ -2,6 +2,7 @@ package com.example.ryan.qwiktix;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -46,7 +47,16 @@ public class HomePageActivity extends BaseActivity {
 //                ImageButton otherProfileButton = (ImageButton)v.findViewById(R.id.otherProfileButton);
 //                otherProfileButton.setBackgroundDrawable(null);
                 ImageButton goToSingleTicketButton = (ImageButton)v.findViewById(R.id.singleTicketButton);
+                Typeface typeface=Typeface.createFromAsset(getAssets(), "Fonts/Sports.ttf");
+                Typeface subtitle=Typeface.createFromAsset(getAssets(), "Fonts/sports2.ttf");
+
+                eventName.setTypeface(typeface);
+                endDate.setTypeface(subtitle);
+                price.setTypeface(subtitle);
                 goToSingleTicketButton.setBackgroundDrawable(null);
+
+
+
                 //Set text
                 if(!model.getStatus().contains("Sold")){
                     eventName.setText(model.getEvent());
