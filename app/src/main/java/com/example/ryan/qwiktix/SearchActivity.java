@@ -27,6 +27,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 
@@ -166,11 +168,11 @@ public class SearchActivity extends BaseActivity {
             protected void populateView(android.view.View v, Ticket model, int position) {
                 Typeface typeface=Typeface.createFromAsset(getAssets(), "Fonts/Sports.ttf");
                 Typeface subtitle=Typeface.createFromAsset(getAssets(), "Fonts/sports2.ttf");
-
+                TextView status = (TextView) v.findViewById(R.id.status);
                 TextView eventName = (TextView) v.findViewById(R.id.eventName);
                 TextView price = (TextView) v.findViewById(R.id.price);
                 TextView endDate = (TextView) v.findViewById(R.id.endDate);
-                TextView user = (TextView) v.findViewById(R.id.user);
+               // TextView user = (TextView) v.findViewById(R.id.user);
 
 //                ImageButton messageSeller = (ImageButton) v.findViewById(R.id.messageSellerBtn);
 //                messageSeller.setBackgroundDrawable(null);
@@ -182,7 +184,11 @@ public class SearchActivity extends BaseActivity {
                 eventName.setVisibility(View.VISIBLE);
                 price.setVisibility(View.VISIBLE);
                 endDate.setVisibility(View.VISIBLE);
-                user.setVisibility(View.VISIBLE);
+                status.setVisibility(View.VISIBLE);
+                goToSingleTicketButton.setVisibility(View.VISIBLE
+                );
+
+               // user.setVisibility(View.VISIBLE);
 //                messageSeller.setVisibility(View.VISIBLE);
 //                otherProfileButton.setVisibility(View.VISIBLE);
 
@@ -194,8 +200,10 @@ public class SearchActivity extends BaseActivity {
                     price.setTypeface(subtitle);
                     endDate.setText("END DATE: " + model.getEndTime());
                     endDate.setTypeface(subtitle);
-                    user.setText("USER: " + model.getUserEmail());
-                    user.setTypeface(subtitle);
+                    status.setText("STATUS: " + model.getStatus());
+                    status.setTypeface(subtitle);
+                   // user.setText("USER: " + model.getUserEmail());
+                    //user.setTypeface(subtitle);
 //                    messageSeller.setTag(model);
 //                    otherProfileButton.setTag(model);
                     goToSingleTicketButton.setTag(position);
@@ -208,7 +216,8 @@ public class SearchActivity extends BaseActivity {
                     eventName.setVisibility(View.GONE);
                     price.setVisibility(View.GONE);
                     endDate.setVisibility(View.GONE);
-                    user.setVisibility(View.GONE);
+                    status.setVisibility(View.GONE);
+                    //user.setVisibility(View.GONE);
                     goToSingleTicketButton.setVisibility(View.GONE);
 //                    messageSeller.setVisibility(View.GONE);
 //                    otherProfileButton.setVisibility(View.GONE);
@@ -229,7 +238,7 @@ public class SearchActivity extends BaseActivity {
             protected void populateView(android.view.View v, User model, int position) {
                 String info[] = new String[2];
                 Typeface typeface=Typeface.createFromAsset(getAssets(), "Fonts/Sports.ttf");
-
+                Typeface subtitle=Typeface.createFromAsset(getAssets(), "Fonts/sports2.ttf");
                 TextView userName = (TextView) v.findViewById(R.id.userName);
                 TextView userEmail = (TextView) v.findViewById(R.id.userEmail);
 
@@ -249,7 +258,7 @@ public class SearchActivity extends BaseActivity {
                     userName.setText(model.getFirstName() + " " + model.getLastName());
                     userName.setTypeface(typeface);
                     userEmail.setText(model.getEmail());
-                    userEmail.setTypeface(typeface);
+                    userEmail.setTypeface(subtitle);
                     info[0] = Integer.toString(position);
                     info[1] = model.getEmail();
                     messageSeller.setTag(info);

@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:background="@drawable/steel"
+    android:background="@color/black"
     android:orientation="vertical"
+    android:paddingBottom="15dp"
     android:baselineAligned="false">
 
     <TextView
@@ -14,11 +15,13 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/userEmail"
         android:textSize="20dp"
+        android:paddingBottom="15dp"
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +30,7 @@
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="90dp" >
 
 
         <ImageButton
@@ -43,6 +46,6 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="false"
             android:onClick="goToOtherProfileUser"
-            android:src="@drawable/profilebutton" />
+            android:src="@drawable/otherprofilebutton" />
     </LinearLayout>
 </LinearLayout>

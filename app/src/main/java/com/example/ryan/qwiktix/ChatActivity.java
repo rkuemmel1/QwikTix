@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -52,12 +53,11 @@ public class ChatActivity extends BaseActivity {
             ChatConversation theirConvoToStart = new ChatConversation(newChatName,getmAuth().getCurrentUser().getUid(),email,"New Chat");
             ChatConversation convoToStart = new ChatConversation(newChatName,otherUser,otherUserName,"New Chat");
             conversation = newChatName;
-            ChatMessage welcomeMessage = new ChatMessage("New Chat","admin");
             getMessages().addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
                     if(!snapshot.child(newChatName).exists() ){
-                        getMessages().child(newChatName).push().setValue(welcomeMessage);
+                        //getMessages().child(newChatName).push().setValue(welcomeMessage);
                         getUsers().child(otherUser).child("convos").child(newChatName).setValue(theirConvoToStart);
 
                         getConversations().child(newChatName).setValue(convoToStart);
@@ -128,7 +128,7 @@ public class ChatActivity extends BaseActivity {
             }
         });*/
 
-        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
     }
 

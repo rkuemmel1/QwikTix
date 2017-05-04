@@ -42,6 +42,7 @@ public class HomePageActivity extends BaseActivity {
                 TextView eventName = (TextView)v.findViewById(R.id.eventName);
                 TextView price = (TextView)v.findViewById(R.id.price);
                 TextView endDate = (TextView)v.findViewById(R.id.endDate);
+                TextView status = (TextView) v.findViewById(R.id.status);
 //                ImageButton messageSeller = (ImageButton)v.findViewById(R.id.messageSellerBtn);
 //                messageSeller.setBackgroundDrawable(null);
 //                ImageButton otherProfileButton = (ImageButton)v.findViewById(R.id.otherProfileButton);
@@ -53,6 +54,7 @@ public class HomePageActivity extends BaseActivity {
                 eventName.setTypeface(typeface);
                 endDate.setTypeface(subtitle);
                 price.setTypeface(subtitle);
+                status.setTypeface(subtitle);
                 goToSingleTicketButton.setBackgroundDrawable(null);
 
 
@@ -62,6 +64,7 @@ public class HomePageActivity extends BaseActivity {
                     eventName.setText(model.getEvent());
                     price.setText("PRICE: $" + Integer.toString(model.getPrice()));
                     endDate.setText("END DATE: " + model.getEndTime());
+                    status.setText("STATUS: " + model.getStatus());
 //                    messageSeller.setTag(model);
 //                    otherProfileButton.setTag(model);
                     goToSingleTicketButton.setTag(position);
@@ -70,6 +73,7 @@ public class HomePageActivity extends BaseActivity {
                     eventName.setVisibility(android.view.View.GONE);
                     price.setVisibility(android.view.View.GONE);
                     endDate.setVisibility(android.view.View.GONE);
+                    status.setVisibility(android.view.View.GONE);
 //                    messageSeller.setVisibility(android.view.View.GONE);
 //                    otherProfileButton.setVisibility(android.view.View.GONE);
                     goToSingleTicketButton.setVisibility(android.view.View.GONE);

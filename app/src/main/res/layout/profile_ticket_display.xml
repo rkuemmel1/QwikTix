@@ -35,23 +35,32 @@
         android:text="TextView" />
 
 
-    <ImageButton
-        android:id="@+id/ticketAvailableButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/available"
-        android:text="Mark Available"
-        android:onClick="ticketAvailable"
-        />
 
-    <ImageButton
-        android:id="@+id/ticketPendingButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/pending"
-        android:text="Mark Pending"
-        android:onClick="ticketPending"
-        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ticketAvailableButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/available"
+            android:text="Mark Available"
+            android:onClick="ticketAvailable"
+            />
+        <ImageButton
+            android:id="@+id/ticketPendingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pending"
+            android:text="Mark Pending"
+            android:onClick="ticketPending"
+            />
+
+    </LinearLayout>
+
     <ImageButton
         android:id="@+id/ticketSoldButton"
         android:layout_width="wrap_content"

@@ -33,12 +33,14 @@
         android:text="TextView" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/user"
+        android:id="@+id/status"
         android:textSize="20dp"
         android:textColor="@color/white"
-        android:text="TextView"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+
 
     <!--<LinearLayout-->
         <!--android:id="@+id/linearLayout1"-->
@@ -67,5 +69,5 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="false"
         android:onClick="goToSingleTicket"
-        android:src="@drawable/buybutton" />
+        android:src="@drawable/detailsbutton" />
 </LinearLayout>
