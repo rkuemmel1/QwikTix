@@ -1,8 +1,11 @@
 package com.example.ryan.qwiktix;
 
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +26,8 @@ public class SingleTicketActivity extends BaseActivity {
     private TextView tSellersEmail;
     private TextView tExtraInfo;
     private Ticket myTicket;
+    private ImageButton mbuy;
+    private ImageButton mMessage;
 
     private DatabaseReference mticketReference;
 
@@ -38,9 +43,14 @@ public class SingleTicketActivity extends BaseActivity {
         tStatus = (TextView) findViewById(R.id.tStatus);
         tSellersEmail = (TextView) findViewById(R.id.tSellersEmail);
         tExtraInfo = (TextView) findViewById(R.id.tExtraInfo);
+        mbuy = (ImageButton) findViewById(R.id.otherProfileButton);
+        mbuy.setBackgroundDrawable(null);
+        mMessage = (ImageButton) findViewById(R.id.messageSellerBtn);
+        mMessage.setBackgroundDrawable(null);
 
 
-
+        Typeface title=Typeface.createFromAsset(getAssets(), "Fonts/Sports.ttf");
+        Typeface subtitle=Typeface.createFromAsset(getAssets(), "Fonts/sports2.ttf");
         Intent intent = getIntent();
         if(intent.getStringArrayExtra("com.example.ryan.qwiktix.MESSAGE") != null) {
 
@@ -56,12 +66,19 @@ public class SingleTicketActivity extends BaseActivity {
                     myTicket = ticket;
 
                     tEventName.setText(ticket.getEvent());
+                    tEventName.setTypeface(title);
                     tEventTime.setText(ticket.getEndTime());
+                    tEventName.setTypeface(subtitle);
                     tPrice.setText(Integer.toString(ticket.getPrice()));
+                    tPrice.setTypeface(subtitle);
                     tTimePosted.setText(ticket.getTimePosted());
+                    tTimePosted.setTypeface(subtitle);
                     tStatus.setText(ticket.getStatus());
+                    tStatus.setTypeface(subtitle);
                     tSellersEmail.setText(ticket.getUserEmail());
+                    tSellersEmail.setTypeface(subtitle);
                     tExtraInfo.setText(ticket.getExtraInfo());
+                    tExtraInfo.setTypeface(subtitle);
 
 
 
