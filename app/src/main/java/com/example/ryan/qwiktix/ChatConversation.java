@@ -8,12 +8,15 @@ public class ChatConversation {
     private String otherUser;
     private String otherUserName;
     private String chatName;
+    private String lastMessageText;
 
 
-    public ChatConversation(String chatName,String otherUser, String otherUserName) {
+
+    public ChatConversation(String chatName, String otherUser, String otherUserName, String lastMessageText) {
         this.otherUser = otherUser;
         this.otherUserName = otherUserName;
         this.chatName = chatName;
+        this.lastMessageText = lastMessageText;
 
     }
 
@@ -41,7 +44,13 @@ public class ChatConversation {
     public void setChatName(String chatName) {
         this.chatName = chatName;
     }
+    public String getLastMessageText() {
+        return lastMessageText;
+    }
 
+    public void setLastMessageText(String lastMessageText) {
+        this.lastMessageText = lastMessageText;
+    }
 
 
 }

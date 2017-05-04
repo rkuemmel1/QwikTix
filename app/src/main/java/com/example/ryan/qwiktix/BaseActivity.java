@@ -7,6 +7,7 @@ package com.example.ryan.qwiktix;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -106,7 +107,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             } else if (itemId == R.id.action_add_ticket) {
                 startActivity(new Intent(this, AddTicketActivity.class));
             } else if (itemId == R.id.action_chat) {
-                startActivity(new Intent(this, ChatActivity.class));
+                startActivity(new Intent(this, ConversationsActivity.class));
             } else if (itemId == R.id.action_profile) {
                 startActivity(new Intent(this, ProfileActivity.class));
             }
@@ -168,6 +169,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         mUserReference = FirebaseDatabase.getInstance().getReference().child("users");
         return mUserReference;
     }
+
 
     abstract int getContentViewId();
 

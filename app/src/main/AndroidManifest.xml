@@ -32,7 +32,8 @@
             android:label="@string/title_activity_paypal"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".OtherProfileActivity" />
-        <activity android:name=".SingleTicketActivity"></activity>
+        <activity android:name=".SingleTicketActivity"/>
+        <activity android:name=".ConversationsActivity"/>
     </application>
 
 </manifest>
