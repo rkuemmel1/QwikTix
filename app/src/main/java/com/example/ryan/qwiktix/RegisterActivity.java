@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,7 +47,8 @@ public class RegisterActivity extends AppCompatActivity {
         rPassword = (EditText) findViewById(R.id.rPassword);
         rPasswordConfirm = (EditText) findViewById(R.id.rPasswordConfirm);
         rEmail = (EditText) findViewById(R.id.rEmail);
-        final Button rSubmitButton = (Button) findViewById(R.id.rSubmitButton);
+        final ImageButton rSubmitButton = (ImageButton) findViewById(R.id.rSubmitButton);
+        rSubmitButton.setBackgroundDrawable(null);
 
         rSubmitButton.setOnClickListener(new View.OnClickListener(){
             @Override

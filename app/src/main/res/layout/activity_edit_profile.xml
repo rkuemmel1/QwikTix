@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/black"
         tools:context="com.example.ryan.qwiktix.EditProfileActivity"
         >
 
@@ -22,7 +23,11 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:backgroundTint="@color/gold"
             android:layout_below="@+id/editInfo"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:ems="10"
             android:hint="First Name"
             android:inputType="textPersonName" />
@@ -35,6 +40,10 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:backgroundTint="@color/gold"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:layout_below="@+id/editFirstName"
             android:ems="10"
             android:hint="Last Name"
@@ -48,6 +57,10 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:backgroundTint="@color/gold"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:layout_below="@+id/editLastName"
             android:ems="10"
             android:hint="PayPal Email"
@@ -63,6 +76,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="17dp"
             android:layout_alignParentRight="true"
+            android:textColor="@color/white"
             android:layout_alignParentEnd="true" />
 
         <TextView
@@ -74,6 +88,9 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/editPayPalEmail"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:backgroundTint="@color/gold"
             android:layout_marginTop="64dp"
             android:text="Change Password" />
 
@@ -85,8 +102,12 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:layout_below="@+id/editPass"
             android:ems="10"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:backgroundTint="@color/gold"
             android:hint="Old Password"
             android:inputType="textPassword" />
 
@@ -99,7 +120,11 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/editOldPass"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:ems="10"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:backgroundTint="@color/gold"
             android:hint="New Password"
             android:inputType="textPassword" />
 
@@ -112,7 +137,11 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/editNewPass"
+            android:textCursorDrawable="@drawable/cursor_color"
             android:ems="10"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:backgroundTint="@color/gold"
             android:hint="Retype New Password"
             android:inputType="textPassword" />
 
