@@ -69,19 +69,19 @@ public class SingleTicketActivity extends BaseActivity {
 
                     myTicket = ticket;
 
-                    tEventName.setText(ticket.getEvent());
+                    tEventName.setText("Event: " + ticket.getEvent());
                     tEventName.setTypeface(title);
-                    tEventTime.setText(ticket.getEndTime());
+                    tEventTime.setText("End Time: " + ticket.getEndTime());
                     tEventName.setTypeface(subtitle);
-                    tPrice.setText(Integer.toString(ticket.getPrice()));
+                    tPrice.setText("$" + Integer.toString(ticket.getPrice()));
                     tPrice.setTypeface(subtitle);
-                    tTimePosted.setText(ticket.getTimePosted());
+                    tTimePosted.setText("Time Posted: " + ticket.getTimePosted());
                     tTimePosted.setTypeface(subtitle);
-                    tStatus.setText(ticket.getStatus());
+                    tStatus.setText("Status: " + ticket.getStatus());
                     tStatus.setTypeface(subtitle);
-                    tSellersEmail.setText(ticket.getUserEmail());
+                    tSellersEmail.setText("Seller: " + ticket.getUserEmail());
                     tSellersEmail.setTypeface(subtitle);
-                    tExtraInfo.setText(ticket.getExtraInfo());
+                    tExtraInfo.setText("Extra Info: "+ ticket.getExtraInfo());
                     tExtraInfo.setTypeface(subtitle);
 
 
