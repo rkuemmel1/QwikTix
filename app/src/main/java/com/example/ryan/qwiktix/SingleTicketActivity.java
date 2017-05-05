@@ -119,7 +119,7 @@ public class SingleTicketActivity extends BaseActivity {
                     otherEmail = dataSnapshot.child(getUid()+sellerUid).child("otherUserName").getValue(String.class);
                     if(otherEmail.equals(sellerEmail)){
                         alreadyhasChat="true";
-                        Toast.makeText(SingleTicketActivity.this, "chat already exists", Toast.LENGTH_SHORT).show();
+
                     }
                     else{
                         alreadyhasChat="false";
@@ -128,23 +128,23 @@ public class SingleTicketActivity extends BaseActivity {
                 }
                 else{
                     alreadyhasChat="false";
-                    Toast.makeText(SingleTicketActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+
                 }
                 if(dataSnapshot.child(sellerUid + getUid()).child("otherUserName").getValue()!=null)
                 {
                     otherEmail = dataSnapshot.child(sellerUid + getUid()).child("otherUserName").getValue(String.class);
                     if(otherEmail.equals(sellerEmail)){
                         alreadyhasChat="true";
-                        Toast.makeText(SingleTicketActivity.this, "chat already exists", Toast.LENGTH_SHORT).show();
+
                     }
                     else{
                         alreadyhasChat="false";
-                        Toast.makeText(SingleTicketActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+
                     }
                 }
                 else{
                     alreadyhasChat2="false";
-                    Toast.makeText(SingleTicketActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+
                 }
 
 

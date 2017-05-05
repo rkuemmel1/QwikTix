@@ -105,59 +105,17 @@ public class ChatActivity extends BaseActivity {
             }
             else{
                 conversation = uid + otherUserUid;
-//                ChatConversation theirConvoToStart = new ChatConversation(chatName1,getmAuth().getCurrentUser().getUid(),email,"");
-//                ChatConversation convoToStart = new ChatConversation(chatName1,otherUserUid,otherUserName,"");
-//                getUsers().child(otherUserUid).child("convos").child(chatName1).setValue(theirConvoToStart);
-//                getConversations().child(chatName1).setValue(convoToStart);
                 displayChatMessages(conversation);
             }
 
 
 
 
-//            else{
-//
-//                String newChatName = uid+ otherUserUid;
-//                //otherUserName = otherUsername[0];
-//                String otherUser = otherUserUid;
-//                ChatConversation theirConvoToStart = new ChatConversation(newChatName,getmAuth().getCurrentUser().getUid(),email,"");
-//                ChatConversation convoToStart = new ChatConversation(newChatName,otherUser,otherUserName,"");
-//                conversation = newChatName;
-//                getMessages().addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot snapshot) {
-//                        if(!snapshot.child(newChatName).exists() ){
-//                        //getMessages().child(newChatName).push().setValue(welcomeMessage);
-//                        getUsers().child(otherUser).child("convos").child(newChatName).setValue(theirConvoToStart);
-//
-//                        getConversations().child(newChatName).setValue(convoToStart);
-//                        }
-//                    }
-//                    @Override
-//                    public void onCancelled(DatabaseError e){
-//
-//                    }
-//                });
-//
-//            }
-            //getUsers().child(otherUserUid);
-
-
-
-
-
-
-            //displayConversations();
-
-
-            //displayChatMessages();
 
 
             getIntent().removeExtra("com.example.ryan.qwiktix.MESSAGE");
         }
-        // Load chat room contents
 
-        //displayChatMessages();
 
 
 

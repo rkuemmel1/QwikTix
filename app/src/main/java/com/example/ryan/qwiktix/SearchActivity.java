@@ -292,32 +292,31 @@ public class SearchActivity extends BaseActivity {
                     otherEmail = dataSnapshot.child(getUid()+userID).child("otherUserName").getValue(String.class);
                     if(otherEmail.equals(userEmail)){
                         alreadyhasChat="true";
-                        Toast.makeText(SearchActivity.this, "chat already exists", Toast.LENGTH_SHORT).show();
                     }
                     else{
                         alreadyhasChat="false";
-                        Toast.makeText(SearchActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+
                     }
                 }
                 else{
                     alreadyhasChat="false";
-                    Toast.makeText(SearchActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+
                 }
                 if(dataSnapshot.child(userID + getUid()).child("otherUserName").getValue()!=null)
                 {
                     otherEmail = dataSnapshot.child(userID + getUid()).child("otherUserName").getValue(String.class);
                     if(otherEmail.equals(userEmail)){
                         alreadyhasChat="true";
-                        Toast.makeText(SearchActivity.this, "chat already exists", Toast.LENGTH_SHORT).show();
+
                     }
                     else{
                         alreadyhasChat="false";
-                        Toast.makeText(SearchActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+
                     }
                 }
                 else{
                     alreadyhasChat2="false";
-                    Toast.makeText(SearchActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+
                 }
 
 
