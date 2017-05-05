@@ -93,7 +93,8 @@ public class OtherProfileActivity extends BaseActivity {
                 TextView eventName = (TextView)v.findViewById(R.id.eventName);
                 TextView price = (TextView)v.findViewById(R.id.price);
                 TextView endDate = (TextView)v.findViewById(R.id.endDate);
-
+                ImageButton goToSingleTicketButton = (ImageButton)v.findViewById(R.id.singleTicketButton);
+                goToSingleTicketButton.setBackgroundDrawable(null);
                 eventName.setTypeface(subtitle);
                 price.setTypeface(subtitle);
                 endDate.setTypeface(subtitle);
@@ -105,7 +106,7 @@ public class OtherProfileActivity extends BaseActivity {
                     eventName.setText("EVENT: " + model.getEvent());
                     price.setText("PRICE: $" + Integer.toString(model.getPrice()));
                     endDate.setText("END DATE: " + model.getEndTime());
-
+                    goToSingleTicketButton.setTag(position);
 //                messageSeller.setTag(model);
 //                otherProfileButton.setTag(model);
                 }
@@ -113,6 +114,7 @@ public class OtherProfileActivity extends BaseActivity {
                     eventName.setVisibility(View.GONE);
                     price.setVisibility(View.GONE);
                     endDate.setVisibility(View.GONE);
+                    goToSingleTicketButton.setVisibility(android.view.View.GONE);
 
                 }
 
@@ -124,6 +126,21 @@ public class OtherProfileActivity extends BaseActivity {
 
 
 
+
+
+    }
+
+    public void goToSingleTicket(android.view.View v){
+
+        int selectedTicket = (int)v.getTag();
+
+        String ticketId = myAdapter.getRef(selectedTicket).getKey();
+
+        Intent singleTicketIntent = new Intent(OtherProfileActivity.this,SingleTicketActivity.class);
+
+        singleTicketIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[] {ticketId});
+
+        startActivity(singleTicketIntent);
 
 
     }

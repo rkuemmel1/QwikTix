@@ -30,4 +30,12 @@
         android:paddingTop="15dp"
         android:text="TextView" />
 
+    <ImageButton
+        android:id="@+id/singleTicketButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="false"
+        android:onClick="goToSingleTicket"
+        android:src="@drawable/detailsbutton2" />
+
 </LinearLayout>
