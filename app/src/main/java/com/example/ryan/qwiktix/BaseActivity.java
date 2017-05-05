@@ -161,8 +161,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     }
     protected DatabaseReference getConversations(){
 
-        mUserReference = FirebaseDatabase.getInstance().getReference().child("users").child(pUid);
-        return mUserReference.getRef().child("convos");
+
+        return FirebaseDatabase.getInstance().getReference().child("users").child(pUid).child("convos");
     }
 
     protected DatabaseReference getUsers(){

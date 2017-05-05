@@ -24,20 +24,22 @@ public class ChatActivity extends BaseActivity {
 
     FirebaseListAdapter conversationAdapter;
     //Spinner spinner;
-    String conversation ="testconvo";
+    private String conversation;
     ListView listOfMessages;
     String uid;
     String otherUserUid;
     String email;
     int switchedConvos = 0;
     int spinnerPosition = 0;
+    private boolean chatAlreadyCreated;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        // spinner = (Spinner) findViewById(R.id.spinner);
         //final String[] otherUsername = new String[1];
         //setContentView(R.layout.activity_chat);
-        uid =getmAuth().getCurrentUser().getUid();
-        email = getmAuth().getCurrentUser().getEmail();
+        uid =getUid();
+        email = getEmail();
         final EditText input = (EditText) findViewById(R.id.input);
         final FloatingActionButton sendButton = (FloatingActionButton)findViewById(R.id.fab);
         Intent intent = getIntent();
@@ -45,13 +47,32 @@ public class ChatActivity extends BaseActivity {
             //uid of user you just started a conversation with
             otherUserUid = intent.getStringArrayExtra("com.example.ryan.qwiktix.MESSAGE")[0];
             String otherUserName = intent.getStringArrayExtra("com.example.ryan.qwiktix.MESSAGE")[1];
+            String chatexists = intent.getStringArrayExtra("com.example.ryan.qwiktix.MESSAGE")[2];
+            String chatexists2  = intent.getStringArrayExtra("com.example.ryan.qwiktix.MESSAGE")[3];
 
+            //making sure there isn't already a chat that exists between these two people
+            if(chatexists.equals("true")||chatexists2.equals("true")){
+                chatAlreadyCreated = true;
+            }
+
+//            String newChatName = uid+ otherUserUid;
+//            String otherUser = otherUserUid;
+//
+//            if(chatAlreadyCreated){
+//                displayChatMessages();
+//            }
+//
+//            else{
+//
+//
+//
+//            }
             //getUsers().child(otherUserUid);
             String newChatName = uid+ otherUserUid;
             //otherUserName = otherUsername[0];
             String otherUser = otherUserUid;
-            ChatConversation theirConvoToStart = new ChatConversation(newChatName,getmAuth().getCurrentUser().getUid(),email,"New Chat");
-            ChatConversation convoToStart = new ChatConversation(newChatName,otherUser,otherUserName,"New Chat");
+            ChatConversation theirConvoToStart = new ChatConversation(newChatName,getmAuth().getCurrentUser().getUid(),email,"");
+            ChatConversation convoToStart = new ChatConversation(newChatName,otherUser,otherUserName,"");
             conversation = newChatName;
             getMessages().addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -68,6 +89,10 @@ public class ChatActivity extends BaseActivity {
 
                 }
             });
+
+
+
+
 
             //displayConversations();
 
@@ -96,37 +121,6 @@ public class ChatActivity extends BaseActivity {
                 input.setText("");
             }
         });
-        /*
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // On selecting a spinner item
-                String item = parent.getItemAtPosition(position).toString();
-
-                // Showing selected spinner item
-
-                listOfMessages.setAdapter(null);
-                ChatConversation chat = (ChatConversation) spinner.getSelectedItem();
-                String text = chat.getChatName();
-
-                if(switchedConvos != 0) {
-                    conversation = text;
-
-                }
-                else{
-
-                    switchedConvos = 1;
-                }
-                Toast.makeText(ChatActivity.this,"switched chat item selected"+ conversation, Toast.LENGTH_LONG).show();
-                //displayConversations();
-                displayChatMessages();
-
-
-            }
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-            }
-        });*/
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
@@ -148,7 +142,7 @@ public class ChatActivity extends BaseActivity {
                 TextView messageText = (TextView)v.findViewById(R.id.message_text);
                 TextView messageUser = (TextView)v.findViewById(R.id.message_user);
                 TextView messageTime = (TextView)v.findViewById(R.id.message_time);
-                if(model.getMessageUser().toString().equals(email) ){
+                if(model.getMessageUser().equals(email) ){
                     messageUser.setTextColor(Color.BLUE);
                 }
                 else{
@@ -169,40 +163,6 @@ public class ChatActivity extends BaseActivity {
 
 
     }
-    /*
-    public void displayConversations(){
-
-        conversationAdapter = new FirebaseListAdapter<ChatConversation>(this, ChatConversation.class,R.layout.conversation, getConversations()){
-            @Override
-            protected void populateView(View v, ChatConversation model,int position){
-
-                TextView convotext= (TextView)v.findViewById(R.id.convo);
-                convotext.setText(model.getOtherUserName());
-            }
-
-        };
-        // attaching data adapter to spinner
-        spinner.setAdapter(conversationAdapter);
-
-    }
-    */
-/*
-    public void createConvo(String otherUser, String otherUserName, String chatName) {
-        ChatConversation theirConvoToStart = new ChatConversation(chatName,getmAuth().getCurrentUser().getUid(),mAuth.getCurrentUser().getEmail());
-        ChatConversation convoToStart = new ChatConversation(chatName,otherUser,otherUserName);
-
-        ChatMessage welcomeMessage = new ChatMessage("New Chat","admin");
-
-        getMessages().child(chatName).push().setValue(welcomeMessage);
-        getUsers().child(otherUser).child("convos").push().setValue(theirConvoToStart);
-
-        getConversations().push().setValue(convoToStart);
-
-
-
-
-    }
-*/
 
 
 

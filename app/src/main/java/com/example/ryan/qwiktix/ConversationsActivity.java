@@ -61,7 +61,7 @@ public class ConversationsActivity extends BaseActivity {
 
         Intent ChatIntent = new Intent(ConversationsActivity.this,ChatActivity.class);
 
-        ChatIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
+        ChatIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail,"true","true"} );
 
 
         startActivity(ChatIntent);

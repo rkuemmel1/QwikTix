@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +29,9 @@ public class SingleTicketActivity extends BaseActivity {
     private Ticket myTicket;
     private ImageButton mbuy;
     private ImageButton mMessage;
+
+    private String alreadyhasChat;
+    private String alreadyhasChat2;
 
     private DatabaseReference mticketReference;
 
@@ -101,15 +105,79 @@ public class SingleTicketActivity extends BaseActivity {
         String sellerUid = myTicket.getuID();
         String sellerEmail = myTicket.getUserEmail();
 
-        Intent ChatIntent = new Intent(SingleTicketActivity.this,ChatActivity.class);
 
-        ChatIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
+        //DatabaseReference userEmail = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("email");
+
+        DatabaseReference findingConvo = getUsers().child(getUid()).child("convos");
+
+        findingConvo.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String otherEmail;
+                if(dataSnapshot.child(getUid()+sellerUid).child("otherUserName").getValue()!=null)
+                {
+                    otherEmail = dataSnapshot.child(getUid()+sellerUid).child("otherUserName").getValue(String.class);
+                    if(otherEmail.equals(sellerEmail)){
+                        alreadyhasChat="true";
+                        Toast.makeText(SingleTicketActivity.this, "chat already exists", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        alreadyhasChat="false";
+                        Toast.makeText(SingleTicketActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    alreadyhasChat="false";
+                    Toast.makeText(SingleTicketActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+                }
+                if(dataSnapshot.child(sellerUid + getUid()).child("otherUserName").getValue()!=null)
+                {
+                    otherEmail = dataSnapshot.child(sellerUid + getUid()).child("otherUserName").getValue(String.class);
+                    if(otherEmail.equals(sellerEmail)){
+                        alreadyhasChat="true";
+                        Toast.makeText(SingleTicketActivity.this, "chat already exists", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        alreadyhasChat="false";
+                        Toast.makeText(SingleTicketActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    alreadyhasChat2="false";
+                    Toast.makeText(SingleTicketActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+                }
+
+
+                sendToChatActivity(sellerUid, sellerEmail, alreadyhasChat, alreadyhasChat2);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+
+
+
+
+    }
+
+    public void sendToChatActivity(String userID,String userEmail, String alreadyhasChat, String alreadyhasChat2){
+
+        Intent ChatIntent = new Intent(SingleTicketActivity.this, ChatActivity.class);
+
+        ChatIntent.putExtra("com.example.ryan.qwiktix.MESSAGE", new String[]{userID, userEmail, alreadyhasChat, alreadyhasChat2});
         //ChatIntent.putExtra("com.example.ryan.qwiktix.SELLEREMAIL",sellerEmail);
 
         startActivity(ChatIntent);
 
 
     }
+
 
     public void goToOtherProfile(android.view.View v){
 

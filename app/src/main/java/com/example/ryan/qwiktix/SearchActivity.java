@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -18,7 +19,9 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.firebase.client.annotations.NotNull;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.Query;
@@ -30,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 
 
 public class SearchActivity extends BaseActivity {
@@ -40,6 +44,8 @@ public class SearchActivity extends BaseActivity {
     private ListView searchList;
     private RadioButton userRadio;
     private RadioButton eventRadio;
+    private String alreadyhasChat;
+    private String alreadyhasChat2;
 
     private DatabaseReference mDatabase;
 
@@ -69,30 +75,6 @@ public class SearchActivity extends BaseActivity {
 
         searchEventAdapter();
         searchList.setAdapter(myEventAdapter);
-
-//        mDatabase.child("tickets").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    String ticket = snapshot.child("event").getValue(String.class) + " " + snapshot.child("endTime").getValue(String.class);
-//                    strings.add(ticket);
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError firebaseError) {
-//
-//            }
-//        });
-
-        //adapter = new ArrayAdapter<String>(SearchActivity.this, R.layout.search_results, R.id.results, strings);
-
-
-        //searchList.setAdapter(myAdapter);
-
-
-
 
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -162,7 +144,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     public void searchEventAdapter(){
-        myEventAdapter = new FirebaseListAdapter<Ticket>(this,Ticket.class,R.layout.ticket_display_search,
+        myEventAdapter = new FirebaseListAdapter<Ticket>(this,Ticket.class,R.layout.ticket_display,
                 getTickets()) {
             @Override
             protected void populateView(android.view.View v, Ticket model, int position) {
@@ -172,12 +154,7 @@ public class SearchActivity extends BaseActivity {
                 TextView eventName = (TextView) v.findViewById(R.id.eventName);
                 TextView price = (TextView) v.findViewById(R.id.price);
                 TextView endDate = (TextView) v.findViewById(R.id.endDate);
-               // TextView user = (TextView) v.findViewById(R.id.user);
 
-//                ImageButton messageSeller = (ImageButton) v.findViewById(R.id.messageSellerBtn);
-//                messageSeller.setBackgroundDrawable(null);
-//                ImageButton otherProfileButton = (ImageButton) v.findViewById(R.id.otherProfileButton);
-//                otherProfileButton.setBackgroundDrawable(null);
                 ImageButton goToSingleTicketButton = (ImageButton)v.findViewById(R.id.singleTicketButton);
                 goToSingleTicketButton.setBackgroundDrawable(null);
 
@@ -188,9 +165,6 @@ public class SearchActivity extends BaseActivity {
                 goToSingleTicketButton.setVisibility(View.VISIBLE
                 );
 
-               // user.setVisibility(View.VISIBLE);
-//                messageSeller.setVisibility(View.VISIBLE);
-//                otherProfileButton.setVisibility(View.VISIBLE);
 
                 if(model.getEvent().toLowerCase().contains(Search.getText().toString().toLowerCase()) && !model.getStatus().contains("Sold")) {
                     //Set text
@@ -202,10 +176,6 @@ public class SearchActivity extends BaseActivity {
                     endDate.setTypeface(subtitle);
                     status.setText("STATUS: " + model.getStatus());
                     status.setTypeface(subtitle);
-                   // user.setText("USER: " + model.getUserEmail());
-                    //user.setTypeface(subtitle);
-//                    messageSeller.setTag(model);
-//                    otherProfileButton.setTag(model);
                     goToSingleTicketButton.setTag(position);
 
                 }
@@ -217,10 +187,7 @@ public class SearchActivity extends BaseActivity {
                     price.setVisibility(View.GONE);
                     endDate.setVisibility(View.GONE);
                     status.setVisibility(View.GONE);
-                    //user.setVisibility(View.GONE);
                     goToSingleTicketButton.setVisibility(View.GONE);
-//                    messageSeller.setVisibility(View.GONE);
-//                    otherProfileButton.setVisibility(View.GONE);
 
                 }
 
@@ -264,6 +231,7 @@ public class SearchActivity extends BaseActivity {
                     messageSeller.setTag(info);
                     otherProfileButton.setTag(info);
 
+
                 }
 
                 else
@@ -279,36 +247,19 @@ public class SearchActivity extends BaseActivity {
             }
 
         };
-        //searchList.setAdapter(myAdapter);
-
-    }
-
-    public void goToOtherProfile(android.view.View v){
-
-        //RelativeLayout vwParentRow = (RelativeLayout) v.getParent();
-
-        Ticket selectedTicket = (Ticket)v.getTag();
-        String sellerUid = selectedTicket.getuID();
-        String sellerEmail = selectedTicket.getUserEmail();
-
-        Intent otherProfileIntent = new Intent(SearchActivity.this,OtherProfileActivity.class);
-
-        otherProfileIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
-
-        startActivity(otherProfileIntent);
 
 
     }
+
 
     public void goToOtherProfileUser(android.view.View v){
 
-        //RelativeLayout vwParentRow = (RelativeLayout) v.getParent();
 
         String info[] = (String[])v.getTag();
         int position = Integer.parseInt(info[0]);
         String userEmail = info[1];
 
-        String userID = myUserAdapter.getRef(position).getKey().toString();
+        String userID = myUserAdapter.getRef(position).getKey();
 
 
         Intent otherProfileIntent = new Intent(SearchActivity.this,OtherProfileActivity.class);
@@ -320,24 +271,6 @@ public class SearchActivity extends BaseActivity {
 
     }
 
-    public void messageSellerButton(android.view.View v){
-        String sellerUid;
-        String sellerEmail;
-
-        Ticket selectedTicket = (Ticket) v.getTag();
-        sellerUid = selectedTicket.getuID();
-        sellerEmail = selectedTicket.getUserEmail();
-
-        Intent ChatIntent = new Intent(SearchActivity.this,ChatActivity.class);
-
-        ChatIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{sellerUid,sellerEmail} );
-        //ChatIntent.putExtra("com.example.ryan.qwiktix.SELLEREMAIL",sellerEmail);
-
-        startActivity(ChatIntent);
-
-
-    }
-
     public void messageSellerButtonUser(android.view.View v){
 
         String info[] = (String[])v.getTag();
@@ -345,18 +278,77 @@ public class SearchActivity extends BaseActivity {
         String userEmail = info[1];
 
 
-        String userID = myUserAdapter.getRef(position).getKey().toString();
+        String userID = myUserAdapter.getRef(position).getKey();
         //DatabaseReference userEmail = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("email");
 
-        Intent ChatIntent = new Intent(SearchActivity.this,ChatActivity.class);
+        DatabaseReference findingConvo = getUsers().child(getUid()).child("convos");
 
-        ChatIntent.putExtra("com.example.ryan.qwiktix.MESSAGE",new String[]{userID,userEmail} );
+        findingConvo.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String otherEmail;
+                if(dataSnapshot.child(getUid()+userID).child("otherUserName").getValue()!=null)
+                {
+                    otherEmail = dataSnapshot.child(getUid()+userID).child("otherUserName").getValue(String.class);
+                    if(otherEmail.equals(userEmail)){
+                        alreadyhasChat="true";
+                        Toast.makeText(SearchActivity.this, "chat already exists", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        alreadyhasChat="false";
+                        Toast.makeText(SearchActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    alreadyhasChat="false";
+                    Toast.makeText(SearchActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+                }
+                if(dataSnapshot.child(userID + getUid()).child("otherUserName").getValue()!=null)
+                {
+                    otherEmail = dataSnapshot.child(userID + getUid()).child("otherUserName").getValue(String.class);
+                    if(otherEmail.equals(userEmail)){
+                        alreadyhasChat="true";
+                        Toast.makeText(SearchActivity.this, "chat already exists", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        alreadyhasChat="false";
+                        Toast.makeText(SearchActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    alreadyhasChat2="false";
+                    Toast.makeText(SearchActivity.this, "chat doesn't exist", Toast.LENGTH_SHORT).show();
+                }
+
+
+                sendToChatActivity(userID, userEmail, alreadyhasChat, alreadyhasChat2);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+
+    }
+
+    public void sendToChatActivity(String userID,String userEmail, String alreadyhasChat, String alreadyhasChat2){
+
+        Intent ChatIntent = new Intent(SearchActivity.this, ChatActivity.class);
+
+        ChatIntent.putExtra("com.example.ryan.qwiktix.MESSAGE", new String[]{userID, userEmail, alreadyhasChat, alreadyhasChat2});
         //ChatIntent.putExtra("com.example.ryan.qwiktix.SELLEREMAIL",sellerEmail);
 
         startActivity(ChatIntent);
 
 
     }
+
+
     public void goToSingleTicket(android.view.View v){
 
         int selectedTicket = (int)v.getTag();
